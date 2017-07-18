@@ -4,6 +4,7 @@
 
 * [标记语言](markup/README.md)
   * [HTML](markup/html/README.md)
+  * [XML](markup/xml/README.md)
 * [样式语言](style/README.md)
   * [CSS](style/css/README.md)
 * [Javascript](js/README.md)
