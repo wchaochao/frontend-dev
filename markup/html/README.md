@@ -79,8 +79,8 @@
 * `id`: 元素的唯一`id`
 * `class`: 元素的类名
 * `style`: 元素的行内样式
-* `title`: 元素的`title`信息(移到元素上时显示)
-* `name`: 元素的名字
+* `title`: 元素的提示信息(移到元素上时显示)
+* `name`: 元素的名称
 
 # XHTML
 
@@ -375,24 +375,24 @@ html文档中的以下字符在网页中显示时会被转义
 
 ```html
 <em>强调</em>
-<strong>加强语气</strong>
+<strong>重要</strong>
 <dfn>术语</dfn>
 <code>计算机代码文本</code>
 <kbd>键盘文本</kbd>
-<samp>样本文本</samp>
+<samp>计算机输出文本</samp>
 <var>变量</var>
-<cite>引用</cite>
+<cite>作品标题</cite>
+<abbr title="缩写">缩写</abbr>
+<address>联系信息</address>
+<dbo dir="rtl">文字方向</dbo>
 <pre>预格式化文本</pre>
 ```
 
 ## 引用
 
 ```html
-<abbr title="缩写">缩写</abbr>
-<address>联系信息</address>
-<dbo dir="rtl">文字方向</dbo>
-<blockquote cite="url">长引用</blockquote>
-<q>短引用</q>
+<blockquote cite="url">块引用</blockquote>
+<q>内联引用</q>
 ```
 
 ## 架构
@@ -429,7 +429,7 @@ html文档中的以下字符在网页中显示时会被转义
 
 ```html
 <a name="tip">锚点</a>
-<a href="#tip">跳转到锚点</a>
+<a href="#tip">跳转到锚点或`id="tip"`的地方</a>
 ```
 
 # 图片标签
