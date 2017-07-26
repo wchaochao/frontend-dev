@@ -7,6 +7,7 @@
 ## 推荐资料
 
 * [w3school-css](http://www.w3school.com.cn/css/index.asp)
+* [codecademy-html-css](https://www.codecademy.com/learn/learn-html-css)
 
 
 # 概述
@@ -57,7 +58,7 @@
 
 ## declaration
 
-声明，要设置的样式，由属性和属性值组成
+声明，要设置的样式，由属性和属性值组成,`;`结束
 
 ## rule
 
@@ -119,6 +120,12 @@ selector2 {
   }
 }
 ```
+
+## 兼容性
+
+不同浏览器对样式的支持不同，可到[Can I Use]上查看浏览器的支持性
+
+不同显示屏的分辨率不同，页面显示会有差别，使用响应式设计
 
 
 # 选择器
@@ -217,6 +224,7 @@ selector2 {
 * `:after`: 内容之后
 * `::selection`: 选中部分
 
+
 # 优先级
 
 ## 样式表优先级
@@ -271,19 +279,25 @@ selector2 {
 
 `CSS`用以下方式表示颜色
 
-* 颜色名：`transparent, aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow`
-* 十六进制颜色：`#RRGGBB`, RR(红色)、GG(绿色)、BB(蓝色), 值`00~FF`之间
+* 颜色名：`transparent, aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow`等147种颜色
+* 十六进制颜色：`#RRGGBB`, RR(红色)、GG(绿色)、BB(蓝色), 值`00~FF`之间，`#rrggbb`形式的十六进制颜色可简写为`#rgb`
 * RGB颜色: `rgb(red, green, blue)`，值`0~256`或`0% ~100%`之间
 * RGBA颜色: `rgba(red, green, blue, alpha)`, `alpha`为不透明度，值`0~1`之间
 * HSL颜色：`hsl(hue, saturation, lightness)`, hue(色调)(0~360)(红-绿-蓝), saturation(饱和度)(0%~100%)(灰-全彩), lightness(亮度)(0%~100%)(黑-白)
-* HSLA 颜色: hsla(hue, saturation, lightness, alpha) 
+* HSLA 颜色: hsla(hue, saturation, lightness, alpha)
 
 
 # 文本样式
 
+## 注释
+
+```css
+/* comment */
+```
+
 ## 字体
 
-* `font-family`: 文本的字体
+* `font-family`: 文本的字体, 默认为`"Times New Roman"`
   * `字体`: 可定义多个字体作为备用，字体名有空格时需要用引号
 * `font-style`: 字体风格，默认为`normal`
   * `normal`: 正常显示
@@ -382,11 +396,11 @@ selector2 {
 * `一个尺寸`: 上/下/左/右
 * `两个尺寸`: 上/下 左/右
 * `三个尺寸`：上 左/右 下
-* `四个尺寸`：上 右 下 左
+* `四个尺寸`：上 右 下 左(顺时针方向  )
 
 ## display
 
-* `display`: 框类型
+* `display`: 显示方式
   * `none`: 不显示
   * `block`: 块元素
   * `inline`: 内联元素
@@ -405,12 +419,15 @@ selector2 {
 行内框不能设置尺寸
 
 * `width`: 元素的宽，默认为`auto`
-  * `auto`: 自动计算
+  * `auto`: 自动计算, 普通流块元素为`100%`, 其他由子元素决定
   * `length`: 宽
   * `percentage`: 相对于父元素的`width`而言
 * `min-width`: 元素的最小宽度
 * `max-width`: 元素的最大宽度
 * `height`: 元素的高，默认为`auto`
+  * `auto`: 自动计算, 由子元素决定
+  * `length`: 高
+  * `percentage`: 相对于父元素的`height`而言
 * `min-height`: 元素的最小高度
 * `max-height`: 元素的最大高度
 
@@ -443,7 +460,6 @@ selector2 {
 * `margin-left`: 左外边距
 * `margin-right`: 右外边距
 * `margin`: 外边距
-* `margin:0 auto`: 块元素水平居中
 
 ## 外边距合并
 
@@ -464,6 +480,10 @@ selector2 {
 ## border
 
 * `border-width`: 四条边框宽度
+  * `尺寸`：边框宽度
+  * `thin`: 薄
+  * `medium`: 中等
+  * `thick`: 厚
 * `border-style`: 四条边框样式
   * `none`: 无边框
   * `solid`: 实线
@@ -499,6 +519,8 @@ selector2 {
 
 ## border-radius
 
+圆角半径最大为`border-box`宽高较小值的一半，大于这个值时当作这个值处理
+
 * `border-top-left-radius`: 左上角圆角
 * `border-top-right-radius`: 右上角圆角
 * `border-bottom-left-radius`: 左下角圆角
@@ -519,11 +541,11 @@ selector2 {
   * `关键字`：`<left|center|right> <top|center|bottom>`
   * `百分比`：`x% y%`，相对于当前盒模型的`width`, `height`而言
   * `尺寸`：`x y`, 相对于左上角而言，可以为负
-* `background-origin`: `background-position`相对什么定位
+* `background-origin`: `background-position`相对什么定位，默认为`border-box`
   * `content-box`: 内容框
   * `padding-box`: 内边距框
   * `border-box`: 边框
-* `background-clip`: 背景的绘制区域
+* `background-clip`: 背景的绘制区域, 默认为`border-box`
   * `content-box`: 内容框
   * `padding-box`: 内边距框
   * `border-box`: 边框
@@ -672,6 +694,16 @@ selector2 {
   width:1000px;
   margin-left:auto;
   margin-right:auto;
+}
+```
+
+### 不定宽块元素
+
+```css
+.center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
 }
 ```
 
