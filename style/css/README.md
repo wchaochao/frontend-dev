@@ -8,14 +8,15 @@
 
 * [w3school-css](http://www.w3school.com.cn/css/index.asp)
 * [codecademy-html-css](https://www.codecademy.com/learn/learn-html-css)
+* 《Head First HTML and CSS》
 
 
 # 概述
 
 层叠样式表(`Cascading Style Sheets`)
 
+> * 继承：子元素会继承祖先元素的一些样式，如字体样式、文本样式
 > * 层叠：同一元素可设置多种样式，按优先级确定应用哪一样式
-> * 继承：子元素会继承祖先元素的样式
 
 ## 插入
 
@@ -58,7 +59,7 @@
 
 ## declaration
 
-声明，要设置的样式，由属性和属性值组成,`;`结束
+声明，要设置的样式，由属性和属性值组成, 以`;`结束
 
 ## rule
 
@@ -89,11 +90,18 @@ selector2 {
 
 ## media
 
-媒介类型，在某种媒介上应用样式, 默认为`all`
+媒体类型，在某种媒体上应用样式, 默认为`all`
 
-* `all`: 所有媒介设备
+* `all`: 所有媒体设备
 * `screen`: 显示器
 * `print`: 打印机
+
+筛选
+
+* `min-device-width`: 屏幕最小宽度
+* `max-device-width`: 屏幕最大宽度
+* `min-width`: 浏览器最小宽度
+* `max-width`: 浏览器最大宽度
 
 ```css
 @media screen{
@@ -119,6 +127,19 @@ selector2 {
     ...
   }
 }
+
+@media screen and (min-width:768px) and (max-width:992px){
+  selector1 {
+    property1:value1;
+    ...
+  }
+
+  selector2 {
+    property1:value1;
+    ...
+  }
+}
+
 ```
 
 ## 兼容性
@@ -133,6 +154,14 @@ selector2 {
 ## 通配符选择器
 
 * `*`: 所有元素
+
+```css
+/* 浏览器兼容性处理 */
+*{
+  padding:0;
+  margin:0;
+}
+```
 
 ## 元素选择器
 
@@ -244,6 +273,10 @@ selector2 {
 
 普通样式<`!important`样式
 
+## 应用样式
+
+收集元素的某个样式，先按样式优先级排序，再按选择器优先级排序，最后按样式表优先级排序，排序完后后面的样式会覆盖前面的样式和继承的样式
+
 
 # 样式值
 
@@ -253,11 +286,11 @@ selector2 {
 
 拥有相似外观的字体系统组合
 
-* `Serif`
-* `Sans-serif`
-* `Monospace`
-* `Cursive`
-* `Fantasy`
+* `Serif`：有衬线，多用于新闻报纸的文字排版
+* `Sans-serif`：无衬线，多用于计算机屏幕
+* `Monospace`：等宽字体，多用于软件代码示例
+* `Cursive`： 手写体
+* `Fantasy`：幻想体
 
 ### 特定字体系列
 
@@ -266,6 +299,25 @@ selector2 {
 * `Times`
 * `Courier`
 
+### web字体
+
+托管在服务器上的字体
+
+* `.ttf`: TureType字体格式
+* `.otf`: OpenType字体格式
+* `.eot`: Embedded OpenType字体格式
+* `.svg`: SVG字体格式
+* `.woff`: Web开放字体格式
+
+使用web字体
+
+```css
+@font-face{
+  font-family:<font-family>;
+  src:url("<url>"),...
+}
+```
+
 
 ## 尺寸
 
@@ -273,7 +325,7 @@ selector2 {
 
 * `%`: 百分比
 * `px`: 像素
-* `em`: 字体尺寸
+* `em`: 字体大小
 
 ## 颜色
 
@@ -281,7 +333,7 @@ selector2 {
 
 * 颜色名：`transparent, aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow`等147种颜色
 * 十六进制颜色：`#RRGGBB`, RR(红色)、GG(绿色)、BB(蓝色), 值`00~FF`之间，`#rrggbb`形式的十六进制颜色可简写为`#rgb`
-* RGB颜色: `rgb(red, green, blue)`，值`0~256`或`0% ~100%`之间
+* RGB颜色: `rgb(red, green, blue)`，值`0~255`或`0% ~100%`之间
 * RGBA颜色: `rgba(red, green, blue, alpha)`, `alpha`为不透明度，值`0~1`之间
 * HSL颜色：`hsl(hue, saturation, lightness)`, hue(色调)(0~360)(红-绿-蓝), saturation(饱和度)(0%~100%)(灰-全彩), lightness(亮度)(0%~100%)(黑-白)
 * HSLA 颜色: hsla(hue, saturation, lightness, alpha)
@@ -298,12 +350,12 @@ selector2 {
 ## 字体
 
 * `font-family`: 文本的字体, 默认为`"Times New Roman"`
-  * `字体`: 可定义多个字体作为备用，字体名有空格时需要用引号
+  * `字体`: 可定义多个字体作为备用，最后一个通常为字体系列，字体名有空格时需要用引号
 * `font-style`: 字体风格，默认为`normal`
   * `normal`: 正常显示
   * `italic`: 斜体显示
   * `oblique`: 倾斜显示
-* `font-variant`: 字体变形
+* `font-variant`: 字体变形，默认为`normal`
   * `normal`: 正常
   * `small-caps`: 小型大写字母
 * `font-weight`: 字体加粗，默认为`normal`
@@ -311,11 +363,13 @@ selector2 {
   * `bold`: 粗体
   * `bolder`: 更粗
   * `lighter`: 更细
-  * `<100|200...|900>`: 400相当于`normal`，700相当于'bold'
-* `font-size`: 字体大小
+  * `<100|200...|900>`: 400相当于`normal`，700相当于`bold`
+* `font-size`: 字体大小, 推荐`body`用`length`, 其他用`em`或`percentage`
   * `length`: 固定尺寸
   * `percentage`: 相对于父字体大小而言
   * `em`: 相对于父字体大小而言
+  * `关键字`：`xx-small, x-small, small, medium, large, x-large, xx-large`
+* `font:[font-style] [font-variant] [font-weight] [font-size[/line-height]] [font-family]`: 字体
 
 ## 文本
 
@@ -324,6 +378,8 @@ selector2 {
   * `ltr`: 从左到右
   * `rtl`: 从右到左
 * `line-height`: 行高
+  * `尺寸`：行高多少
+  * `number`: 自身字体大小的多少倍
 * `text-indent`: 缩进，一般设置`2em`
 * `text-align`: 水平对齐，默认为`left`
   * `left`: 左对齐
@@ -342,7 +398,7 @@ selector2 {
   * `uppercase`: 大写
   * `lowercase`: 小写
   * `capitalize`: 首字母大写
-* `text-decoration`: 文本装饰，默认为`none`
+* `text-decoration`: 文本装饰，默认为`none`，可指定多个
   * `none`: 无装饰
   * `underline`: 下划线
   * `overline`: 上划线
@@ -360,10 +416,10 @@ selector2 {
   * `pre`: 保留空白符，保留换行符，不允许自动换行
   * `pre-wrap`: 保留空白符，保留换行符，允许自动换行
   * `pre-line`: 合并空白符，保留换行符，允许自动换行
-* `text-shadow: h-shadow v-shadow blur color`: 文本阴影
+* `text-shadow: [h-shadow] [v-shadow] [blur] [color]`: 文本阴影
   * `h-shadow`: 阴影的水平偏移
   * `v-shadow`：阴影的垂直偏移
-  * `blur`: 模糊的距离
+  * `blur`: 模糊距离
   * `color`: 阴影颜色
 * `word-break`: 自动换行方式, 默认为`normal`
   * `normal`: 默认换行规则
@@ -377,7 +433,7 @@ selector2 {
   * `ellipsis`: 使用省略号代表修剪的文本
   * `string`: 使用指定字符串代表修剪的文本
 * `cursor`: 光标，默认`default`
-  * `url(<url>)`: 自定义光标
+  * `url("<url>")`: 自定义光标
   * `default`: 箭头
   * `pointer`: 手型
   * `crosshair`: 十字线
@@ -391,17 +447,17 @@ selector2 {
 
 ![盒模型](images/ct_boxmodel.gif)
 
-尺寸
+四边尺寸处理
 
 * `一个尺寸`: 上/下/左/右
 * `两个尺寸`: 上/下 左/右
 * `三个尺寸`：上 左/右 下
-* `四个尺寸`：上 右 下 左(顺时针方向  )
+* `四个尺寸`：上 右 下 左(顺时针方向)
 
 ## display
 
 * `display`: 显示方式
-  * `none`: 不显示
+  * `none`: 不显示，不存在
   * `block`: 块元素
   * `inline`: 内联元素
   * `inline-block`: 行内块元素
@@ -412,7 +468,7 @@ selector2 {
 * `opacity`: 不透明度，`0~1`之间，IE8及以下使用`filter:alpha(opacity=x)`兼容
 * `visibility`: 是否可见，默认`visible`
   * `visible`: 可见
-  * `hidden`: 不可见
+  * `hidden`: 不可见，仍存在
 
 ## width/height
 
@@ -430,6 +486,20 @@ selector2 {
   * `percentage`: 相对于父元素的`height`而言
 * `min-height`: 元素的最小高度
 * `max-height`: 元素的最大高度
+
+## box-sizing
+
+* `box-sizing`: 宽高对应的框，默认为`content-box`
+  * `content-box`: 宽高为`content-box`的尺寸
+  * `border-box`: 宽高为`border-box`的尺寸
+
+content-box
+
+![content-box](htmlcss1-diagram__contentbox.svg)
+
+border-box
+
+![border-box](htmlcss1-diagram__borderbox.svg)
 
 ## overflow
 
@@ -463,7 +533,7 @@ selector2 {
 
 ## 外边距合并
 
-普通文档流中块元素的垂直边距相遇时，会合并为一个外边距，高度为大的外边距
+普通文档流中块元素的垂直外边距相遇时，会合并为一个外边距，高度为大的外边距
 
 ### 兄弟元素
 
@@ -479,12 +549,12 @@ selector2 {
 
 ## border
 
-* `border-width`: 四条边框宽度
+* `border-width`: 四条边框宽度，默认为`0`
   * `尺寸`：边框宽度
   * `thin`: 薄
   * `medium`: 中等
   * `thick`: 厚
-* `border-style`: 四条边框样式
+* `border-style`: 四条边框样式，默认为`none`
   * `none`: 无边框
   * `solid`: 实线
   * `dashed`: 虚线
@@ -494,7 +564,7 @@ selector2 {
   * `ridge`: 3D凸槽
   * `inset`: 3D凹边
   * `outset`: 3D凸边
-* `border-color`: 四条边框颜色
+* `border-color`: 四条边框颜色, 默认为黑色
 * `border:[border-width] [border-style] [border-color]`: 四条边框
 * `border-top:[border-top-width] [border-top-style] [border-top-color]`: 上边框
 * `border-bottom:[border-bottom-width] [border-bottom-style] [border-bottom-color]`: 下边框
@@ -505,15 +575,6 @@ selector2 {
 
 * `outline-width`: 轮廓宽度
 * `outline-style`: 轮廓样式
-  * `none`: 无轮廓
-  * `solid`: 实线
-  * `dashed`: 虚线
-  * `dotted`: 点线
-  * `double`: 双线
-  * `groove`: 3D凹槽
-  * `ridge`: 3D凸槽
-  * `inset`: 3D凹边
-  * `outset`: 3D凸边
 * `outline-color`: 轮廓颜色
 * `outline:[outline-width] [outline-style] [outline-color]`: 轮廓
 
@@ -531,14 +592,14 @@ selector2 {
 
 * `background-color`: 背景颜色，默认为`transparent`
 * `background-image`: 背景图片，默认为`none`
-  * `url(<url>)`: 背景图片地址
+  * `url("<url>")`: 背景图片地址
 * `background-repeat`: 背景重复，默认为`repeat`
   * `no-repeat`: 不重复
   * `repeat`: x, y方向都平铺
   * `repeat-x`: x方向平铺
   * `repeat-y`: y方向平铺
 * `backgound-position`: 背景位置，默认为左上角
-  * `关键字`：`<left|center|right> <top|center|bottom>`
+  * `关键字`：`<left|center|right> <top|center|bottom(默认为center)>`
   * `百分比`：`x% y%`，相对于当前盒模型的`width`, `height`而言
   * `尺寸`：`x y`, 相对于左上角而言，可以为负
 * `background-origin`: `background-position`相对什么定位，默认为`border-box`
@@ -550,18 +611,18 @@ selector2 {
   * `padding-box`: 内边距框
   * `border-box`: 边框
 * `background-size`: 背景图片大小
-  * `length`: 第一个值为宽度，第二个值为高度(默认为auto)
+  * `length`: 第一个值为宽度，第二个值为高度(默认为`auto`)
   * `percentage`: 相对于父元素的`width`而言
   * `contain`: 覆盖内容区域
   * `cover`: 覆盖背景区域
-* `background-attachment`: 背景关联，默认随页面滚动
+* `background-attachment`: 背景关联，默认为`scroll`
   * `scroll`: 随页面滚动
   * `fixed`: 固定，不随页面滚动
 * `background:[background-color] [background-image] [background-repeat] [background-position]`: 背景样式
 
 ## box-shadow
 
-* `box-shadow: h-shadow v-shadow blur spread color inset,...`: 添加一个或多个阴影
+* `box-shadow: [h-shadow] [v-shadow] [blur] [spread] [color] [inset],...`: 添加一个或多个阴影
   * `h-shadow`: 阴影的水平偏移
   * `v-shadow`: 阴影的垂直偏移
   * `blur`: 模糊距离
@@ -580,7 +641,7 @@ selector2 {
 
 * 元素的位置由元素在`HTML`中的位置决定
 * 块级框从上到下一个接一个排列，框之间的垂直距离由框的垂直外边距合并而成
-* 行内框在一行中水平布置，可以使用内边距、边框、水平外边距影响行内框的排布，垂直外边距不影响行内框的排布
+* 行内框在一行中水平布置，可以使用水平内边距、水平边框、水平外边距影响行内框的排布，垂直内边距、垂直边框、垂直外边距不影响行内框的排布
 
 ## 浮动
 
@@ -621,14 +682,14 @@ selector2 {
   * `static`: 不定位，元素框正常生成
   * `relative`: 相对定位，元素框可以相对于原来的位置偏移，原来所占的位置仍保留
   * `absolute`: 绝对定位，元素框可以相对于最近的已定位的祖先元素偏移，自动变成块级框，原来所占的位置删除
-  * `fixed`: 固定定位，元素框可以相对于屏幕位置偏移，自动变成块级框，原来所占的位置删除
-* `top`: 盒模型的上偏移
-* `bottom`: 盒模型的下偏移
-* `left`: 盒模型的左偏移
-* `right`: 盒模型的右偏移
+  * `fixed`: 固定定位，元素框可以相对于屏幕位置偏移，自动变成块级框，原来所占的位置删除，滚动条滚动时仍不动
+* `top`: 盒模型的上偏移，正数对应下移
+* `bottom`: 盒模型的下偏移，正数对应上移
+* `left`: 盒模型的左偏移，正数对应右移
+* `right`: 盒模型的右偏移，正数对应左移
 * `z-index`: 堆叠顺序，默认为`auto`
   * `auto`: 与父元素相同
-  * `number`: 设置堆叠顺序
+  * `number`: 设置堆叠顺序，越大越在上面
 
 # 标签样式
 
@@ -638,11 +699,11 @@ selector2 {
 * `a:visited`: 访问了的链接
 * `a:hover`: 鼠标移上去的链接，得放在`a:link`, `a:visited`后面
 * `a:focus`: 获取焦点的链接，得放在`a:link`, `a:visited`后面
-* `a:active`: 点中的链接，，得放在`a:hover`
+* `a:active`: 点中的链接，，得放在`a:hover`, `a:focus`后面
 
 ## 列表
 
-* `list-style-type`: 列表项标记类型
+* `list-style-type`: 列表项标记类型，默认为`none`
   * `none`: 无标记
   * `disc`: 实心圆，无序列表默认类型
   * `circle`: 空心圆
@@ -653,12 +714,12 @@ selector2 {
   * `lower-alpha`: 小写英文字母
   * `upper-alpha`: 大写英文字母
   * `lower-greek`: 小写希腊字母
-* `list-style-position`: 列表项标记位置，默认`outside`
+* `list-style-position`: 列表项标记位置，默认为`outside`
   * `outside`: 文本外
   * `inside`: 文本内
 * `list-style-image`: 列表项图片，默认为`none`
   * `none`: 无
-  * `url(<url>)`: 图片路径
+  * `url("<url>")`: 图片路径
 * `list-style:[list-style-type] [list-style-position] [list-style-image]`: 列表项样式
 
 ## 表格
