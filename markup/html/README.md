@@ -5,7 +5,7 @@
 ## 目录
 
 * [概述](overview.md)
-* [概念](grammar.md)
+* [语法](grammar.md)
 * [XHTML](xhtml.md)
 * [网页](webpage.md)
 * [结构](structure.md)
