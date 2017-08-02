@@ -5,6 +5,7 @@
 * [标记语言](markup/README.md)
   * [HTML](markup/html/README.md)
     * [概述](markup/html/overview.md)
+    * [编码风格](markup/html/appoint.md)
     * [语法](markup/html/grammar.md)
     * [XHTML](markup/html/xhtml.md)
     * [网页](markup/html/webpage.md)

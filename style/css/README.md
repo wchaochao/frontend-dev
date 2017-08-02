@@ -9,6 +9,7 @@
 * [w3school-css](http://www.w3school.com.cn/css/index.asp)
 * [codecademy-html-css](https://www.codecademy.com/learn/learn-html-css)
 * 《Head First HTML and CSS》
+* 《精通css:高级web标准解决方案》
 
 
 # 概述
@@ -148,6 +149,28 @@ selector2 {
 * 不同显示屏的分辨率不同，页面显示会有差别，使用响应式设计
 
 
+# 文档结构
+
+* 一般性样式
+  * 主体样式
+  * reset样式
+  * 链接
+  * 标题
+  * 其他元素
+* 辅助样式
+  * 距离
+  * 颜色
+  * 背景颜色
+  * 其他辅助样式
+* 页面结构
+  * 页头、页脚、导航
+  * 布局
+  * 其他页面结构元素
+* 页面组件
+* 具体页面
+
+
+
 # 选择器
 
 ## 通配符选择器
@@ -155,7 +178,7 @@ selector2 {
 * `*`: 所有元素
 
 ```css
-/* 浏览器兼容性处理 */
+/* reset */
 *{
   padding:0;
   margin:0;
@@ -164,7 +187,7 @@ selector2 {
 
 ## 元素选择器
 
-* `tag`: 某类元素
+* `element`: 某类元素
 
 ## id选择器
 
@@ -180,7 +203,7 @@ selector2 {
 
 * `[attribute]`: 拥有指定属性的元素
 * `[attribute=value]`: 指定属性的属性值为指定值的元素
-* `[attribute~=value]`: 指定属性的属性值包含指定词汇的元素
+* `[attribute~=value]`: 指定属性的属性值可包含多个值且指定值是其中之一的元素
 * `[attribute|=value]`: 指定属性的属性值以指定值或指定值-开头的元素
 * `[attribute^=value]`: 指定属性的属性值以指定值开头的元素
 * `[attribute$=value]`: 指定属性的属性值以指定值结尾的元素
@@ -193,19 +216,19 @@ selector2 {
 
 ## 后代选择器
 
-* `ancestorSelector selector`: 某个选择器的后代选择器
+* `ancestor descendant`: 某个选择器的后代选择器
 
 ## 子代选择器
 
-* `parentSelector>selector`: 某个选择器的子代选择器
+* `parent>child`: 某个选择器的子代选择器
 
 ## 兄弟选择器
 
-* `prevSelector+selector`: 某个选择器后面的所有兄弟选择器
+* `prev ~ siblings`: 某个选择器后面的所有兄弟选择器
 
 ## 相邻兄弟选择器
 
-* `prevSelector~selector`: 某个选择器的下一个兄弟选择器
+* `prev + next`: 某个选择器的下一个兄弟选择器
 
 ## 伪类选择器
 
@@ -215,7 +238,7 @@ selector2 {
 * `:visited`: 已访问的链接
 * `:hover`: 鼠标悬停
 * `:focus`: 获取焦点
-* `:active`: 点中的链接
+* `:active`: 激活
 * `:target`: 跳转到的锚点
 * `:enabled`: 启用
 * `:disabled`: 禁用
@@ -259,14 +282,18 @@ selector2 {
 
 越晚应用优先级越高
 
-浏览器缺省设置<外部样式表<内部样式表<内联样式
+浏览器默认样式<外部样式表或内部样式表
 
 ## 选择器优先级
 
 描述的越精确优先级越高
 
-* 普通选择器：所有元素选择器<元素选择器<类选择器<`id`选择器
-* 其他选择器：计算`id`选择器、类选择器、元素选择器的个数，并依次比较
+分为a,b,c,d四个等级, 依次比较a,b,c,d
+
+* `a`: 行内样式为1
+* `b`: `id`选择器的数目
+* `c`: 类选择器、伪类选择器、属性选择器的数目
+* `d`: 通配符、元素选择器、伪元素选择器的数目
 
 ## 样式优先级
 
@@ -574,6 +601,8 @@ border-box
 
 ## outline
 
+绘制在`border-box`外，不影响页面布局
+
 * `outline-width`: 轮廓宽度
 * `outline-style`: 轮廓样式
 * `outline-color`: 轮廓颜色
@@ -643,7 +672,8 @@ border-box
 
 * 元素的位置由元素在`HTML`中的位置决定
 * 块级框从上到下一个接一个排列，框之间的垂直距离由框的垂直外边距合并而成
-* 行内框在一行中水平布置，可以使用水平内边距、水平边框、水平外边距影响行内框的排布，垂直内边距、垂直边框、垂直外边距不影响行内框的排布
+* 行内框在一行中水平排列，可以使用水平内边距、水平边框、水平外边距、影响行内框的排布，垂直内边距、垂直边框、垂直外边距不影响行内框的排布，`vertical-align`影响垂直分布
+* 行内块框在一行中水平排列，宽高、内边距、边框、外边距都会影响行内块框的排布，`vertical-align`影响垂直分布
 
 ## 浮动
 
@@ -655,6 +685,10 @@ border-box
   * `right`: 向右浮动，自动变成块级框，原来所占的位置删除，占用覆盖位置
 
 ![浮动](images/ct_css_positioning_floating_linebox.gif)
+
+尺寸不够时往下排列
+
+![float](images/float.png)
 
 * `clear`: 清除浮动，默认为`none`
   * `none`: 不清除浮动
@@ -676,6 +710,11 @@ border-box
 .clearfix:after{
   clear:both
 }
+
+/* 有副作用的清除浮动 */
+.clearfix{
+  overflow:hidden;
+}
 ```
 
 ## 定位
@@ -692,6 +731,11 @@ border-box
 * `z-index`: 堆叠顺序，默认为`auto`
   * `auto`: 与父元素相同
   * `number`: 设置堆叠顺序，越大越在上面
+
+![relative](images/relative.png)
+
+![absolute](images/absolute.png)
+
 
 # 标签样式
 
@@ -729,7 +773,7 @@ border-box
 * `border-collapse`: 合并边框，默认`separate`
   * `separate`: 不合并
   * `collapse`: 合并边框
-* `border-spacing`: 单元格外边距
+* `border-spacing`: 单元格外边距，使用`margin`设置单元格外边距时无效
   * `x y`: 水平间距、垂直间距
 * `caption-side`: 标题位置，默认`top`
   * `top`: 表格之上
@@ -737,6 +781,19 @@ border-box
 * `table-layout`: 表格布局
   * `automatic`: 自动布局
   * `fixed`：固定布局
+
+## 表单
+
+通常采用表格布局
+
+```html
+<form class="display-table">
+  <div class="display-table-row">
+    <p class="display-table-cell">lable</p>
+    <p class="display-table-cell">control</p>
+  </div>
+</form>
+```
 
 # 居中
 
