@@ -164,7 +164,7 @@ The cat was playing in the garden.
 
 属性
 
-* `type`: 按钮类型，默认普通按钮
+* `type`: 按钮类型，默认为`button`
   * `button`: 普通按钮
   * `submit`: 提交按钮
   * `reset`: 重置按钮

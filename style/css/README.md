@@ -144,7 +144,7 @@ selector2 {
 
 ## 兼容性
 
-* 不同浏览器对样式的支持不同，可到[Can I Use]上查看浏览器的支持性
+* 不同浏览器对样式的支持不同，可到[Can I Use](http://caniuse.com/#)上查看浏览器的支持性
 * 不同显示屏的分辨率不同，页面显示会有差别，使用响应式设计
 
 
@@ -274,7 +274,7 @@ selector2 {
 
 ## 应用样式
 
-收集元素的某个样式，先按样式优先级排序，再按选择器优先级排序，最后按样式表优先级排序，排序完后后面的样式会覆盖前面的样式和继承的样式
+收集元素的某个样式，先按样式优先级排序，再按选择器优先级排序，之后按样式表优先级排序，最后按出现的顺序排序，排序完后后面的样式会覆盖前面的样式和继承的样式
 
 
 # 样式值
@@ -302,11 +302,11 @@ selector2 {
 
 托管在服务器上的字体
 
-* `.ttf`: TureType字体格式
-* `.otf`: OpenType字体格式
-* `.eot`: Embedded OpenType字体格式
-* `.svg`: SVG字体格式
-* `.woff`: Web开放字体格式
+* `.ttf`: `TureType`字体格式
+* `.otf`: `OpenType`字体格式
+* `.eot`: `Embedded OpenType`字体格式
+* `.svg`: `SVG`字体格式
+* `.woff`: `Web`开放字体格式
 
 使用web字体
 
@@ -427,7 +427,7 @@ selector2 {
 * `word-wrap`: 长单词换行处理，默认为`normal`
   * `normal`: 长单词不自动换行
   * `break-word`: 长单词自动换行
-* `text-overflow`: 文本溢出处理，要与'overflow:hidden'配合
+* `text-overflow`: 文本溢出处理，要与`overflow:hidden`配合
   * `clip`: 修剪文本
   * `ellipsis`: 使用省略号代表修剪的文本
   * `string`: 使用指定字符串代表修剪的文本
@@ -496,11 +496,11 @@ selector2 {
 
 content-box
 
-![content-box](htmlcss1-diagram__contentbox.svg)
+![content-box](images/htmlcss1-diagram__contentbox.svg)
 
 border-box
 
-![border-box](htmlcss1-diagram__borderbox.svg)
+![border-box](images/htmlcss1-diagram__borderbox.svg)
 
 ## overflow
 
@@ -565,7 +565,7 @@ border-box
   * `ridge`: 3D凸槽
   * `inset`: 3D凹边
   * `outset`: 3D凸边
-* `border-color`: 四条边框颜色, 默认为黑色
+* `border-color`: 四条边框颜色, 默认与`color`有关
 * `border:[border-width] [border-style] [border-color]`: 四条边框
 * `border-top:[border-top-width] [border-top-style] [border-top-color]`: 上边框
 * `border-bottom:[border-bottom-width] [border-bottom-style] [border-bottom-color]`: 下边框
@@ -593,6 +593,7 @@ border-box
 
 * `background-color`: 背景颜色，默认为`transparent`
 * `background-image`: 背景图片，默认为`none`
+  * `none`: 无背景图片
   * `url("<url>")`: 背景图片地址
 * `background-repeat`: 背景重复，默认为`repeat`
   * `no-repeat`: 不重复
@@ -700,7 +701,7 @@ border-box
 * `a:visited`: 访问了的链接
 * `a:hover`: 鼠标移上去的链接，得放在`a:link`, `a:visited`后面
 * `a:focus`: 获取焦点的链接，得放在`a:link`, `a:visited`后面
-* `a:active`: 点中的链接，，得放在`a:hover`, `a:focus`后面
+* `a:active`: 点中的链接，得放在`a:hover`, `a:focus`后面
 
 ## 列表
 

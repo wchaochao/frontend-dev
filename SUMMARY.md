@@ -17,7 +17,6 @@
     * [表单标签](markup/html/form.md)
     * [脚本标签](markup/html/script.md)
     * [框架标签](markup/html/frame.md)
-  * [XML](markup/xml/README.md)
 * [样式语言](style/README.md)
   * [CSS](style/css/README.md)
 * [Javascript](js/README.md)
