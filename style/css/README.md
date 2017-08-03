@@ -16,7 +16,7 @@
 
 层叠样式表(`Cascading Style Sheets`)
 
-> * 继承：子元素会继承祖先元素的一些样式，如字体样式、文本样式
+> * 继承：子元素会继承祖先元素的一些样式，如字体样式、文本样式、不透明度
 > * 层叠：同一元素可设置多种样式，按优先级确定应用哪一样式
 
 ## 插入
@@ -97,7 +97,7 @@ selector2 {
 * `screen`: 显示器
 * `print`: 打印机
 
-筛选
+限制
 
 * `min-device-width`: 屏幕最小宽度
 * `max-device-width`: 屏幕最大宽度
@@ -143,12 +143,6 @@ selector2 {
 
 ```
 
-## 兼容性
-
-* 不同浏览器对样式的支持不同，可到[Can I Use](http://caniuse.com/#)上查看浏览器的支持性
-* 不同显示屏的分辨率不同，页面显示会有差别，使用响应式设计
-
-
 # 文档结构
 
 * 一般性样式
@@ -168,7 +162,6 @@ selector2 {
   * 其他页面结构元素
 * 页面组件
 * 具体页面
-
 
 
 # 选择器
@@ -239,7 +232,7 @@ selector2 {
 * `:hover`: 鼠标悬停
 * `:focus`: 获取焦点
 * `:active`: 激活
-* `:target`: 跳转到的锚点
+* `:target`: 目标
 * `:enabled`: 启用
 * `:disabled`: 禁用
 * `:checked`: 选中
@@ -250,12 +243,12 @@ selector2 {
 * `:last-child`: 作为最后一个子元素
 * `:only-child`: 作为唯一一个子元素
 * `:nth-child(n)`: 作为第n个子元素
-* `:nth-last-child(n)`: 作为倒数第n个子元素
+* `:nth-last-child(n)`: 作为倒数第`n`个子元素
 * `:first-of-type`: 在子元素中第一个出现的某类元素
 * `:last-of-type`: 在子元素中最后一个出现的某类元素
 * `:only-of-type`: 在子元素中唯一出现的某类元素
-* `:nth-of-type(n)`: 在子元素中第n个出现的某类元素
-* `:nth-last-of-type`: 在子元素中倒数第n个出现的某类元素
+* `:nth-of-type(n)`: 在子元素中第`n`个出现的某类元素
+* `:nth-last-of-type(n)`: 在子元素中倒数第`n`个出现的某类元素
 * `:empty`: 没有子元素
 * `:root`: 作为根元素
 
@@ -293,7 +286,7 @@ selector2 {
 * `a`: 行内样式为1
 * `b`: `id`选择器的数目
 * `c`: 类选择器、伪类选择器、属性选择器的数目
-* `d`: 通配符、元素选择器、伪元素选择器的数目
+* `d`: 通配符选择器、元素选择器、伪元素选择器的数目
 
 ## 样式优先级
 
@@ -335,7 +328,7 @@ selector2 {
 * `.svg`: `SVG`字体格式
 * `.woff`: `Web`开放字体格式
 
-使用web字体
+使用`web`字体
 
 ```css
 @font-face{
@@ -480,24 +473,6 @@ selector2 {
 * `三个尺寸`：上 左/右 下
 * `四个尺寸`：上 右 下 左(顺时针方向)
 
-## display
-
-* `display`: 显示方式
-  * `none`: 不显示，不存在
-  * `block`: 块元素
-  * `inline`: 内联元素
-  * `inline-block`: 行内块元素
-  * `table`: 表格元素
-  * `tabel-row`: 表格行元素
-  * `table-cell`: 表格单元格元素
-
-## 可见性
-
-* `opacity`: 不透明度，`0~1`之间，IE8及以下使用`filter:alpha(opacity=x)`兼容
-* `visibility`: 是否可见，默认`visible`
-  * `visible`: 可见
-  * `hidden`: 不可见，仍存在
-
 ## width/height
 
 行内框不能设置尺寸
@@ -514,30 +489,6 @@ selector2 {
   * `percentage`: 相对于父元素的`height`而言
 * `min-height`: 元素的最小高度
 * `max-height`: 元素的最大高度
-
-## box-sizing
-
-* `box-sizing`: 宽高对应的框，默认为`content-box`
-  * `content-box`: 宽高为`content-box`的尺寸
-  * `border-box`: 宽高为`border-box`的尺寸
-
-content-box
-
-![content-box](images/htmlcss1-diagram__contentbox.svg)
-
-border-box
-
-![border-box](images/htmlcss1-diagram__borderbox.svg)
-
-## overflow
-
-* `overflow`: 框溢出处理，默认为`visible`
-  * `visible`: 不裁剪，直接显示
-  * `hidden`: 裁剪
-  * `scroll`: 显示滚动条
-  * `auto`: 自动显示滚动条
-* `overflow-x`: 水平方向溢出处理
-* `overflow-y`: 垂直方向溢出处理
 
 ## padding
 
@@ -575,6 +526,48 @@ border-box
 
 ![空元素](images/ct_css_margin_collapsing_example_3.gif)
 
+## box-sizing
+
+* `box-sizing`: 宽高对应的框，默认为`content-box`
+  * `content-box`: 宽高为`content-box`的尺寸
+  * `border-box`: 宽高为`border-box`的尺寸
+
+content-box
+
+![content-box](images/htmlcss1-diagram__contentbox.svg)
+
+border-box
+
+![border-box](images/htmlcss1-diagram__borderbox.svg)
+
+## display
+
+* `display`: 显示方式
+  * `none`: 不显示，不存在
+  * `block`: 块元素
+  * `inline`: 内联元素
+  * `inline-block`: 行内块元素
+  * `table`: 表格元素
+  * `tabel-row`: 表格行元素
+  * `table-cell`: 表格单元格元素
+
+## 可见性
+
+* `opacity`: 不透明度，`0~1`之间，会被子元素继承
+* `visibility`: 是否可见，默认`visible`
+  * `visible`: 可见
+  * `hidden`: 不可见，仍存在
+
+## overflow
+
+* `overflow`: 框溢出处理，默认为`visible`
+  * `visible`: 不裁剪，直接显示
+  * `hidden`: 裁剪
+  * `scroll`: 显示滚动条
+  * `auto`: 自动显示滚动条
+* `overflow-x`: 水平方向溢出处理
+* `overflow-y`: 垂直方向溢出处理
+
 ## border
 
 * `border-width`: 四条边框宽度，默认为`0`
@@ -599,15 +592,6 @@ border-box
 * `border-left:[border-left-width] [border-left-style] [border-left-color]`: 左边框
 * `border-right:[border-right-width] [border-right-style] [border-right-color]`: 右边框
 
-## outline
-
-绘制在`border-box`外，不影响页面布局
-
-* `outline-width`: 轮廓宽度
-* `outline-style`: 轮廓样式
-* `outline-color`: 轮廓颜色
-* `outline:[outline-width] [outline-style] [outline-color]`: 轮廓
-
 ## border-radius
 
 圆角半径最大为`border-box`宽高较小值的一半，大于这个值时当作这个值处理
@@ -618,7 +602,18 @@ border-box
 * `border-bottom-right-radius`: 右下角圆角
 * `border-radius`: 四个圆角
 
+## outline
+
+绘制在`border-box`外，不影响页面布局
+
+* `outline-width`: 轮廓宽度
+* `outline-style`: 轮廓样式
+* `outline-color`: 轮廓颜色
+* `outline:[outline-width] [outline-style] [outline-color]`: 轮廓
+
 ## background
+
+通常将多个图标放置在一张图片上，以减少请求次数
 
 * `background-color`: 背景颜色，默认为`transparent`
 * `background-image`: 背景图片，默认为`none`
@@ -631,7 +626,7 @@ border-box
   * `repeat-y`: y方向平铺
 * `backgound-position`: 背景位置，默认为左上角
   * `关键字`：`<left|center|right> <top|center|bottom(默认为center)>`
-  * `百分比`：`x% y%`，相对于当前盒模型的`width`, `height`而言
+  * `百分比`：`x% y%`
   * `尺寸`：`x y`, 相对于左上角而言，可以为负
 * `background-origin`: `background-position`相对什么定位，默认为`border-box`
   * `content-box`: 内容框
@@ -650,6 +645,8 @@ border-box
   * `scroll`: 随页面滚动
   * `fixed`: 固定，不随页面滚动
 * `background:[background-color] [background-image] [background-repeat] [background-position]`: 背景样式
+
+![background-position](images/background-position.png)
 
 ## box-shadow
 
@@ -711,7 +708,7 @@ border-box
   clear:both
 }
 
-/* 有副作用的清除浮动 */
+/* or */
 .clearfix{
   overflow:hidden;
 }
@@ -737,7 +734,7 @@ border-box
 ![absolute](images/absolute.png)
 
 
-# 标签样式
+# 常用样式
 
 ## 链接
 
@@ -746,6 +743,9 @@ border-box
 * `a:hover`: 鼠标移上去的链接，得放在`a:link`, `a:visited`后面
 * `a:focus`: 获取焦点的链接，得放在`a:link`, `a:visited`后面
 * `a:active`: 点中的链接，得放在`a:hover`, `a:focus`后面
+* `a[href^="http:"]:not([href^="http://yoursite"])`: 外部链接样式
+* `a[href^="mailto"]`: 邮箱链接样式
+* `a[href$=".doc"]`: 下载`doc`文件的链接样式
 
 ## 列表
 
@@ -767,6 +767,70 @@ border-box
   * `none`: 无
   * `url("<url>")`: 图片路径
 * `list-style:[list-style-type] [list-style-position] [list-style-image]`: 列表项样式
+
+### 垂直导航条
+
+```html
+<ul class="nav">
+  <li><a href="home.html">Home</a></li>
+  <li><a href="product.html">Product</a></li>
+  <li><a href="news.html">News</a></li>
+  <li><a href="about.html">About</a></li>
+</ul>
+```
+
+```css
+/* 关键点
+a: display:block
+*/
+```
+
+### 水平导航条
+
+```html
+<ul class="nav">
+  <li><a href="home.html">Home</a></li>
+  <li><a href="product.html">Product</a></li>
+  <li><a href="news.html">News</a></li>
+  <li><a href="about.html">About</a></li>
+</ul>
+```
+
+```css
+/* 关键点
+ul: 去浮动
+li: float:left;
+a: display:block;
+*/
+```
+
+### 下拉菜单
+
+```html
+<ul class="nav">
+  <li><a href="home.html">Home</a></li>
+  <li>
+    <a href="product.html">Product</a>
+    <ul>
+      <li><a href="product/disk">Disk</a></li>
+      <li><a href="product/ip">Ip</a></li>
+    </ul>
+  </li>
+  <li><a href="news.html">News</a></li>
+  <li><a href="about.html">About</a></li>
+</ul>
+
+```
+
+```css
+/* 关键点
+.nav: 去浮动
+.nav>li: float:left
+.nav a: display:block
+.nav ul: position:absolute;display:none;
+.nav>li:hover>ul: display:block;
+*/
+```
 
 ## 表格
 
@@ -795,11 +859,49 @@ border-box
 </form>
 ```
 
-# 居中
+## 布局
 
-## 水平居中
+### 固定宽度布局
 
-### 行内元素
+尺寸采用固定宽度
+
+```css
+.container{
+  width:920px;
+  margin:0 auto;
+}
+```
+
+### 流式布局
+
+尺寸采用百分数
+
+```css
+.container{
+  width:80%;
+  margin:0 auto;
+  max-width:125em;
+  min-width:62em;
+}
+```
+
+### 弹性布局
+
+尺寸采用字号
+
+```css
+.container{
+  width:92em;
+  max-width:95%;
+  margin:0 auto;
+}
+```
+
+## 居中
+
+### 水平居中
+
+行内元素
 
 ```css
 .text-center{
@@ -807,7 +909,7 @@ border-box
 }
 ```
 
-### 定宽块元素
+定宽块元素
 
 ```css
 .container{
@@ -817,7 +919,7 @@ border-box
 }
 ```
 
-### 不定宽块元素
+不定宽块元素
 
 ```css
 .center{
@@ -829,7 +931,7 @@ border-box
 
 ## 垂直居中
 
-### 一行文本
+一行文本
 
 ```css
 .middle{
@@ -838,7 +940,7 @@ border-box
 }
 ```
 
-### 内联元素
+内联元素
 
 ```css
 .middle{
@@ -846,7 +948,7 @@ border-box
 }
 ```
 
-### 定高块元素
+定高块元素
 
 ```css
 .middle{
@@ -857,7 +959,7 @@ border-box
 }
 ```
 
-### 不定高块元素
+不定高块元素
 
 ```css
 .middle{
@@ -866,3 +968,111 @@ border-box
   transform:translateY(-50%);
 }
 ```
+
+
+# 兼容性
+
+* 不同浏览器对样式的支持不同，可到[Can I Use](http://caniuse.com/#)上查看浏览器的支持性
+* 不同浏览器对样式的实现不同，可能会造成bug
+* 不同显示屏的分辨率不同，页面显示会有差别
+
+## IE的bug
+
+IE6及以下使用布局概念来控制元素的尺寸和定位，是许多bug的根源
+
+* `width`相当于`min-width`, `height`相当于`min-height`
+* 布局元素的外边距不叠加
+* 布局元素对浮动进行自动清理
+* 相对定位元素没有布局时绝对定位元素无法定位
+* 没有布局的块级链接上，单击区域只覆盖文本
+* 滚动时，列表项上的背景图片间歇性显示和消失
+
+### 常见bug及修复
+
+IE9以下不支持`opacity`
+
+```css
+selector{
+  opacity:0.8;
+  filter:alpha(opacity=80);
+}
+```
+
+IE6的宽高指的是`border-box`
+
+```css
+selector{
+  box-sizing:border-box;
+}
+```
+
+IE6不支持`PNG`透明度
+
+```css
+selector{
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="image/test.png", sizingMethod="crop");
+  background:none;
+}
+
+/* or */
+selector{
+  behavior:url(iepngfix.utc);
+}
+```
+
+IE6列表项上下添加了额外的空间
+
+```css
+selector{
+  display:inline;
+}
+```
+
+IE6不显示内容隐藏在屏幕之外的链接
+
+```
+selector{
+  background-image:url("img/shim.gif"); /*一个透明的图片*/
+}
+```
+
+IE6不支持`margin:0 auto`
+
+```css
+parent{
+  text-align:center;
+}
+
+child{
+  margin:0 auto;
+  text-align:left;
+}
+```
+
+IE6的浮动元素的外边距加倍
+
+```css
+selector{
+  float:left;
+  margin-left:20px;
+  display:inline;
+}
+```
+
+IE6的浮动元素间有超过两个注释时，最后一个浮动元素的最后几个字符会重复出现
+
+## 解决方法
+
+### IE条件注释
+
+根据条件显示代码块
+
+```html
+<!--[if IE]>只有IE才能看到<![endif]-->
+<!--[if IE 6]>只有IE6才能看到<![endif]-->
+<!--[if lt IE7]>只有比IE7更低(lower than，不包括IE7)的IE才能看到<![endif]-->
+<!--[if gte IE7]>只有大于等于IE7 (greater than or equal to)的IE才能看到<![endif]-->
+<!--[if (gte IE6)&(lt IE 8)]>只有大于等于IE6，且小于IE8的IE能看到<![endif]-->
+<!--[if (IE 7)|(IE6)]>只有IE6和IE7能看到<![endif]-->
+```
+

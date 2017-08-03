@@ -45,6 +45,8 @@
 ```html
 <label for="male">Male</label>
 <input type="radio" name="sex" id="male" />
+
+<label><input type="radio" name="sex" /></label>
 ```
 
 属性
@@ -160,6 +162,11 @@ The cat was playing in the garden.
 <button type="button">普通按钮</button>
 <button type="submit">提交按钮</button>
 <button type="reset">重置按钮</button>
+
+<!--input-->
+<input type="button" value="普通按钮"/>
+<input type="submit" value="提交按钮"/>
+<input type="reset" value="重置按钮"/>
 ```
 
 属性

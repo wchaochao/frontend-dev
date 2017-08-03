@@ -40,6 +40,7 @@
   * `border`: 边框
   * `cellpadding`: 单元格内间距
   * `cellspacing`: 单元格外间距
+  * `summary`: 表格的摘要
 * `caption`: 表格标题
 * `thead`: 表头
 * `tbody`: 表格主体，可多个
