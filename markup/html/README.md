@@ -5,7 +5,7 @@
 ## 目录
 
 * [概述](overview.md)
-* [编码风格](appoint.md)
+* [编码风格](convention.md)
 * [语法](grammar.md)
 * [XHTML](xhtml.md)
 * [网页](webpage.md)
