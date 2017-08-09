@@ -151,9 +151,11 @@
 
 * `rel`: 当前文档与外部资源的关系
   * `stylesheet`: 样式表
+  * `alternate stylesheet`: 候选样式表，供用户选择
   * `icon`: 图标
 * `type`: 外部资源的`MIME`类型
 * `href`: 外部资源的地址
+* `media`: 媒体类型
 
 ### style
 

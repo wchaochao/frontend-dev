@@ -10,6 +10,7 @@
 * [codecademy-html-css](https://www.codecademy.com/learn/learn-html-css)
 * 《Head First HTML and CSS》
 * 《精通css:高级web标准解决方案》
+* 《CSS权威指南》
 
 
 # 概述
@@ -64,7 +65,7 @@
 
 ## rule
 
-规则，对某个或某类`HTML`元素设置样式，由选择器和声明组成
+规则，对某个或某类`HTML`元素设置样式，由选择器和声明块组成
 
 ```css
 selector {
@@ -72,6 +73,8 @@ selector {
   ...
 }
 ```
+
+![rule](images/rule.png)
 
 ## sheet
 
@@ -154,7 +157,7 @@ selector2 {
 * 辅助样式
   * 距离
   * 颜色
-  * 背景颜色  
+  * 背景颜色
   * 其他辅助样式
 * 页面结构
   * 页头、页脚、导航
@@ -196,7 +199,7 @@ selector2 {
 
 * `[attribute]`: 拥有指定属性的元素
 * `[attribute=value]`: 指定属性的属性值为指定值的元素
-* `[attribute~=value]`: 指定属性的属性值可包含多个值且指定值是其中之一的元素
+* `[attribute~=value]`: 指定属性的属性值可包含多个词且指定值是其中之一的元素
 * `[attribute|=value]`: 指定属性的属性值以指定值或指定值-开头的元素
 * `[attribute^=value]`: 指定属性的属性值以指定值开头的元素
 * `[attribute$=value]`: 指定属性的属性值以指定值结尾的元素
@@ -224,6 +227,8 @@ selector2 {
 * `prev + next`: 某个选择器的下一个兄弟选择器
 
 ## 伪类选择器
+
+将某种幻象类关联到元素上
 
 ### 效果伪类
 
@@ -254,19 +259,21 @@ selector2 {
 
 ### 筛选伪类
 
-* `:lang(value)`: `lang`属性的属性值以指定值开头
+* `:lang(value)`: 相当于`[lang|="value"]`
 * `:not(selector)`: 排除某些选择器
 
 
 ## 伪元素
 
-元素的某一部分
+插入假想的元素
 
 * `:first-letter`: 首字母
 * `:first-line`: 首行
 * `:before`: 内容之前
 * `:after`: 内容之后
 * `::selection`: 选中部分
+
+**限制**：只能放在选择器的最后面，且只能应用某些CSS样式
 
 
 # 优先级
@@ -286,7 +293,7 @@ selector2 {
 * `a`: 行内样式为1
 * `b`: `id`选择器的数目
 * `c`: 类选择器、伪类选择器、属性选择器的数目
-* `d`: 通配符选择器、元素选择器、伪元素选择器的数目
+* `d`: 元素选择器、伪元素选择器的数目
 
 ## 样式优先级
 
@@ -542,7 +549,7 @@ border-box
 
 ## display
 
-* `display`: 显示方式
+* `display`: 显示方式，默认为`inline`
   * `none`: 不显示，不存在
   * `block`: 块元素
   * `inline`: 内联元素
@@ -740,9 +747,9 @@ border-box
 
 * `a:link`: 未访问的链接
 * `a:visited`: 访问了的链接
-* `a:hover`: 鼠标移上去的链接，得放在`a:link`, `a:visited`后面
 * `a:focus`: 获取焦点的链接，得放在`a:link`, `a:visited`后面
-* `a:active`: 点中的链接，得放在`a:hover`, `a:focus`后面
+* `a:hover`: 鼠标移上去的链接，得放在`a:focus`后面
+* `a:active`: 点中的链接，得放在`a:hover`后面
 * `a[href^="http:"]:not([href^="http://yoursite"])`: 外部链接样式
 * `a[href^="mailto"]`: 邮箱链接样式
 * `a[href$=".doc"]`: 下载`doc`文件的链接样式
