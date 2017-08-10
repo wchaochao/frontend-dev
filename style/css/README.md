@@ -9,8 +9,8 @@
 * [w3school-css](http://www.w3school.com.cn/css/index.asp)
 * [codecademy-html-css](https://www.codecademy.com/learn/learn-html-css)
 * 《Head First HTML and CSS》
-* 《精通css:高级web标准解决方案》
 * 《CSS权威指南》
+* 《精通css:高级web标准解决方案》
 
 
 # 概述
@@ -410,61 +410,66 @@ selector2 {
   * `<100|200...|900>`: 400相当于`normal`，700相当于`bold`
 * `font-size`: 字体大小, 默认为`medium`
   * `length`: 具体长度
-  * `percentage`: 相对于父字体大小而言
-  * `em`: 相对于父字体大小而言
+  * `em|percentage`: 相对于父字体大小
   * `关键字`：`xx-small, x-small, small, medium, large, x-large, xx-large, smaller, larger`
-* `font:[font-style] [font-variant] [font-weight] [font-size[/line-height]] [font-family]`: 字体
+* `font:[font-style] [font-variant] [font-weight] <font-size[/line-height]> <font-family>`: 字体
 
 ## 文本
 
 * `color`: 文本颜色
-* `direction`: 文本方向
-  * `ltr`: 从左到右
-  * `rtl`: 从右到左
-* `line-height`: 行高
-  * `长度`：行高多少
-  * `number`: 自身字体大小的多少倍
-* `text-indent`: 缩进，一般设置`2em`
-* `text-align`: 水平对齐，默认为`left`
+* `text-indent`: 缩进
+  * `length`: 具体长度
+  * `em`: 相对于自身字体大小
+  * `percentage`: 相对于父元素的宽度
+* `text-align`: 水平对齐
   * `left`: 左对齐
   * `center`: 居中对齐
   * `right`: 右对齐
   * `justify`: 两端对齐
+* `line-height`: 行高，默认为`normal`
+  * `normal`: 正常，通常为`1.2em`
+  * `length`：具体长度
+  * `em|percentage`: 相对于自身字体大小
+  * `number`: 缩放因子，相对于自身字体大小
 * `vertical-align`: 垂直对齐, 默认为`baseline`
-  * `baseline`: 基线对齐
-  * `top`: 顶端对齐
-  * `middle`: 中间对齐
-  * `bottom`: 底端对齐
-  * `length`: 允许负数
+  * `baseline`: 行内框的基线与行框的基线对齐
+  * `sub`: 行内框的基线与行框的下标基线低
+  * `super`: 行内框的基线与行框的上标基线高
+  * `top`: 行内框的顶端与行框的顶端对齐
+  * `text-top`: 行内框的顶端与行框字体的顶端对齐
+  * `middle`: 行内框的中线与行框基线上方的`0.5ex`处对齐
+  * `bottom`: 行内框的底端与行框的底端对齐
+  * `text-bottom`: 行内框的底端与行框字体的底端对齐
+  * `length`: 相对于行框的基线升高或降低
   * `percentage`: 相对于`line-height`而言
-* `text-transform`: 大小写处理，默认为`none`
+* `word-spacing`: 字间隔，默认为`normal`
+  * `normal`: 正常间隔，相当于`0`
+  * `length`：具体长度
+* `letter-spacing`: 字母间隔，默认为`normal`
+  * `normal`: 正常间隔，相当于`0`
+  * `length`：具体长度
+* `text-transform`: 文本转换，默认为`none`
   * `none`: 不处理
-  * `uppercase`: 大写
-  * `lowercase`: 小写
+  * `uppercase`: 全大写
+  * `lowercase`: 全小写
   * `capitalize`: 首字母大写
-* `text-decoration`: 文本装饰，默认为`none`，可指定多个
+* `text-decoration`: 文本装饰，默认为`none`，可指定多个，颜色为文本颜色
   * `none`: 无装饰
   * `underline`: 下划线
   * `overline`: 上划线
   * `line-through`: 删除线
   * `blink`: 闪烁
-* `word-spacing`: 字/单词的间隔，默认为`normal`
-  * `normal`: 正常间隔
-  * `长度`：间隔多少
-* `letter-spacing`: 字符的间隔，默认为`normal`
-  * `normal`: 正常间隔
-  * `长度`：间隔多少
+* `text-shadow: [h-shadow] [v-shadow] [blur] [color]`: 文本阴影，可指定多个
+  * `h-shadow`: 阴影的水平偏移
+  * `v-shadow`：阴影的垂直偏移
+  * `blur`: 模糊距离
+  * `color`: 阴影颜色
 * `white-space`: 空白符处理，默认为`normal`
   * `normal`: 合并空白符，忽略换行符，允许自动换行
   * `nowrap`: 合并空白符，忽略换行符，不允许自动换行
   * `pre`: 保留空白符，保留换行符，不允许自动换行
   * `pre-wrap`: 保留空白符，保留换行符，允许自动换行
   * `pre-line`: 合并空白符，保留换行符，允许自动换行
-* `text-shadow: [h-shadow] [v-shadow] [blur] [color]`: 文本阴影
-  * `h-shadow`: 阴影的水平偏移
-  * `v-shadow`：阴影的垂直偏移
-  * `blur`: 模糊距离
-  * `color`: 阴影颜色
 * `word-break`: 自动换行方式, 默认为`normal`
   * `normal`: 默认换行规则
   * `break-all`: 允许单词内换行
@@ -485,11 +490,16 @@ selector2 {
   * `text`: 文本
   * `wait`: 忙碌
   * `help`: 帮助
+* `direction`: 文本方向
+  * `ltr`: 从左到右
+  * `rtl`: 从右到左
 
 
 # 盒模型
 
 ![盒模型](images/ct_boxmodel.gif)
+
+![盒模型](images/boxmodel.png)
 
 四边尺寸处理
 
@@ -500,18 +510,18 @@ selector2 {
 
 ## width/height
 
-行内框不能设置尺寸
+行内非替换元素不能设置宽高
 
 * `width`: 元素的宽，默认为`auto`
-  * `auto`: 自动计算, 普通流块元素为`100%`, 其他由子元素决定
+  * `auto`: 自动计算，块元素由盒模型决定，行内元素由内容决定
   * `length`: 宽
-  * `percentage`: 相对于父元素的`width`而言
+  * `percentage`: 相对于父元素的宽而言
 * `min-width`: 元素的最小宽度
 * `max-width`: 元素的最大宽度
 * `height`: 元素的高，默认为`auto`
-  * `auto`: 自动计算, 由子元素决定
+  * `auto`: 自动计算, 由内容决定
   * `length`: 高
-  * `percentage`: 相对于父元素的`height`而言
+  * `percentage`: 相对于父元素的高而言
 * `min-height`: 元素的最小高度
 * `max-height`: 元素的最大高度
 
@@ -537,7 +547,11 @@ selector2 {
 
 ## 外边距合并
 
-普通文档流中块元素的垂直外边距相遇时，会合并为一个外边距，高度为大的外边距
+普通文档流中块元素的垂直外边距相遇时，会合并为一个外边距
+
+1. 将相遇的垂直外边距按正负化为两类
+2. 正的一类取大的，负的一类取小的
+3. 将取得的两个值相加，为合并后的外边距大小
 
 ### 兄弟元素
 
@@ -567,14 +581,16 @@ border-box
 
 ## display
 
+浮动或定位时，`display`会重新计算，`inline-table`变为`table`，其他变为`block`
+
 * `display`: 显示方式，默认为`inline`
   * `none`: 不显示，不存在
-  * `block`: 块元素
-  * `inline`: 内联元素
-  * `inline-block`: 行内块元素
-  * `table`: 表格元素
-  * `tabel-row`: 表格行元素
-  * `table-cell`: 表格单元格元素
+  * `block`: 相当于块元素
+  * `inline`: 相当于行内非替换元素
+  * `inline-block`: 相当于行内替换元素
+  * `table`: 相当于表格元素
+  * `tabel-row`: 相当于表格行元素
+  * `table-cell`: 相当于表格单元格元素
 
 ## 可见性
 
@@ -595,11 +611,9 @@ border-box
 
 ## border
 
-* `border-width`: 四条边框宽度，默认为`0`
-  * `尺寸`：边框宽度
-  * `thin`: 薄
-  * `medium`: 中等
-  * `thick`: 厚
+* `border-width`: 四条边框宽度，默认为`medium`
+  * `length`：具体长度
+  * `关键字`：`thin,medium,thick`
 * `border-style`: 四条边框样式，默认为`none`
   * `none`: 无边框
   * `solid`: 实线
@@ -610,7 +624,7 @@ border-box
   * `ridge`: 3D凸槽
   * `inset`: 3D凹边
   * `outset`: 3D凸边
-* `border-color`: 四条边框颜色, 默认与`color`有关
+* `border-color`: 四条边框颜色, 默认为文本颜色
 * `border:[border-width] [border-style] [border-color]`: 四条边框
 * `border-top:[border-top-width] [border-top-style] [border-top-color]`: 上边框
 * `border-bottom:[border-bottom-width] [border-bottom-style] [border-bottom-color]`: 下边框
@@ -675,7 +689,7 @@ border-box
 
 ## box-shadow
 
-* `box-shadow: [h-shadow] [v-shadow] [blur] [spread] [color] [inset],...`: 添加一个或多个阴影
+* `box-shadow: [h-shadow] [v-shadow] [blur] [spread] [color] [inset]`: 阴影，可添加多个
   * `h-shadow`: 阴影的水平偏移
   * `v-shadow`: 阴影的垂直偏移
   * `blur`: 模糊距离
@@ -693,9 +707,8 @@ border-box
 ## 普通流
 
 * 元素的位置由元素在`HTML`中的位置决定
-* 块级框从上到下一个接一个排列，框之间的垂直距离由框的垂直外边距合并而成
-* 行内框在一行中水平排列，可以使用水平内边距、水平边框、水平外边距、影响行内框的排布，垂直内边距、垂直边框、垂直外边距不影响行内框的排布，`vertical-align`影响垂直分布
-* 行内块框在一行中水平排列，宽高、内边距、边框、外边距都会影响行内块框的排布，`vertical-align`影响垂直分布
+* 块级框从上到下一个接一个排列，框的水平部分总和等于父元素的宽，框之间的垂直距离由框的垂直外边距合并而成
+* 行内框在一行中水平排列，内边距、边框、外边距对非替换元素无垂直效果，对替换元素（如图片、文本框）有垂直效果，`vertical-align`影响垂直分布
 
 ## 浮动
 
@@ -786,8 +799,8 @@ border-box
   * `upper-alpha`: 大写英文字母
   * `lower-greek`: 小写希腊字母
 * `list-style-position`: 列表项标记位置，默认为`outside`
-  * `outside`: 文本外
-  * `inside`: 文本内
+  * `outside`: 列表项外
+  * `inside`: 列表项内
 * `list-style-image`: 列表项图片，默认为`none`
   * `none`: 无
   * `url("<url>")`: 图片路径
