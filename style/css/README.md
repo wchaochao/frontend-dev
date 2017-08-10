@@ -280,13 +280,9 @@ selector2 {
 
 ## 样式表优先级
 
-越晚应用优先级越高
-
-浏览器默认样式<外部样式表或内部样式表
+浏览器默认样式<读者样式<创作者样式
 
 ## 选择器优先级
-
-描述的越精确优先级越高
 
 分为a,b,c,d四个等级, 依次比较a,b,c,d
 
@@ -301,7 +297,14 @@ selector2 {
 
 ## 应用样式
 
-收集元素的某个样式，先按样式优先级排序，再按选择器优先级排序，之后按样式表优先级排序，最后按出现的顺序排序，排序完后后面的样式会覆盖前面的样式和继承的样式
+1. 收集元素的样式，将样式按以下三类划分
+* 创作者普通样式、读者普通样式、浏览器默认样式
+* 创作者重要样式
+* 读者重要样式
+2. 每类按选择器优先级排序
+3. 同选择器优先级的按样式表优先级排序
+4. 同样式表优先级的按出现顺序排序
+5. 排序完后按排序的顺序依次应用样式，样式冲突时后面的样式会覆盖前面的样式和继承的样式
 
 
 # 样式值
@@ -310,7 +313,7 @@ selector2 {
 
 ### 通用字体系列
 
-拥有相似外观的字体系统组合
+拥有相似外观的字体组合
 
 * `Serif`：有衬线，多用于新闻报纸的文字排版
 * `Sans-serif`：无衬线，多用于计算机屏幕
@@ -344,18 +347,24 @@ selector2 {
 }
 ```
 
+## 长度
 
-## 尺寸
+### 绝对长度
 
-`CSS`用以下方式表示尺寸
+* `cm`: 厘米
+* `mm`: 毫米
+* `in`: 英寸，`2.54cm`
+* `pt`: 点，印刷单位，`1/72in`
+* `pc`: 派卡，印刷单位，`12pt`
 
-* `%`: 百分比
+### 相对长度
+
 * `px`: 像素
 * `em`: 字体大小
+* `ex`: 小写`x`的高度
+* `%`: 百分比
 
 ## 颜色
-
-`CSS`用以下方式表示颜色
 
 * 颜色名：`transparent, aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow`等147种颜色
 * 十六进制颜色：`#RRGGBB`, RR(红色)、GG(绿色)、BB(蓝色), 值`00~FF`之间，`#rrggbb`形式的十六进制颜色可简写为`#rgb`
@@ -363,6 +372,15 @@ selector2 {
 * RGBA颜色: `rgba(red, green, blue, alpha)`, `alpha`为不透明度，值`0~1`之间
 * HSL颜色：`hsl(hue, saturation, lightness)`, hue(色调)(0~360)(红-绿-蓝), saturation(饱和度)(0%~100%)(灰-全彩), lightness(亮度)(0%~100%)(黑-白)
 * HSLA 颜色: hsla(hue, saturation, lightness, alpha)
+
+## URL
+
+* 绝对URL：`<protocol>://<user>:<password>@<host>:<port>/<path>?<query>#<hash>`
+* 相对URL：`<path>?<query>#<hash>`
+
+## 关键字
+
+* `inherit`: 继承父元素的样式
 
 
 # 文本样式
@@ -375,8 +393,8 @@ selector2 {
 
 ## 字体
 
-* `font-family`: 文本的字体, 默认为`"Times New Roman"`
-  * `字体`: 可定义多个字体作为备用，最后一个通常为字体系列，字体名有空格时需要用引号
+* `font-family`: 文本的字体
+  * `字体`: 可定义多个字体作为备用，字体间用`,`隔开，最后一个通常为字体系列，字体名有空格或`#`,`$`时需要用引号
 * `font-style`: 字体风格，默认为`normal`
   * `normal`: 正常显示
   * `italic`: 斜体显示
@@ -390,11 +408,11 @@ selector2 {
   * `bolder`: 更粗
   * `lighter`: 更细
   * `<100|200...|900>`: 400相当于`normal`，700相当于`bold`
-* `font-size`: 字体大小, 推荐`body`用`length`, 其他用`em`或`percentage`
-  * `length`: 固定尺寸
+* `font-size`: 字体大小, 默认为`medium`
+  * `length`: 具体长度
   * `percentage`: 相对于父字体大小而言
   * `em`: 相对于父字体大小而言
-  * `关键字`：`xx-small, x-small, small, medium, large, x-large, xx-large`
+  * `关键字`：`xx-small, x-small, small, medium, large, x-large, xx-large, smaller, larger`
 * `font:[font-style] [font-variant] [font-weight] [font-size[/line-height]] [font-family]`: 字体
 
 ## 文本
@@ -404,7 +422,7 @@ selector2 {
   * `ltr`: 从左到右
   * `rtl`: 从右到左
 * `line-height`: 行高
-  * `尺寸`：行高多少
+  * `长度`：行高多少
   * `number`: 自身字体大小的多少倍
 * `text-indent`: 缩进，一般设置`2em`
 * `text-align`: 水平对齐，默认为`left`
@@ -432,10 +450,10 @@ selector2 {
   * `blink`: 闪烁
 * `word-spacing`: 字/单词的间隔，默认为`normal`
   * `normal`: 正常间隔
-  * `尺寸`：间隔多少
+  * `长度`：间隔多少
 * `letter-spacing`: 字符的间隔，默认为`normal`
   * `normal`: 正常间隔
-  * `尺寸`：间隔多少
+  * `长度`：间隔多少
 * `white-space`: 空白符处理，默认为`normal`
   * `normal`: 合并空白符，忽略换行符，允许自动换行
   * `nowrap`: 合并空白符，忽略换行符，不允许自动换行
