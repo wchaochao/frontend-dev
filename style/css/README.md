@@ -366,7 +366,7 @@ selector2 {
 
 ## 颜色
 
-* 颜色名：`transparent, aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow`等147种颜色
+* 颜色名：`aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow`等147种颜色
 * 十六进制颜色：`#RRGGBB`, RR(红色)、GG(绿色)、BB(蓝色), 值`00~FF`之间，`#rrggbb`形式的十六进制颜色可简写为`#rgb`
 * RGB颜色: `rgb(red, green, blue)`，值`0~255`或`0% ~100%`之间
 * RGBA颜色: `rgba(red, green, blue, alpha)`, `alpha`为不透明度，值`0~1`之间
@@ -413,6 +413,18 @@ selector2 {
   * `em|percentage`: 相对于父字体大小
   * `关键字`：`xx-small, x-small, small, medium, large, x-large, xx-large, smaller, larger`
 * `font:[font-style] [font-variant] [font-weight] <font-size[/line-height]> <font-family>`: 字体
+
+![font-family](images/font-family.png)
+
+![font-style](images/font-style.png)
+
+![font-variant](images/font-variant.png)
+
+![font-weight](images/font-weight.png)
+
+![font-size](images/font-size.png)
+
+![font](images/font.png)
 
 ## 文本
 
@@ -494,6 +506,31 @@ selector2 {
   * `ltr`: 从左到右
   * `rtl`: 从右到左
 
+![color](images/color.png)
+
+![text-indent](images/text-indent.png)
+
+![text-align](images/text-align.png)
+
+![line-height](images/line-height.png)
+
+![vertical-align](images/vertical-align.png)
+
+![word-spacing](images/word-spacing.png)
+
+![letter-spacing](images/letter-spacing.png)
+
+![text-transform](images/text-transform.png)
+
+![text-decoration](images/text-decoration.png)
+
+![text-shadow](images/text-shadow.png)
+
+![white-space](images/white-space.png)
+
+![direction](images/direction.png)
+
+
 
 # 盒模型
 
@@ -525,6 +562,10 @@ selector2 {
 * `min-height`: 元素的最小高度
 * `max-height`: 元素的最大高度
 
+![width](images/width.png)
+
+![height](images/height.png)
+
 ## padding
 
 尺寸不能为负，百分比相对于父元素的宽度而言
@@ -535,6 +576,10 @@ selector2 {
 * `padding-right`: 右内边距
 * `padding`: 内边距
 
+![padding-4](images/padding-4.png)
+
+![padding](images/padding.png)
+
 ## margin
 
 尺寸可以为负，可以为`auto`, 百分比相对于父元素的宽度而言
@@ -544,6 +589,10 @@ selector2 {
 * `margin-left`: 左外边距
 * `margin-right`: 右外边距
 * `margin`: 外边距
+
+![margin-4](images/margin-4.png)
+
+![margin](images/margin.png)
 
 ## 外边距合并
 
@@ -592,6 +641,8 @@ border-box
   * `tabel-row`: 相当于表格行元素
   * `table-cell`: 相当于表格单元格元素
 
+![display](images/display.png)
+
 ## 可见性
 
 * `opacity`: 不透明度，`0~1`之间，会被子元素继承
@@ -625,11 +676,27 @@ border-box
   * `inset`: 3D凹边
   * `outset`: 3D凸边
 * `border-color`: 四条边框颜色, 默认为文本颜色
-* `border:[border-width] [border-style] [border-color]`: 四条边框
 * `border-top:[border-top-width] [border-top-style] [border-top-color]`: 上边框
 * `border-bottom:[border-bottom-width] [border-bottom-style] [border-bottom-color]`: 下边框
 * `border-left:[border-left-width] [border-left-style] [border-left-color]`: 左边框
 * `border-right:[border-right-width] [border-right-style] [border-right-color]`: 右边框
+* `border:[border-width] [border-style] [border-color]`: 四条边框
+
+![border-width-4](images/border-width-4.png)
+
+![border-width](images/border-width.png)
+
+![border-style-4](images/border-style-4.png)
+
+![border-style](images/border-style.png)
+
+![border-color-4](images/border-color-4.png)
+
+![border-color](images/border-color.png)
+
+![border-4](images/border-4.png)
+
+![border](images/border.png)
 
 ## border-radius
 
@@ -647,7 +714,7 @@ border-box
 
 * `outline-width`: 轮廓宽度
 * `outline-style`: 轮廓样式
-* `outline-color`: 轮廓颜色
+* `outline-color`: 轮廓颜色，默认为文本颜色
 * `outline:[outline-width] [outline-style] [outline-color]`: 轮廓
 
 ## background
@@ -686,6 +753,8 @@ border-box
 * `background:[background-color] [background-image] [background-repeat] [background-position]`: 背景样式
 
 ![background-position](images/background-position.png)
+
+![background-color](images/background-color.png)
 
 ## box-shadow
 
