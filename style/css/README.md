@@ -566,6 +566,10 @@ selector2 {
 
 ![height](images/height.png)
 
+![min-length](images/min-length.png)
+
+![max-length](images/max-length.png)
+
 ## padding
 
 尺寸不能为负，百分比相对于父元素的宽度而言
@@ -652,13 +656,17 @@ border-box
 
 ## overflow
 
-* `overflow`: 框溢出处理，默认为`visible`
-  * `visible`: 不裁剪，直接显示
-  * `hidden`: 裁剪
+* `overflow`: 内容溢出处理，默认为`visible`
+  * `visible`: 显示溢出部分
+  * `hidden`: 隐藏溢出部分
   * `scroll`: 显示滚动条
   * `auto`: 自动显示滚动条
 * `overflow-x`: 水平方向溢出处理
 * `overflow-y`: 垂直方向溢出处理
+
+![overflow](images/overflow.png)
+
+## clip
 
 ## border
 
@@ -730,10 +738,10 @@ border-box
   * `repeat`: x, y方向都平铺
   * `repeat-x`: x方向平铺
   * `repeat-y`: y方向平铺
-* `backgound-position`: 背景位置，默认为左上角
-  * `关键字`：`<left|center|right> <top|center|bottom(默认为center)>`
-  * `百分比`：`x% y%`
-  * `尺寸`：`x y`, 相对于左上角而言，可以为负
+* `backgound-position`: 背景位置，默认为`0% 0%`
+  * `关键字`：`<left|center|right> <top|center|bottom>`，一个关键字时，另一个默认为`center`
+  * `percentage`：`x% y%`，一个百分比时，另一个默认为`50%`
+  * `length`：`x y`, 相对于左上角而言，可以为负
 * `background-origin`: `background-position`相对什么定位，默认为`border-box`
   * `content-box`: 内容框
   * `padding-box`: 内边距框
@@ -749,12 +757,22 @@ border-box
   * `cover`: 覆盖背景区域
 * `background-attachment`: 背景关联，默认为`scroll`
   * `scroll`: 随页面滚动
-  * `fixed`: 固定，不随页面滚动
-* `background:[background-color] [background-image] [background-repeat] [background-position]`: 背景样式
+  * `fixed`: 固定，不随页面滚动，背景位置相对于浏览器窗口而言
+* `background:[background-color] [background-image] [background-repeat] [background-attachment] [background-position]`: 背景样式
+
+![background-color](images/background-color.png)
+
+![background-image](images/background-image.png)
+
+![background-repeat](images/background-repeat.png)
 
 ![background-position](images/background-position.png)
 
-![background-color](images/background-color.png)
+![background-position-percentage](images/background-position-percentage.png)
+
+![background-attachment](images/background-attachment.png)
+
+![background](images/background.png)
 
 ## box-shadow
 
@@ -785,14 +803,23 @@ border-box
 
 * `float`: 浮动, 默认为`none`
   * `none`: 不浮动
-  * `left`: 向左浮动，自动变成块级框，原来所占的位置删除，占用覆盖位置
-  * `right`: 向右浮动，自动变成块级框，原来所占的位置删除，占用覆盖位置
+  * `left`: 向左浮动，自动变成块级框，原来所占的位置删除，周围内容环绕浮动元素
+  * `right`: 向右浮动，自动变成块级框，原来所占的位置删除，周围内容环绕浮动元素
 
 ![浮动](images/ct_css_positioning_floating_linebox.gif)
 
+![float](images/float.png)
+
 尺寸不够时往下排列
 
-![float](images/float.png)
+![float-down](images/float-down.png)
+
+与内容重叠时
+
+* 与行内框重叠，行内框的边框、背景、内容在浮动元素之上显示
+* 与块框重叠，边框、背景在浮动元素之下，内容在浮动元素之上
+
+清除浮动
 
 * `clear`: 清除浮动，默认为`none`
   * `none`: 不清除浮动
@@ -801,6 +828,8 @@ border-box
   * `both`: 清除左右浮动，元素左右两边不允许有浮动内容
 
 ![清除浮动](images/ct_css_positioning_floating_clear_div.gif)
+
+![clear](images/clear.png)
 
 ```css
 /*清除浮动*/
@@ -816,19 +845,27 @@ border-box
 }
 
 /* or */
-.clearfix{
+parent{
   overflow:hidden;
+}
+
+/* or */
+parent{
+  float:left;
 }
 ```
 
+
 ## 定位
 
+以外边距边界来完成偏移
+
 * `position`: 定位，默认为`static`
-  * `static`: 静态定位，元素框正常生成
+  * `static`: 静态定位，元素框正常生成，块级元素生成块框，行内元素生成行内框
   * `relative`: 相对定位，元素框可以相对于原来的位置偏移，原来所占的位置仍保留
-  * `absolute`: 绝对定位，元素框可以相对于最近的已定位的祖先元素偏移(没有时相对于`body`元素)，自动变成块级框，原来所占的位置删除
+  * `absolute`: 绝对定位，元素框可以相对于最近的已定位的祖先元素的内边距边界偏移(没有时相对于`body`元素)，自动变成块级框，原来所占的位置删除
   * `fixed`: 固定定位，元素框可以相对于浏览器窗口位置偏移，自动变成块级框，原来所占的位置删除，页面滚动时仍不动
-* `top`: 盒模型的上偏移，正数对应下移, 百分数相对于浏览器窗口宽度而言
+* `top`: 盒模型的上偏移，正数对应下移
 * `bottom`: 盒模型的下偏移，正数对应上移
 * `left`: 盒模型的左偏移，正数对应右移
 * `right`: 盒模型的右偏移，正数对应左移
@@ -839,6 +876,10 @@ border-box
 ![relative](images/relative.png)
 
 ![absolute](images/absolute.png)
+
+![position](images/position.png)
+
+![offset](images/offset.png)
 
 
 # 常用样式
