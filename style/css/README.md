@@ -600,7 +600,7 @@ selector2 {
 
 ## 外边距合并
 
-普通文档流中块元素的垂直外边距相遇时，会合并为一个外边距
+文档流中块元素的垂直外边距相遇时，会合并为一个外边距
 
 1. 将相遇的垂直外边距按正负化为两类
 2. 正的一类取大的，负的一类取小的
@@ -637,7 +637,7 @@ border-box
 浮动或定位时，`display`会重新计算，`inline-table`变为`table`，其他变为`block`
 
 * `display`: 显示方式，默认为`inline`
-  * `none`: 不显示，不存在
+  * `none`: 不存在，从文档流中删除
   * `block`: 相当于块元素
   * `inline`: 相当于行内非替换元素
   * `inline-block`: 相当于行内替换元素
@@ -647,16 +647,22 @@ border-box
 
 ![display](images/display.png)
 
-## 可见性
+## visibility
+
+* `visibility`: 可见性，默认`visible`
+  * `visible`: 可见
+  * `hidden`: 隐藏，仍存在
+  * `collapse`: 表元素时隐藏一行或一列，其他元素等同于`hidden`
+
+![visibility](images/visibility.png)
+
+## opacity
 
 * `opacity`: 不透明度，`0~1`之间，会被子元素继承
-* `visibility`: 是否可见，默认`visible`
-  * `visible`: 可见
-  * `hidden`: 不可见，仍存在
 
 ## overflow
 
-* `overflow`: 内容溢出处理，默认为`visible`
+* `overflow`: 内容溢出可视区域处理，默认为`visible`
   * `visible`: 显示溢出部分
   * `hidden`: 隐藏溢出部分
   * `scroll`: 显示滚动条
@@ -667,6 +673,12 @@ border-box
 ![overflow](images/overflow.png)
 
 ## clip
+
+* `clip`: 裁剪可视区域，默认为`auto`
+  * `auto`: 不裁剪
+  * `rect(<top>, <right>, <bottom>, <left>)`: 裁剪一个矩形，值为各边距内边距框左上角的距离
+
+![clip](images/clip.png)
 
 ## border
 
@@ -787,11 +799,11 @@ border-box
 
 # 定位机制
 
-* 普通流
+* 文档流
 * 浮动
 * 定位
 
-## 普通流
+## 文档流
 
 * 元素的位置由元素在`HTML`中的位置决定
 * 块级框从上到下一个接一个排列，框的水平部分总和等于父元素的宽，框之间的垂直距离由框的垂直外边距合并而成
@@ -858,20 +870,20 @@ parent{
 
 ## 定位
 
-以外边距边界来完成偏移
+以外边距框来完成偏移
 
 * `position`: 定位，默认为`static`
   * `static`: 静态定位，元素框正常生成，块级元素生成块框，行内元素生成行内框
   * `relative`: 相对定位，元素框可以相对于原来的位置偏移，原来所占的位置仍保留
-  * `absolute`: 绝对定位，元素框可以相对于最近的已定位的祖先元素的内边距边界偏移(没有时相对于`body`元素)，自动变成块级框，原来所占的位置删除
+  * `absolute`: 绝对定位，元素框可以相对于最近的已定位的祖先元素的内边距框偏移(没有时相对于`body`元素)，自动变成块级框，原来所占的位置删除
   * `fixed`: 固定定位，元素框可以相对于浏览器窗口位置偏移，自动变成块级框，原来所占的位置删除，页面滚动时仍不动
-* `top`: 盒模型的上偏移，正数对应下移
-* `bottom`: 盒模型的下偏移，正数对应上移
-* `left`: 盒模型的左偏移，正数对应右移
-* `right`: 盒模型的右偏移，正数对应左移
+* `top`: 盒模型的上偏移，正数对应下移，默认为`auto`
+* `bottom`: 盒模型的下偏移，正数对应上移，默认为`auto`
+* `left`: 盒模型的左偏移，正数对应右移，默认为`auto`
+* `right`: 盒模型的右偏移，正数对应左移，默认为`auto`
 * `z-index`: 堆叠顺序，默认为`auto`
-  * `auto`: 与父元素相同
-  * `number`: 设置堆叠顺序，越大越在上面
+  * `auto`: 与父元素堆叠顺序相同
+  * `number`: 相对于父元素的堆叠顺序
 
 ![relative](images/relative.png)
 
@@ -880,6 +892,8 @@ parent{
 ![position](images/position.png)
 
 ![offset](images/offset.png)
+
+![z-index](images/z-index.png)
 
 
 # 常用样式
