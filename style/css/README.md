@@ -247,7 +247,10 @@ selector2 {
 * `:first-child`: 作为第一个子元素
 * `:last-child`: 作为最后一个子元素
 * `:only-child`: 作为唯一一个子元素
-* `:nth-child(n)`: 作为第n个子元素
+* `:nth-child(n)`: 作为第n个子元素, 子元素从`1`开始
+  * `:nth-child(an+b)`: 作为第`an+b`个子元素, `n`从0开始
+  * `:nth-child(odd)`: 作为第`2n-1`个子元素
+  * `:nth-child(even)`: 作为第`2n`个子元素
 * `:nth-last-child(n)`: 作为倒数第`n`个子元素
 * `:first-of-type`: 在子元素中第一个出现的某类元素
 * `:last-of-type`: 在子元素中最后一个出现的某类元素
@@ -600,7 +603,7 @@ selector2 {
 
 ## 外边距合并
 
-文档流中块元素的垂直外边距相遇时，会合并为一个外边距
+同一个BFC中的块元素的垂直外边距相遇时，会合并为一个外边距
 
 1. 将相遇的垂直外边距按正负化为两类
 2. 正的一类取大的，负的一类取小的
@@ -637,13 +640,22 @@ border-box
 浮动或定位时，`display`会重新计算，`inline-table`变为`table`，其他变为`block`
 
 * `display`: 显示方式，默认为`inline`
-  * `none`: 不存在，从文档流中删除
-  * `block`: 相当于块元素
-  * `inline`: 相当于行内非替换元素
-  * `inline-block`: 相当于行内替换元素
-  * `table`: 相当于表格元素
-  * `tabel-row`: 相当于表格行元素
-  * `table-cell`: 相当于表格单元格元素
+  * `none`: 不存在，从普通流中删除
+  * `block`: 块元素
+  * `inline`: 行内元素
+  * `inline-block`: 行内块元素
+  * `run-in`: 根据上下文作为块级元素或行内元素显示
+  * `list-item`: 列表项
+  * `table`: 表格
+  * `inline-table`: 内联表格
+  * `table-caption`: 表格标题
+  * `table-row-group`: 行组
+  * `table-header-group`: 表头
+  * `table-footer-group`: 表注
+  * `tabel-row`: 行
+  * `table-column-group`: 列祖
+  * `table-column`:列
+  * `table-cell`: 单元格
 
 ![display](images/display.png)
 
@@ -799,11 +811,11 @@ border-box
 
 # 定位机制
 
-* 文档流
+* 普通流
 * 浮动
 * 定位
 
-## 文档流
+## 普通流
 
 * 元素的位置由元素在`HTML`中的位置决定
 * 块级框从上到下一个接一个排列，框的水平部分总和等于父元素的宽，框之间的垂直距离由框的垂直外边距合并而成
@@ -849,7 +861,7 @@ border-box
 .clearfix:before,
 .clearfix:after{
   content:" ";
-  display:block;
+  display:table;
 }
 
 .clearfix:after{
@@ -894,6 +906,107 @@ parent{
 ![offset](images/offset.png)
 
 ![z-index](images/z-index.png)
+
+
+# 布局原理
+
+## visual formatting model
+
+视觉格式化模型，规定浏览器如何在屏幕上绘制元素，每个元素根据盒模型创建零个或者多个盒子，盒子的布局由以下因素决定：
+
+* 盒子的尺寸和类型
+* 定位机制(`normal flow`, `float`, `absolute positioning`)
+* 元素在文档树中的关系
+* 其它因素(viewport size, 图片的本身的尺寸等)
+
+## container block
+
+很多盒子的位置和大小，是根据一个与之相关的矩形来计算的，称为包含块
+
+## box
+
+渲染的基本单位，`box`的类型由元素的类型和`display`属性决定，不同类型的`box`参与不同类型的`formatting context`布局。
+
+### block
+
+* `block-level-element`: `display: block / list-item / table;`的元素
+* `block-level box`: `block-level-element`会创建一个`block-level box`，受控于`block formatting context`
+* `block container box`: 包含`block-level box`或创建一个`inline formatting context`，用于包含`inline-level box`
+  * 除了`display: table;`之外的`block-level box`
+  * 行内块级元素，单元格元素
+* `block box`: 既是`block-level box`，又是`block container box`
+
+### inline
+
+* `inline-level element`: `display: inline / inline-table / inline-block;`的元素
+* `inline-level box`: `inline-level element`会创建`inline-level box`，受控于`inline formatting context`
+* `inline box`: 既是`inline-level box`, 而且其内容受控于`inline formatting context`
+  * 不可替换的行内元素
+* `atomic inline-level box`: 既是`inline-level box`, 而且其作为一个整体受控于`inline formatting context`
+  * 可替换的行内元素，行内块级元素，`inline-table`元素
+
+## Formatting Contexts
+
+格式化上下文，页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用
+
+### BFC
+
+块级格式化上下文(`Block Formatting Contexts`)
+
+#### 创建
+
+* 根元素或其它包含它的元素
+* 浮动元素 (元素的`float`不为`none`)
+* 绝对定位元素(元素的`position`为`absolute`或`fixed`)
+* 行内块元素(元素的`display`为`inline-block`)
+* 表格单元格(元素的`display`为`table-cell`)
+* 表格标题(元素的`display`为`table-caption`)
+* `overflow`的值不为`visible`的元素
+
+#### 特性
+
+* `box`从`containing block`的顶部开始，在垂直方向上，一个接一个的排列
+* 两个相邻的`box`间的垂直间距，由它们的`margin`属性决定，并且，会发生`margin collapse`
+* 每一个box的左边缘紧贴`containing block`的左边缘，即使设置了浮动，也是如此
+* 不会与`float box`重叠，常用来清除浮动和布局
+* 计算高度时，浮动元素也参与计算
+
+#### 作用
+
+* `margin collapse`
+* `contain float`
+
+### IFC
+
+行内格式化上下文(`Inline Formatting Contexts`)
+
+#### 生成
+
+块级元素中仅包含内联级别元素时
+
+#### 规则
+
+* `box`会从`container block`的顶部开始，在水平方向上，一个接一个的排列
+* 水平`margin`，`border`，`padding`，会作用到这些`box`上
+* 垂直方向上按照`vertical-align`来对齐
+* 每一行的多个`box`，会包含在一个矩形区域中，这个矩形区域，称为`line box`
+* 行框的宽度是由包含块和存在的浮动来决定
+* 行框的高是最顶端框的顶边到最底端框的底边的距离
+* 计算行框里的各行内级框的高度时，对于可替换元素、行内块元素、行内表格元素来说，是外边距框的高度，对于行内框来说，是其`line-height`
+* 当一个`inline box`超过`line box`的宽度时，它会被分割成多个`boxes`，这些`boxes`被分布在多个`line box`里
+
+#### 实用
+
+* 水平居中
+* 垂直居中
+
+### GFC
+
+栅格格式化上下文(`Grid Formatting Contexts`)
+
+### FFC
+
+Flex格式化上下文(`Flex Formatting Contexts`)
 
 
 # 常用样式
