@@ -9,8 +9,8 @@
 * [w3school-css](http://www.w3school.com.cn/css/index.asp)
 * [codecademy-html-css](https://www.codecademy.com/learn/learn-html-css)
 * 《Head First HTML and CSS》
-* 《CSS权威指南》
 * 《精通css:高级web标准解决方案》
+* 《CSS权威指南》
 
 
 # 概述
@@ -646,16 +646,16 @@ border-box
   * `inline-block`: 行内块元素
   * `run-in`: 根据上下文作为块级元素或行内元素显示
   * `list-item`: 列表项
-  * `table`: 表格
-  * `inline-table`: 内联表格
-  * `table-caption`: 表格标题
+  * `table`: 块级表
+  * `inline-talbe`: 行内表
+  * `table-row`: 行
   * `table-row-group`: 行组
   * `table-header-group`: 表头
   * `table-footer-group`: 表注
-  * `tabel-row`: 行
-  * `table-column-group`: 列祖
-  * `table-column`:列
+  * `table-colume`: 列
+  * `table-column-group`: 列组
   * `table-cell`: 单元格
+  * `table-caption`: 表标题
 
 ![display](images/display.png)
 
@@ -1009,6 +1009,210 @@ parent{
 Flex格式化上下文(`Flex Formatting Contexts`)
 
 
+# 表布局
+
+CSS中的表布局
+
+## 表元素
+
+根据`display`属性的值判断
+
+* `table`: 块级表
+* `inline-talbe`: 行内表
+* `table-row`: 行
+* `table-row-group`: 行组
+* `table-header-group`: 表头
+* `table-footer-group`: 表注
+* `table-colume`: 列
+* `table-column-group`: 列组
+* `table-cell`: 单元格
+* `table-caption`: 表标题
+
+![表元素](images/table-element.png)
+
+## 表编排
+
+* 行框包含一行表格单元，所有行框按其出现的顺序从上到下地填充表
+* 行组包括多个行框
+* 列框包含一列或多列表格单元，所有列框按其出现的顺序依次相邻放置
+* 列组包含多个列框
+* 单元格可能跨多行或多列
+* 单元格不能超出表或行组的最后一个行框
+* 单元格有内容、内边距、边框，无外边框，设置外边框样式时会被忽略
+* 行框的表格单元的高度相等，列框的表格单元的宽度相等
+* 以行为主，列从行中推导出来
+* 最少需要表、行、单元格三个元素才能组成表，缺少时插入匿名表对象
+
+## 表层
+
+![表层](images/table-layer.png)
+
+## 列
+
+列和列组只能接受四种样式
+
+* `border`: 分隔边框模型时才能设置边框
+* `background`: 根据表层确认是否会被覆盖
+* `width`: 列或列祖的最小宽度
+* `visibility`: 只有`collapse`才有用，其它忽略
+
+## 表标题
+
+一小段文本，描述表内容的本质
+
+* `caption-side`: 标题位置，默认`top`
+  * `top`: 表格之上
+  * `bottom`: 表格之下
+
+![caption-side](images/caption-side.png)
+
+## 边框模型
+
+* `border-collapse`: 边框模型，默认`separate`
+  * `separate`: 分隔边框模型
+  * `collapse`: 合并边框模型
+
+![border-collapse](images/border-collapse.png)
+
+### 分隔边框模型
+
+边框间隔
+
+* `border-spacing`: 单元格边框间隔
+  * `x`: 水平与垂直间隔
+  * `x y`: 水平间隔、垂直间隔
+
+![border-spacing](images/border-spacing.png)
+
+空单元格处理
+
+* `empty-cells`: 空单元格处理
+  * `show`: 显示空单元格的边框和背景
+  * `hide`: 不显示空单元格的边框和背景
+
+![empty-cells](images/empty-cells.png)
+
+### 合并单元格模型
+
+![collapse](images/collapse.png)
+
+合并规则
+
+* 表忽略内边距，单元格忽略间隔
+* 多个边框相邻时，相互合并，取优先级最大的哪一个边框
+  * 边框样式为`hidden`，优先级最高
+  * 边框样式为`none`，优先级最低
+  * 边框宽度不同，宽度大的优先级高
+  * 边框宽度相同，比较边框样式，优先级从高到低`double, solid, dashed, dotted, ridge, outset, groove, inset`
+  * 边框宽度、样式相同时，比较边框颜色，优先级从高到低`cell, row, row group, column, column group, table`
+
+## 布局方式
+
+* `table-layout`: 表格布局方式，默认为`auto`
+  * `auto`: 自动布局
+  * `fixed`：固定布局
+
+![table-layout](images/table-layout)
+
+### 固定布局
+
+* 查找列宽度
+* 列宽度为`auto`, 查找首行单元格的宽度
+* 首行单元格宽度仍为`auto`, 则自动计算
+* 列宽度之和大于表宽度，则表宽度为列宽度之和
+* 列宽度之和小于表宽度，则将多余的宽度平均加到每一列上
+
+### 自动布局
+
+* 对于一列中的各个单元格，计算最小和最大单元格宽度
+* 对于各列，计算最小和最大单元格宽度
+* 表宽度为`auto`，列宽之和为表宽度
+* 表宽度不为`auto`，比较列宽之和和表宽度，大的为表宽度
+
+## 对齐
+
+* 水平对齐：`text-align`
+* 垂直对齐：`vertical-align`，通过调整单元格的上下内边距来垂直对齐
+  * 只有`top, bottom, middle, baseline`四个值，其他值忽略
+
+
+# 列表与生成内容
+
+## 列表项标志
+
+标志类型
+
+* `list-style-type`: 列表项标志类型，默认为`disc`
+  * `none`: 无标志
+  * `disc`: 实心圆，无序列表默认类型
+  * `circle`: 空心圆
+  * `square`: 实心方块
+  * `decimal`: 数字，有序列表默认类型
+  * `lower-roman`: 小写罗马数字
+  * `upper-roman`: 大写罗马数字
+  * `lower-alpha`: 小写英文字母
+  * `upper-alpha`: 大写英文字母
+  * `lower-greek`: 小写希腊字母
+
+![list-style-type](images/list-style-type.png)
+
+图像标志
+
+* `list-style-image`: 列表项图像标志，默认为`none`
+  * `none`: 无
+  * `url("<url>")`: 图像路径
+
+![list-style-image](images/list-style-image.png)
+
+标志位置
+
+* `list-style-position`: 列表项标志位置，相对于列表项的内容定位，默认为`outside`
+  * `outside`: 列表项外
+  * `inside`: 列表项内
+
+![list-style-position](images/list-style-position.png)
+
+简写
+
+* `list-style:[list-style-type] [list-style-position] [list-style-image]`: 列表项标志样式
+
+![list-style](images/list-style.png)
+
+## 生成内容
+
+使用`:before`和`:after`伪元素来插入生成内容
+
+### 限制
+
+* 禁止浮动和定位
+* 禁止列表样式和表样式
+* `display`处理
+  * 选择器为块元素，`display`只能为`none, inline, block, marker`, 其它的作为`block`处理
+  * 选择器为行内元素，`display`只能为`none, inline`，其它的作为`inline`处理
+
+### 指定内容
+
+* `content`: 生成内容，默认为`normal`，可多种内容拼接
+  * `normal`: 正常
+  * `<string>`: 文本
+  * `url("<url>")`: 外部资源
+  * `attr(<identifier>)`: 属性值
+  * `open-quote`: `quotes`属性值的开始引号
+  * `close-quote`: `quotes`属性值的结束引号
+  * `no-open-quote`: 无开始引号
+  * `no-close-quote`: 无结束引号
+
+![content](images/content.png)
+
+### 指定引号
+
+* `quotes`: 指定引号对
+  * `none`: 无引号对
+  * `<string> <string>...`: 一个或多个引号对，后面的为更深层次的引号对
+
+![quotes](images/quotes.png)
+
+
 # 常用样式
 
 ## 链接
@@ -1024,24 +1228,6 @@ Flex格式化上下文(`Flex Formatting Contexts`)
 
 ## 列表
 
-* `list-style-type`: 列表项标记类型，默认为`none`
-  * `none`: 无标记
-  * `disc`: 实心圆，无序列表默认类型
-  * `circle`: 空心圆
-  * `square`: 实心方块
-  * `decimal`: 数字，有序列表默认类型
-  * `lower-roman`: 小写罗马数字
-  * `upper-roman`: 大写罗马数字
-  * `lower-alpha`: 小写英文字母
-  * `upper-alpha`: 大写英文字母
-  * `lower-greek`: 小写希腊字母
-* `list-style-position`: 列表项标记位置，默认为`outside`
-  * `outside`: 列表项外
-  * `inside`: 列表项内
-* `list-style-image`: 列表项图片，默认为`none`
-  * `none`: 无
-  * `url("<url>")`: 图片路径
-* `list-style:[list-style-type] [list-style-position] [list-style-image]`: 列表项样式
 
 ### 垂直导航条
 
@@ -1107,19 +1293,6 @@ a: display:block;
 */
 ```
 
-## 表格
-
-* `border-collapse`: 合并边框，默认`separate`
-  * `separate`: 不合并
-  * `collapse`: 合并边框
-* `border-spacing`: 单元格外边距，使用`margin`设置单元格外边距时无效
-  * `x y`: 水平间距、垂直间距
-* `caption-side`: 标题位置，默认`top`
-  * `top`: 表格之上
-  * `bottom`: 表格之下
-* `table-layout`: 表格布局
-  * `automatic`: 自动布局
-  * `fixed`：固定布局
 
 ## 表单
 
