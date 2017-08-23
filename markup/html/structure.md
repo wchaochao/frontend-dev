@@ -171,6 +171,7 @@
 属性
 
 * `type`: 样式表的MIME类型，默认`text/css`
+* `media`: 媒体类型
 
 ## body
 
