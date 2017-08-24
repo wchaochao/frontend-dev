@@ -230,9 +230,12 @@ border-box
 
 ![outline](images/outline.png)
 
+* `outline-offset`: 轮廓偏移
+  * `length`: 轮廓与边框边缘的距离，可为负
+
 ## background
 
-通常将多个图标放置在一张图片上，以减少请求次数，可提供多个背景
+可提供多个背景
 
 * `background-color`: 背景颜色，默认为`transparent`
 
@@ -254,6 +257,7 @@ border-box
 
 * `backgound-position`: 背景位置，默认为`0% 0%`
   * `关键字`：`<left|center|right> <top|center|bottom>`，一个关键字时，另一个默认为`center`
+  * `水平关键字 水平偏移 垂直关键字 垂直偏移`：先到关键字位置，再进行偏移
   * `percentage`：`x% y%`，一个百分比时，另一个默认为`50%`
   * `length`：`x y`, 相对于左上角而言，可以为负
 
@@ -261,12 +265,12 @@ border-box
 
 ![background-position-percentage](images/background-position-percentage.png)
 
-* `background-origin`: `background-position`相对什么定位，默认为`border-box`
+* `background-origin`: `background-position`相对什么定位，默认为`padding-box`
   * `content-box`: 内容框
   * `padding-box`: 内边距框
   * `border-box`: 边框
 
-* `background-clip`: 背景的绘制区域, 默认为`border-box`
+* `background-clip`: 背景的可视区域, 默认为`border-box`
   * `content-box`: 内容框
   * `padding-box`: 内边距框
   * `border-box`: 边框
@@ -283,16 +287,18 @@ border-box
 
 ![background-attachment](images/background-attachment.png)
 
-* `background:[background-color] [background-image] [background-repeat] [background-attachment] [background-position]`: 背景样式
+* `background:[background-color] [background-image] [background-repeat] [background-attachment] [background-position[ / background-size]]...`: 背景样式
 
 ![background](images/background.png)
 
 ## box-shadow
 
-* `box-shadow: [h-shadow] [v-shadow] [blur] [spread] [color] [inset]`: 阴影，可添加多个
+可添加多个，层层叠加，第一层投影位于最顶层
+
+* `box-shadow: [h-shadow] [v-shadow] [blur] [spread] [color] [inset]...`: 阴影
   * `h-shadow`: 阴影的水平偏移
   * `v-shadow`: 阴影的垂直偏移
   * `blur`: 模糊距离
-  * `spread`: 阴影尺寸
-  * `color`: 阴影颜色
+  * `spread`: 扩张半径
+  * `color`: 阴影颜色，默认为文本颜色
   * `inset`: 将外部阴影`outset`改为内部阴影

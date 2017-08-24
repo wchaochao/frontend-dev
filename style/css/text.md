@@ -118,11 +118,11 @@
 
 ![text-decoration](images/text-decoration.png)
 
-* `text-shadow: [h-shadow] [v-shadow] [blur] [color]`: 文本阴影，可指定多个
+* `text-shadow: [h-shadow] [v-shadow] [blur] [color]...`: 文本阴影，可指定多个
   * `h-shadow`: 阴影的水平偏移
   * `v-shadow`：阴影的垂直偏移
   * `blur`: 模糊距离
-  * `color`: 阴影颜色
+  * `color`: 阴影颜色，默认为文本颜色
 
 ![text-shadow](images/text-shadow.png)
 

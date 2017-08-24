@@ -17,6 +17,7 @@
 * [表布局](table.md)
 * [列表与生成内容](list.md)
 * [常用样式](common.md)
+* [CSS技巧](skill.md)
 * [兼容性](compatibility.md)
 * [规范样式表](standard.md)
 
@@ -25,6 +26,6 @@
 * [w3school-css](http://www.w3school.com.cn/css/index.asp)
 * [codecademy-html-css](https://www.codecademy.com/learn/learn-html-css)
 * 《Head First HTML and CSS》
-* 《精通css:高级web标准解决方案》
 * 《CSS权威指南》
+* 《精通css:高级web标准解决方案》
 * 《CSS揭秘》

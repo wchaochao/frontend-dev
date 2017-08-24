@@ -33,6 +33,7 @@
     * [表布局](style/css/table.md)
     * [列表与生成内容](style/css/list.md)
     * [常用样式](style/css/common.md)
+    * [CSS技巧](style/css/skill.md)
     * [兼容性](style/css/compatibility.md)
     * [规范样式表](style/css/standard.md)
 * [Javascript](js/README.md)
