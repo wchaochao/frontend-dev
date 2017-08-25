@@ -103,8 +103,8 @@
 
 * `:first-letter`: 首字母
 * `:first-line`: 首行
-* `:before`: 内容之前
-* `:after`: 内容之后
+* `::before`: 内容之前
+* `::after`: 内容之后
 * `::selection`: 选中部分
 
 **限制**：只能放在选择器的最后面，且只能应用某些CSS样式

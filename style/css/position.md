@@ -47,13 +47,13 @@
 ```css
 /*清除浮动*/
 
-.clearfix:before,
-.clearfix:after{
+.clearfix::before,
+.clearfix::after{
   content:" ";
   display:table;
 }
 
-.clearfix:after{
+.clearfix::after{
   clear:both
 }
 

@@ -42,15 +42,7 @@
 
 ## 生成内容
 
-使用`:before`和`:after`伪元素来插入生成内容
-
-<!--### 限制
-
-* 禁止浮动和定位
-* 禁止列表样式和表样式
-* `display`处理
-  * 选择器为块元素，`display`只能为`none, inline, block, marker`, 其它的作为`block`处理
-  * 选择器为行内元素，`display`只能为`none, inline`，其它的作为`inline`处理-->
+使用`::before`和`::after`伪元素来插入生成内容
 
 ### 指定内容
 

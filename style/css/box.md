@@ -6,10 +6,10 @@
 
 四边尺寸处理
 
-* `一个尺寸`: 上/下/左/右
-* `两个尺寸`: 上/下 左/右
-* `三个尺寸`：上 左/右 下
 * `四个尺寸`：上 右 下 左(顺时针方向)
+* `三个尺寸`：上 左/右 下(第四个值与第二个值相同)
+* `两个尺寸`: 上/下 左/右(第三个值与第一个值相同)
+* `一个尺寸`: 上/下/左/右(第二个值与第一个值相同)
 
 ## width/height
 
@@ -202,13 +202,20 @@ border-box
 
 ## border-radius
 
-圆角半径最大为`border-box`宽高较小值的一半，大于这个值时当作这个值处理
+对`border-box`作圆角处理
+
+* 有边框时对边框外侧作圆角处理，边框内侧圆角半径为`max(0,<border-radius>-<border-width>)`
+* 当任意两个相邻圆角半径之和大于`border-box`尺寸时，必须按比例减小圆角半径直至不会重叠
 
 * `border-top-left-radius`: 左上角圆角
+  * `r`: 半径为`r`的圆
+  * `a/b`: 水平半径为`a`, 垂直半径为`b`的椭圆
 * `border-top-right-radius`: 右上角圆角
 * `border-bottom-left-radius`: 左下角圆角
 * `border-bottom-right-radius`: 右下角圆角
-* `border-radius`: 四个圆角
+* `border-radius`: 四个圆角，从左上角开始以顺时针顺序指定四个圆角
+  * `<r>{1,4}`:四个圆角
+  * `<a>{1,4}/b{1,4}`:四个椭圆角
 
 ## outline
 
@@ -235,7 +242,7 @@ border-box
 
 ## background
 
-可提供多个背景
+可添加多个，层层叠加，第一层背景图片位于最顶层，背景颜色位于最底层
 
 * `background-color`: 背景颜色，默认为`transparent`
 

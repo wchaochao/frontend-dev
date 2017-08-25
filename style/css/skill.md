@@ -13,3 +13,13 @@
 * [边框内圆角](https://codepen.io/wchaochao/pen/dzjyZK)
 * [条纹背景](https://codepen.io/wchaochao/pen/QMBwMg)
 * [复杂的背景图案](https://codepen.io/wchaochao/pen/ayjOdo)
+* [伪随机背景](https://codepen.io/wchaochao/pen/NvBzMB)
+* [连续的图像边框](https://codepen.io/wchaochao/pen/eEjKqm)
+
+## 形状
+
+* [自适应的椭圆](https://codepen.io/wchaochao/pen/prZxOY)
+* [平行四边形](https://codepen.io/wchaochao/pen/wqxQNw)
+* [菱形图片](https://codepen.io/wchaochao/pen/xLJmqa)
+* [切角效果](https://codepen.io/wchaochao/pen/GvBzGM)
+* [梯形标签页](https://codepen.io/wchaochao/pen/LjBaOO)
