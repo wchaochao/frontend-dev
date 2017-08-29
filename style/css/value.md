@@ -73,6 +73,7 @@
 * `RGBA颜色`: `rgba(red, green, blue, alpha)`, `alpha`为不透明度，值`0~1`之间
 * `HSL颜色`：`hsl(hue, saturation, lightness)`, hue(色调)(0~360)(红-绿-蓝), saturation(饱和度)(0%~100%)(灰-全彩), lightness(亮度)(0%~100%)(黑-白)
 * `HSLA 颜色`: hsla(hue, saturation, lightness, alpha)
+* `currentColor`: 当前文本颜色
 
 ## URL
 
