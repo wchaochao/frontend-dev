@@ -101,8 +101,8 @@
 
 插入假想的元素
 
-* `:first-letter`: 首字母
-* `:first-line`: 首行
+* `::first-letter`: 首字母
+* `::first-line`: 首行
 * `::before`: 内容之前
 * `::after`: 内容之后
 * `::selection`: 选中部分

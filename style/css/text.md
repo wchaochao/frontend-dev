@@ -162,6 +162,8 @@
   * `progress`: 忙碌
   * `help`: 帮助
 
+`border-box`和伪元素都属于点击区域
+
 ![cursor](images/cursor.png)
 
 * `direction`: 文本方向

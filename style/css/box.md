@@ -152,9 +152,9 @@ border-box
 
 ## clip
 
-* `clip`: 裁剪可视区域，默认为`auto`
+* `clip`: 裁剪绝对定位元素或固定定位元素的可视区域，默认为`auto`
   * `auto`: 不裁剪
-  * `rect(<top>, <right>, <bottom>, <left>)`: 裁剪一个矩形，值为各边距内边距框左上角的距离
+  * `rect(<top>, <right>, <bottom>, <left>)`: 裁剪一个矩形，值为矩形各边距内边距框左上角的距离
 
 ![clip](images/clip.png)
 
@@ -242,13 +242,11 @@ border-box
 
 ## background
 
-可添加多个，层层叠加，第一层背景图片位于最顶层，背景颜色位于最底层
-
-* `background-color`: 背景颜色，默认为`transparent`
+* `background-color`: 背景颜色，默认为`transparent`，位于最底层
 
 ![background-color](images/background-color.png)
 
-* `background-image`: 背景图片，默认为`none`
+* `background-image`: 背景图片，默认为`none`，可添加多个，层层叠加，第一层背景图片位于最顶层
   * `none`: 无背景图片
   * `url("<url>")`: 背景图片地址
 
@@ -289,8 +287,8 @@ border-box
   * `cover`: 覆盖背景区域
 
 * `background-attachment`: 背景关联，默认为`scroll`
-  * `scroll`: 随页面滚动
-  * `fixed`: 固定，不随页面滚动，背景位置相对于浏览器窗口而言
+  * `scroll`: 背景位置相对于元素而言
+  * `fixed`: 背景位置相对于浏览器窗口而言
 
 ![background-attachment](images/background-attachment.png)
 

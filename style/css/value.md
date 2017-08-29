@@ -65,6 +65,10 @@
 * `ex`: 小写`x`的高度
 * `%`: 百分比，相对父元素的字体
 
+### 计算长度
+
+* `calc(expression)`: 使用`+, -, *, /`计算长度，可各种长度单位混合运算，运算符左右要有空格
+
 ## 颜色
 
 * `颜色名`：`aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow`等147种颜色
@@ -84,6 +88,3 @@
 
 * `inherit`: 继承父元素的样式计算值，伪元素继承宿主元素的样式计算值
 
-## calc()
-
-* `calc(expression)`: 使用`+, -, *, /`计算长度，可各种长度单位混合运算，运算符左右要有空格
