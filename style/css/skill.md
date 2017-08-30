@@ -61,4 +61,13 @@
 * [精确控制表格列宽](https://codepen.io/wchaochao/pen/EvOYrJ)
 * [根据兄弟元素的数量来设置样式](https://codepen.io/wchaochao/pen/MvzWrM)
 * [满幅的背景，定宽的内容](https://codepen.io/wchaochao/pen/oeQgvG)
-* [垂直居中]()
+* [垂直居中](https://codepen.io/wchaochao/pen/wqQmNE)
+* [紧贴底部的页脚](https://codepen.io/wchaochao/pen/KvrrKo)
+
+## 过渡与动画
+
+* [缓动效果](https://codepen.io/wchaochao/pen/LjXXdN)
+* [弹性过渡](https://codepen.io/wchaochao/pen/EvOGgN)
+* [逐帧动画](https://codepen.io/wchaochao/pen/brQzow)
+* [闪烁效果](https://codepen.io/wchaochao/pen/RZqvvW)
+* [打字动画](https://codepen.io/wchaochao/pen/NvEJWa)
