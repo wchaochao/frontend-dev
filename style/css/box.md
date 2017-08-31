@@ -160,6 +160,8 @@ border-box
 
 ## border
 
+![border-structure](images/border-structure.png)
+
 * `border-width`: 四条边框宽度，默认为`medium`
   * `length`：具体长度
   * `关键字`：`thin,medium,thick`

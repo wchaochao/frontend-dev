@@ -71,3 +71,5 @@
 * [逐帧动画](https://codepen.io/wchaochao/pen/brQzow)
 * [闪烁效果](https://codepen.io/wchaochao/pen/RZqvvW)
 * [打字动画](https://codepen.io/wchaochao/pen/NvEJWa)
+* [状态平滑的动画](https://codepen.io/wchaochao/pen/KvbymR)
+* [沿环形路径平移的动画](https://codepen.io/wchaochao/pen/oeJoyb)
