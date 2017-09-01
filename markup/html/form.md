@@ -14,9 +14,9 @@
 
 * `name`: 表单名称
 * `action`: 表单提交到哪
-* `method`: 表单提交的HTTP方法，默认`GET`
+* `method`: 表单提交的`HTTP`方法，默认`GET`
 * `target`: 表单提交的目标，默认`_self`
-* `accept-charset`: 表单数据的编码方式，默认页面编码
+* `accept-charset`: 表单数据的编码方式，默认为页面编码
 * `enctype`: 表单数据的类型，默认`application/x-www-form-urlencoded`
 * `novalidate`: 禁止默认验证
 
@@ -161,12 +161,12 @@ The cat was playing in the garden.
 ```html
 <button type="button">普通按钮</button>
 <button type="submit">提交按钮</button>
-<button type="reset">重置按钮</button>
+<button type="reset" disabled>重置按钮</button>
 
 <!--input-->
 <input type="button" value="普通按钮"/>
 <input type="submit" value="提交按钮"/>
-<input type="reset" value="重置按钮"/>
+<input type="reset" value="重置按钮" disabled/>
 ```
 
 属性

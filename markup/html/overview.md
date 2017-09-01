@@ -16,7 +16,7 @@
 
 ### 在线
 
-使用[codepen](https://codepen.io)等在线工具实现在线编辑和实时预览
+使用[codepen](https://codepen.io), [jsbin](http://jsbin.com/?html,output),[jsfiddle](https://jsfiddle.net/)等在线工具进行在线编辑和实时预览
 
 ### 服务器
 

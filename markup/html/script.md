@@ -12,5 +12,7 @@
 <noscript>不支持脚本时显示</noscript>
 ```
 
-* `type`: 脚本的`MIME`类型, 默认`text/javascript`
-* `src`: 脚本地址
+* `type`: 脚本的`MIME`类型, 默认为`text/javascript`
+* `src`: 脚本文件地址
+* `async`: 异步加载脚本文件
+* `defer`: 延长执行脚本文件，在文档`DOMContentLoaded`事件前执行

@@ -110,7 +110,7 @@ border-box
   * `block`: 块元素
   * `inline`: 行内元素
   * `inline-block`: 行内块元素
-  * `run-in`: 根据上下文作为块级元素或行内元素显示
+  * `run-in`: 根据上下文决定作为块级元素或行内元素显示
   * `list-item`: 列表项
   * `table`: 块级表
   * `inline-talbe`: 行内表
@@ -152,7 +152,7 @@ border-box
 
 ## clip
 
-* `clip`: 裁剪绝对定位元素或固定定位元素的可视区域，默认为`auto`
+* `clip`: 裁剪绝对定位元素(元素的`position`为`absolute`或`fixed`)的可视区域，默认为`auto`
   * `auto`: 不裁剪
   * `rect(<top>, <right>, <bottom>, <left>)`: 裁剪一个矩形，值为矩形各边距内边距框左上角的距离
 
@@ -306,6 +306,6 @@ border-box
   * `h-shadow`: 阴影的水平偏移
   * `v-shadow`: 阴影的垂直偏移
   * `blur`: 模糊距离
-  * `spread`: 扩张半径
+  * `spread`: 扩张半径，可为负
   * `color`: 阴影颜色，默认为文本颜色
   * `inset`: 将外部阴影`outset`改为内部阴影

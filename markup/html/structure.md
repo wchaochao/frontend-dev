@@ -23,13 +23,19 @@
 
 文档类型声明，指定`html`版本
 
-### HTML5
+### 混杂模式
+
+无文档类型声明
+
+### 标准模式
+
+#### HTML5
 
 ```html
 <!DOCTYPE html>
 ```
 
-### HTML 4.01 Strict
+#### HTML 4.01 Strict
 
 不包括展示性的和弃用的元素，不允许框架集
 
@@ -37,7 +43,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 ```
 
-### HTML 4.01 Transitional
+#### XHTML 1.0 Strict
+
+不包括展示性的和弃用的元素，不允许框架集，以格式正确的`XML`来编写标记
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+```
+
+#### XHTML 1.1
+
+不包括展示性的和弃用的元素，不允许框架集，允许添加模型，以格式正确的`XML`来编写标记
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+```
+
+### 准标准模式
+
+#### HTML 4.01 Transitional
 
 包括展示性的和弃用的元素，不允许框架集
 
@@ -45,7 +69,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 ```
 
-### HTML 4.01 Frameset
+#### HTML 4.01 Frameset
 
 包括展示性的和弃用的元素，允许框架集
 
@@ -53,15 +77,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
 ```
 
-### XHTML 1.0 Strict
-
-不包括展示性的和弃用的元素，不允许框架集，以格式正确的`XML`来编写标记
-
-```html
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-```
-
-### XHTML 1.0 Transitional
+#### XHTML 1.0 Transitional
 
 包括展示性的和弃用的元素，不允许框架集，以格式正确的`XML`来编写标记
 
@@ -69,15 +85,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 ```
 
-### XHTML 1.0 Frameset
+#### XHTML 1.0 Frameset
 
 包括展示性的和弃用的元素，允许框架集，以格式正确的`XML`来编写标记
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+```
 
 ## html
 
 文档的根元素，指定文档为`HTML`
 
-* `xmlns`: 指定文档的命名空间，默认`http://www.w3.org/1999/xhtml`
+* `xmlns`: 指定文档的命名空间，默认`http://www.w3.org/1999/xhtml`，防止元素命名冲突
 
 ## head
 
@@ -170,7 +190,7 @@
 
 属性
 
-* `type`: 样式表的MIME类型，默认`text/css`
+* `type`: 样式表的`MIME`类型，默认`text/css`
 * `media`: 媒体类型
 
 ## body

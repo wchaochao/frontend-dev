@@ -29,7 +29,7 @@
 <img src="url" alt="替换文本" usemap="#map">
 
 <map name="map" id="map">
-  <area shape="形状" coords="坐标" href="url" alt="替换文字">
+  <area shape="形状" coords="坐标" href="url" target="目标" alt="替换文字">
 </map>
 ```
 

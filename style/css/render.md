@@ -7,7 +7,7 @@
 * 盒子的尺寸和类型
 * 定位机制(`normal flow`, `float`, `absolute positioning`)
 * 元素在文档树中的关系
-* 其它因素(viewport size, 图片的本身的尺寸等)
+* 其它因素(`viewport size`, 图片的本身的尺寸等)
 
 ## container block
 
@@ -58,7 +58,7 @@
 * `box`从`containing block`的顶部开始，在垂直方向上，一个接一个的排列
 * 两个相邻的`box`间的垂直间距，由它们的`margin`属性决定，并且，会发生`margin collapse`
 * 每一个box的左边缘紧贴`containing block`的左边缘，即使设置了浮动，也是如此
-* 不会与`float box`重叠，常用来清除浮动和布局
+* 不会围绕`float box`，常用来清除浮动和布局
 * 计算高度时，浮动元素也参与计算
 
 #### 作用
