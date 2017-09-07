@@ -85,7 +85,7 @@ number = 10;
 var flag = true;
 
 //直接赋值不声明
-age = 29; //全局变量，不推荐
+age = 29; //全局变量，严格模式下会抛出ReferenceError
 
 //声明多个变量
 var message = "hi",

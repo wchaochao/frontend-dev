@@ -256,6 +256,8 @@ undefined==null
 
 ### typeof
 
+检测原始值类型
+
 ```
 语法：typeof 值
 解释：返回值的数据类型
@@ -265,6 +267,17 @@ undefined==null
        String型               "string"
        Boolean型              "boolean"
        Object型               Function对象返回"function",其他返回"object"
+```
+
+### instanceof
+
+检测引用类型
+
+```
+语法：obj instanceof constructor
+解释：检测constructor.prototype是否在对象obj的原型链上
+参数：obj，对象，原始值类型返回false
+     constructor，构造函数，不为Object类型会抛出TypeError
 ```
 
 ## 对象运算符
@@ -291,14 +304,7 @@ undefined==null
                                       Number、String、Boolean类型自动转换为对应的内置对象
 ```
 
-### instanceof
 
-```
-语法：obj instanceof constructor
-解释：检测constructor.prototype是否在对象obj的原型链上
-参数：obj，对象，原始值类型返回false
-     constructor，构造函数，不为Object类型会抛出TypeError
-```
 
 ## 属性运算符
 
