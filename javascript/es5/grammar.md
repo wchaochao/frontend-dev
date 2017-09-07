@@ -12,6 +12,8 @@
 
 ## 严格模式
 
+为`JavaScript`容易出错的地方施加了限制
+
 整个`js`中
 
 ```javascript

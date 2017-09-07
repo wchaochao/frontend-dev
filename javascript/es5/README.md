@@ -14,7 +14,7 @@ ECMAScript第5版
 * [对象](reference.md)
 * [面向对象编程](oop.md)
 * [Object对象](object.md)
-* [Function对象](function.md)
+* [Function对象](function-object.md)
 * [Array对象](array.md)
 * [Date对象](date.md)
 * [RegExp对象](regexp.md)
@@ -30,4 +30,3 @@ ECMAScript第5版
 ## 推荐资料
 
 * 《JavaScript高级程序设计》
-
