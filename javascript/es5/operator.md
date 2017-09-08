@@ -301,7 +301,7 @@ undefined==null
           调用构造函数，this为该实例对象
           调用call、apply，严格模式下this为手工设置的值
                           非严格模式下，Undefined、Null类型自动转换为全局对象
-                                      Number、String、Boolean类型自动转换为对应的内置对象
+                                      Number、String、Boolean类型自动转换为对应的包装对象
 ```
 
 
