@@ -16,11 +16,12 @@ ECMAScript第5版
 * [Object对象](object.md)
 * [Function对象](function-object.md)
 * [Array对象](array.md)
-* [Date对象](date.md)
-* [RegExp对象](regexp.md)
 * [Number对象](number.md)
 * [String对象](string.md)
 * [Boolean对象](boolean.md)
+* [Date对象](date.md)
+* [RegExp对象](regexp.md)
+* [Error对象](error.md)
 * [Global对象](global.md)
 * [Math对象](math.md)
 * [JSON对象](json.md)
@@ -30,4 +31,6 @@ ECMAScript第5版
 ## 推荐资料
 
 * 《JavaScript高级程序设计》
+* [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
+* [JavaScript 标准库](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)
 

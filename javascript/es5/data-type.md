@@ -192,6 +192,26 @@
 
 键值对的集合
 
+### 分类
+
+* 内置对象：`ECMAScript`里内置的对象，如`Object, Function, Array, Number, String, Boolean, Date, RegExp, Error, Global, Math, Json, Console`等对象
+* 宿主对象：由宿主环境提供的对象，如浏览器提供的`window, document`等对象
+* 原生对象：通过`ECMAScript`创建的对象
+
+### 转换为引用类型
+
+强制转换
+
+* `Number`：`Object(num)`或`new Number(num)`
+* `String`：`Object(str)`或`new String(str)`
+* `Boolean`：`Object(boo)`或`new Boolean(boo)`
+* `Object`：`Object(obj)`
+
+自动转换
+
+* `Undefined, Null`类型自动转换为`Object`时会抛出`TypeError`
+* `Number, String, Boolean`自动转换为对应的包装对象
+
 ## 区分数据类型
 
 使用`typeof`运算符检测原始值类型
@@ -202,5 +222,25 @@
 * 返回`"boolean"`: 值为布尔值
 * 返回`"function"`: 值为函数
 * 返回`"object"`: 值为对象或`null`
+
+使用`Object.prototype.toString.call()`方法检测引用类型
+
+```
+Undefined类型               "[object Undefined]"
+Null类型                    "[object Null]"
+Number类型或Number对象       "[object Number]"
+Booelan类型或Boolean对象     "[object Boolean]"
+String类型或String对象       "[object String]"
+Object对象                  "[object Object]"
+Array对象                   "[object Array]"
+Function对象                "[object Function]"
+RegExp对象                  "[object RegExp]"
+Date对象                    "[object Date]"
+Error对象                   "[object Error]"
+Arguments对象               "[object Arguments]"
+Math对象                    "[object Math]"
+JSON对象                    "[object JSON]"
+其他对象                     "[object Object]"
+```
 
 使用`instanceof`运算符检测引用类型

@@ -1,6 +1,6 @@
 # 函数
 
-## 创建
+## 分类
 
 ### 函数声明
 
@@ -26,6 +26,57 @@
      Function([arg1[,arg2[,...argN]],][functionBody])
 位置: 表达式位置
 创建: 执行上下文代码时
+```
+
+## 创建
+
+```
+F = new NativeObject();
+
+
+// 属性[[Class]]是"Function"
+F.[[Class]] = "Function"
+
+
+// 函数对象的原型是Function的原型
+F.[[Prototype]] = Function.prototype
+
+
+// 用到函数自身
+// 调用表达式F的时候激活[[Call]]
+// 并且创建新的执行上下文
+F.[[Call]] = <reference to function>
+
+
+// 在对象的普通构造器里编译
+// [[Construct]] 通过new关键字激活
+// 并且给新对象分配内存
+// 然后调用F.[[Call]]初始化作为this传递的新创建的对象
+F.[[Construct]] = internalConstructor
+
+
+// 当前执行上下文的作用域链
+// 例如，创建F的上下文
+F.[[Scope]] = activeContext.Scope
+// 如果函数是命名函数，
+// 那么
+F.[[Scope]] = activeContext.Scope+fnName.Scope
+// 如果函数通过new Function(...)来创建，
+// 那么
+F.[[Scope]] = globalContext.Scope
+
+
+// 传入参数的个数
+F.length = countParameters
+
+
+// F对象创建的原型
+__objectPrototype = new Object();
+__objectPrototype.constructor = F // {DontEnum}, 在循环里不可枚举x
+F.prototype = __objectPrototype
+
+
+return F
 ```
 
 ## 参数
@@ -59,3 +110,8 @@
 有return，return value
 无return，return undefined
 ```
+
+## 闭包
+
+* 上下文加代码块组成闭包
+* 任何函数都是闭包
