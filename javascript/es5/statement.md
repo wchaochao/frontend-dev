@@ -42,8 +42,8 @@
      }else{
           statement2
      }
-解释：值为true，执行statement1
-     值为false，执行statement2
+解释：condition为true，执行statement1
+     condition为false，执行statement2
 ```
 
 ### switch
@@ -125,7 +125,7 @@
 解释：给statement语句添加label标签
 ```
 
-## 退出语句
+## 跳转语句
 
 ### break
 

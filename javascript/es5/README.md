@@ -11,10 +11,10 @@ ECMAScript第5版
 * [语句](statement.md)
 * [函数](function.md)
 * [上下文](context.md)
-* [对象](reference.md)
+* [对象](object.md)
 * [面向对象编程](oop.md)
-* [Object对象](object.md)
-* [Function对象](function-object.md)
+* [Object对象](object-builtin.md)
+* [Function对象](function-builtin.md)
 * [Array对象](array.md)
 * [Number对象](number.md)
 * [String对象](string.md)
@@ -33,4 +33,7 @@ ECMAScript第5版
 * 《JavaScript高级程序设计》
 * [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
 * [JavaScript 标准库](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)
+
+
+
 

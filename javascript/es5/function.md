@@ -93,12 +93,16 @@ return F
 
 ### arguments对象
 
-* 类数组对象，用于存储实参
+* 类数组对象，用于存储实参，`arguments.length`为实参个数
 * 非严格模式下，`arguments[x]`改变时，相应的形参也会变
 
 ## 调用
 
-`fnName(实参)`
+```
+直接调用：fnName(实参)
+递归调用：在函数内调用函数本身
+立即调用: (function(){})();或(function(){}());
+```
 
 * 传递参数
 * 执行函数代码
@@ -115,3 +119,36 @@ return F
 
 * 上下文加代码块组成闭包
 * 任何函数都是闭包
+
+读取内部变量
+
+```
+var data=[];
+for(var i=0;i<10;i++){
+     data[i]=(function(index){
+          return function(){
+              console.log(index);
+          }
+     })(i);
+}
+```
+
+封装私有属性
+
+```
+function Person(name) {
+  var _age;
+  function setAge(n) {
+    _age = n;
+  }
+  function getAge() {
+    return _age;
+  }
+
+  return {
+    name: name,
+    getAge: getAge,
+    setAge: setAge
+  };
+}
+```
