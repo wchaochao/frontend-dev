@@ -33,37 +33,12 @@
 ```
 F = new NativeObject();
 
-
-// 属性[[Class]]是"Function"
+// 对象类型是"Function"
 F.[[Class]] = "Function"
 
 
 // 函数对象的原型是Function的原型
 F.[[Prototype]] = Function.prototype
-
-
-// 用到函数自身
-// 调用表达式F的时候激活[[Call]]
-// 并且创建新的执行上下文
-F.[[Call]] = <reference to function>
-
-
-// 在对象的普通构造器里编译
-// [[Construct]] 通过new关键字激活
-// 并且给新对象分配内存
-// 然后调用F.[[Call]]初始化作为this传递的新创建的对象
-F.[[Construct]] = internalConstructor
-
-
-// 当前执行上下文的作用域链
-// 例如，创建F的上下文
-F.[[Scope]] = activeContext.Scope
-// 如果函数是命名函数，
-// 那么
-F.[[Scope]] = activeContext.Scope+fnName.Scope
-// 如果函数通过new Function(...)来创建，
-// 那么
-F.[[Scope]] = globalContext.Scope
 
 
 // 传入参数的个数
@@ -72,11 +47,44 @@ F.length = countParameters
 
 // F对象创建的原型
 __objectPrototype = new Object();
-__objectPrototype.constructor = F // {DontEnum}, 在循环里不可枚举x
-F.prototype = __objectPrototype
+__objectPrototype.constructor = F;
+F.prototype = __objectPrototype;
+
+
+// 当前执行上下文的作用域链
+F.[[Scope]] = activeContext.Scope
+// 如果函数是命名函数，
+F.[[Scope]] = activeContext.Scope+fnName.Scope
+// 如果函数通过new Function(...)来创建，
+F.[[Scope]] = globalContext.Scope
+
+
+// 使用new关键字时，会激活[[constructor]]方法
+// 此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给this
+F.[[Construct]] = internalConstructor
+
+
+// 使用圆括号时，会激活[[Call]]方法
+// 创建上下文对象并将该上下文对象添加到作用域链的前端，执行上下文代码
+F.[[Call]] = <reference to function>
 
 
 return F
+```
+
+## 内部属性
+
+```
+prototype
+函数创建时会自动创建对应的原型对象
+F.prototype = __objectPrototype
+__objectPrototype.constructor = F
+
+[[Construct]]
+使用new关键字时，会激活[[constructor]]方法，此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给this
+
+[[Call]]
+使用圆括号时，会激活[[Call]]方法，创建上下文对象，执行上下文代码
 ```
 
 ## 参数
@@ -98,15 +106,15 @@ return F
 
 ## 调用
 
+* 传递参数
+* 执行函数代码
+* 返回值
+
 ```
 直接调用：fnName(实参)
 递归调用：在函数内调用函数本身
 立即调用: (function(){})();或(function(){}());
 ```
-
-* 传递参数
-* 执行函数代码
-* 返回值
 
 ## 返回值
 

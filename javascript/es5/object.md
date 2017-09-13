@@ -1,38 +1,40 @@
 # 对象
 
-键值对的集合
+键值对的无序集合
 
 ## 创建
 
-通过构造函数创建对象
+通过构造函数创建对象`new Constructor(args)`
+
+* 使用new关键字时，会激活函数的`[[constructor]]`方法，此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给`this`
+* 使用圆括号时，会激活函数的[[Call]]方法，创建上下文对象，执行上下文代码，初始化实例对象
+* 返回对象，若构造函数的返回值不为对象，则返回`this`指向的实例对象
 
 ```
 //调用构造函数的[[Construct]]方法创建实例对象
-//调用构造函数的[[Call]]方法初始化该实例对象
 
 F.[[Construct]](initialParameters):
 
 O = new NativeObject();
 
-// 属性[[Class]]被设置为"Object"
-O.[[Class]] = "Object"
+// 对象类别设置为构造函数名
+O.[[Class]] = "[[构造函数名]]"
 
-// 引用F.prototype的时候获取该对象g
+
+// 原型对象
 var __objectPrototype = F.prototype;
 
 // 如果__objectPrototype是对象，就:
 O.[[Prototype]] = __objectPrototype
 // 否则:
 O.[[Prototype]] = Object.prototype;
-// 这里O.[[Prototype]]是Object对象的原型
 
-// 新创建对象初始化的时候应用了F.[[Call]]
-// 将this设置为新创建的对象O
-// 参数和F里的initialParameters是一样的
+
+//调用构造函数的[[Call]]方法初始化该实例对象
 R = F.[[Call]](initialParameters); this === O;
 // 这里R是[[Call]]的返回值
-// 在JS里看，像这样:
-// R = F.apply(O, initialParameters);
+// 相当于R = F.apply(O, initialParameters);
+
 
 // 如果R是对象
 return R
@@ -46,7 +48,7 @@ return O
 
 * `key`：属性名
   * 纯数值、保留字也可为属性名，其他不符合命名规范的需要加引号才能为属性名
-  * 属性名相同时，后面的会覆盖前面的，严格模式下会抛出SyntaxError
+  * 属性名相同时，后面的会覆盖前面的，严格模式下会抛出`SyntaxError`
 * `value`：属性值
   * 可为任意值
   * 属性值为函数时，该属性称为方法
@@ -77,8 +79,9 @@ return O
     * `writable`为`true`时，`writable`可改为`false`，`value`也可变
     * 其他情况描述属性都不可变，该属性也不可删除，否则会抛出`TypeError`
 * get：属性的访问器函数，只能为函数或undefined，否则会抛出`TypeError`，默认为`undefined`
-* set：属性的设置器函数，只能为函数或undefined，否则会抛出`TypeError`，默认为undefined
-  * `set`为`undefined`时，属性只读，设置属性在严格模式下会抛出`TypeError`
+  * `get`为`undefined`时，属性不可读，读取属性在严格模式下会抛出`TypeError`
+* set：属性的设置器函数，只能为函数或undefined，否则会抛出`TypeError`，默认为`undefined`
+  * `set`为`undefined`时，属性不可写，设置属性在严格模式下会抛出`TypeError`
 
 ### 描述符
 
@@ -90,7 +93,7 @@ return O
 ### 默认描述
 
 * 内置对象的内置属性的`writable、enumerable、configurable`都为`false`
-* var声明的变量的`writable、enumerable为true，configurable`为`false`
+* var声明的变量的`writable、enumerable`为true，`configurable`为`false`
 * 直接添加的属性的`writable、enumerable、configurable`都为`true`
 
 ## 访问属性
@@ -140,7 +143,7 @@ if (!O.[[CanPut]](P)) {
 }
 
 
-// 如果对象没有自身的属性，就创建它
+// 如果对象没有该属性，就创建它
 if (!O.hasOwnProperty(P)) {
   createNewProperty(O, P, attributes: {
     value:V,

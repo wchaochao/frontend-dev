@@ -34,6 +34,36 @@ ECMAScript第5版
 * [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
 * [JavaScript 标准库](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)
 
+# 面向对象编程
 
+## 构造函数
+
+用于创建实例对象
+
+* 任一函数都可以作为构造函数使用
+* 约定使用大驼峰命名法命名
+
+## 原型对象
+
+用于包含实例对象共享的属性和方法
+
+* 函数创建时会创建对应的原型对象
+* `函数.prototype=原型对象`，`原型对象.constructor=函数`
+
+## 实例对象
+
+* 通过构造函数创建的对象
+* `实例对象.__proto__=原型对象`
+
+## 原型链
+
+实现继承
+
+* 原型对象也是一个对象，也有自己的原型对象`__proto__`
+  * 原型对象的原型对象一般为`Object.prototype`
+  * `Object.prototype`的原型对象为`null`
+* 原型对象、原型对象的原型对象...构成原型链
+* 实例对象可以继承原型链上的属性
+  * 查找对象属性时，先查找对象本身的，再沿着原型链查找
 
 
