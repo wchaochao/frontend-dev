@@ -66,4 +66,81 @@ ECMAScript第5版
 * 实例对象可以继承原型链上的属性
   * 查找对象属性时，先查找对象本身的，再沿着原型链查找
 
+## 自定义类型
+
+### 构造函数-原型模式
+
+* 构造函数模式用于定义实例属性
+* 原型模式用于定义方法和共享的属性
+
+#### 混合模式
+
+```javascript
+function Person(name,age,job){
+  this.name=name;
+  this.age=age;
+  this.job=job;
+}
+
+Person.prototype.sayName=function(){
+  console.log(this.name);
+}
+```
+
+#### 动态模式
+
+```javascript
+function Person(name,age,job){
+  this.name=name;
+  this.age=age;
+  this.job=job;
+
+  if(typeof this.sayName!=="function"){
+    Person.prototype.sayName=function(){
+      console.log(this.name);
+    }
+  }
+}
+```
+
+### 工厂模式
+
+* 抛弃构造函数模式，直接在函数内创建一个新对象
+* 设置该对象的属性和方法并返回该对象
+
+#### 寄生模式
+
+```javascript
+function Person(name,age,job){
+  var o=new Object();
+
+  o.name=name;
+  o.age=age;
+  o.job=job;
+
+  o.sayName=function(){
+    console.log(this.name);
+  }
+
+  return o;
+}
+```
+
+#### 稳妥模式
+
+```javascript
+function Person(name,age,job){
+  var o=new Object();
+
+  //可以在这里定义私有变量和函数
+
+  o.sayName=function(){
+    console.log(name);
+  }
+
+  return o;
+}
+```
+
+
 
