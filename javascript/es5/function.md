@@ -33,11 +33,11 @@
 ```
 F = new NativeObject();
 
-// 对象类型是"Function"
+// 类型是"Function"
 F.[[Class]] = "Function"
 
 
-// 函数对象的原型是Function的原型
+// 原型是Function的原型对象
 F.[[Prototype]] = Function.prototype
 
 
@@ -45,29 +45,30 @@ F.[[Prototype]] = Function.prototype
 F.length = countParameters
 
 
-// F对象创建的原型
+// F函数的原型对象
 __objectPrototype = new Object();
-__objectPrototype.constructor = F;
 F.prototype = __objectPrototype;
+__objectPrototype.constructor = F;
 
 
-// 当前执行上下文的作用域链
+// F的作用域链
 F.[[Scope]] = activeContext.Scope
-// 如果函数是命名函数，
+// 如果F是命名函数，
 F.[[Scope]] = activeContext.Scope+fnName.Scope
-// 如果函数通过new Function(...)来创建，
+// 如果F是通过new Function(...)来创建，
 F.[[Scope]] = globalContext.Scope
+
+// 使用圆括号时，会激活[[Call]]方法
+// 创建函数上下文并将F.[[Scope]]复制给上下文对象
+// 创建函数的活动对象并将该活动对象添加到作用域链的前端
+// 执行上下文代码
+F.[[Call]] = <reference to function>
 
 
 // 使用new关键字时，会激活[[constructor]]方法
-// 此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给this
+// 此时函数作为构造函数使用，创建一个实例对象，其原型为构造函数的原型对象，并将该对象赋给this
+// new也会激活[[Call]]方法
 F.[[Construct]] = internalConstructor
-
-
-// 使用圆括号时，会激活[[Call]]方法
-// 创建上下文对象并将该上下文对象添加到作用域链的前端，执行上下文代码
-F.[[Call]] = <reference to function>
-
 
 return F
 ```
@@ -76,15 +77,22 @@ return F
 
 ```
 prototype
-函数创建时会自动创建对应的原型对象
+函数创建时会自动创建函数的原型对象
 F.prototype = __objectPrototype
 __objectPrototype.constructor = F
 
-[[Construct]]
-使用new关键字时，会激活[[constructor]]方法，此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给this
+[[Scope]]
+函数创建时会静态存入所有的父作用域，形成作用域链
 
 [[Call]]
-使用圆括号时，会激活[[Call]]方法，创建上下文对象，执行上下文代码
+使用圆括号时，会激活[[Call]]方法，依次执行
+1. 创建上下文对象，复制作用域链
+2. 创建活动对象，添加到作用域链的前端
+3. 执行上下文代码
+
+[[Construct]]
+使用new关键字时，会激活[[constructor]]方法，此时函数作为构造函数使用，创建一个实例对象，其原型为构造函数的原型对象，并将该对象赋给this
+
 ```
 
 ## 参数
@@ -101,8 +109,10 @@ __objectPrototype.constructor = F
 
 ### arguments对象
 
-* 类数组对象，用于存储实参，`arguments.length`为实参个数
-* 非严格模式下，`arguments[x]`改变时，相应的形参也会变
+* 类数组对象，用于存储实参
+* `arguments.length`: 实参个数
+* `arguments[index]`: 对应的实参，非严格模式下`arguments[index]`改变时，相应的形参也会变
+* `arguments.callee`: 正在执行的函数，已废弃，严格模式下抛出TypeError
 
 ## 调用
 
@@ -125,30 +135,41 @@ __objectPrototype.constructor = F
 
 ## 闭包
 
-* 上下文加代码块组成闭包
-* 任何函数都是闭包
+有权访问另一个函数作用域内的变量的函数，一般为内部函数
 
-读取内部变量
+![closure](images/closure.png)
+
+### 模仿块级作用域
 
 ```
-var data=[];
-for(var i=0;i<10;i++){
-     data[i]=(function(index){
-          return function(){
-              console.log(index);
-          }
-     })(i);
+(function () {
+  // 块级作用域
+})();
+```
+
+### 读取包含函数的变量
+
+```
+var data = [];
+for (var i = 0; i < 10; i++) {
+  data[i] = (function (index) {
+    return function () {
+      console.log(index);
+    }
+  })(i);
 }
 ```
 
-封装私有属性
+### 封装私有属性
 
 ```
 function Person(name) {
   var _age;
+
   function setAge(n) {
     _age = n;
   }
+
   function getAge() {
     return _age;
   }

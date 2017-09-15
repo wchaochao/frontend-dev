@@ -295,8 +295,8 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
 ### new
 
 ```
-语法：new constructor(args)
-解释：根据构造函数创建一个对象实例
+语法：new constructor(args)或new constructor
+解释：根据构造函数创建一个实例对象
 ```
 
 ### this
@@ -309,12 +309,10 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
           单纯调用函数，严格模式下为undefined，非严格模式自动转换为全局对象
           调用对象方法，this为该对象
           调用构造函数，this为该实例对象
-          调用call、apply，严格模式下this为手工设置的值
-                          非严格模式下，Undefined、Null类型自动转换为全局对象
+          调用call、apply、bind，严格模式下this为手工设置的值
+                                非严格模式下，Undefined、Null类型自动转换为全局对象
                                       Number、String、Boolean类型自动转换为对应的包装对象
 ```
-
-
 
 ## 属性运算符
 
