@@ -272,3 +272,10 @@ JSON对象                    "[object JSON]"
 ```
 
 使用`instanceof`运算符检测引用类型
+
+```
+语法：obj instanceof constructor
+解释：检测constructor.prototype是否在对象obj的原型链上
+参数：obj，对象，原始值类型返回false
+     constructor，构造函数，不为Object类型会抛出TypeError
+```
