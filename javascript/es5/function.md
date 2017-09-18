@@ -31,21 +31,22 @@
 ## 创建
 
 ```
+// 函数也是对象
 F = new NativeObject();
 
 // 类型是"Function"
 F.[[Class]] = "Function"
 
 
-// 原型是Function的原型对象
+// 原型是Function的prototype属性
 F.[[Prototype]] = Function.prototype
 
 
-// 传入参数的个数
+// 形参个数
 F.length = countParameters
 
 
-// F函数的原型对象
+// 自动添加prototype属性
 __objectPrototype = new Object();
 F.prototype = __objectPrototype;
 __objectPrototype.constructor = F;
@@ -61,12 +62,12 @@ F.[[Scope]] = globalContext.Scope
 // 使用圆括号时，会激活[[Call]]方法
 // 创建函数上下文并将F.[[Scope]]复制给上下文对象
 // 创建函数的活动对象并将该活动对象添加到作用域链的前端
-// 执行上下文代码
+// 初始化活动对象，执行上下文代码
 F.[[Call]] = <reference to function>
 
 
 // 使用new关键字时，会激活[[constructor]]方法
-// 此时函数作为构造函数使用，创建一个实例对象，其原型为构造函数的原型对象，并将该对象赋给this
+// 此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给this，其原型为构造函数的prototype属性
 // new也会激活[[Call]]方法
 F.[[Construct]] = internalConstructor
 
@@ -77,7 +78,7 @@ return F
 
 ```
 prototype
-函数创建时会自动创建函数的原型对象
+函数创建时会自动添加prototype属性，为实例对象的原型
 F.prototype = __objectPrototype
 __objectPrototype.constructor = F
 
@@ -88,10 +89,10 @@ __objectPrototype.constructor = F
 使用圆括号时，会激活[[Call]]方法，依次执行
 1. 创建上下文对象，复制作用域链
 2. 创建活动对象，添加到作用域链的前端
-3. 执行上下文代码
+3. 初始化活动对象，执行上下文代码
 
 [[Construct]]
-使用new关键字时，会激活[[constructor]]方法，此时函数作为构造函数使用，创建一个实例对象，其原型为构造函数的原型对象，并将该对象赋给this
+使用new关键字时，会激活[[constructor]]方法，此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给this，其原型为构造函数的原型对象
 
 ```
 
@@ -111,7 +112,7 @@ __objectPrototype.constructor = F
 
 * 类数组对象，用于存储实参
 * `arguments.length`: 实参个数
-* `arguments[index]`: 对应的实参，非严格模式下`arguments[index]`改变时，相应的形参也会变
+* `arguments[index]`: 对应的实参，非严格模式下`arguments[index]`改变时，相应的形参的值也会变
 * `arguments.callee`: 正在执行的函数，已废弃，严格模式下抛出TypeError
 
 ## 调用

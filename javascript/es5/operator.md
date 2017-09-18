@@ -285,9 +285,11 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
 
 ```
 语法：obj instanceof constructor
-解释：检测constructor.prototype是否在对象obj的原型链上
+解释：指定对象是否是某个构造函数的实例
 参数：obj，对象，原始值类型返回false
-     constructor，构造函数，不为Object类型会抛出TypeError
+     constructor，构造函数，不为Function类型抛出TypeError
+返回值：constructor.prototype在对象obj的原型链上，返回true
+       constructor.prototype不在对象obj的原型链上，返回true
 ```
 
 ## 对象运算符
@@ -309,7 +311,7 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
           单纯调用函数，严格模式下为undefined，非严格模式自动转换为全局对象
           调用对象方法，this为该对象
           调用构造函数，this为该实例对象
-          调用call、apply、bind，严格模式下this为手工设置的值
+          调用call、apply、bind，严格模式下this为绑定的值
                                 非严格模式下，Undefined、Null类型自动转换为全局对象
                                       Number、String、Boolean类型自动转换为对应的包装对象
 ```
@@ -331,9 +333,9 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
 语法：delete prop
 解释：删除对象本身的可删除属性
 参数：prop, 对象本身的属性，如obj.key或obj["key"]
-返回值：prop不是对象属性或不存在，返回true
-       prop存在且可删除，删除该属性并返回true
-       prop存在且不可删除，返回false，严格模式下抛出TypeError
+返回值：prop不是对象本身的属性，返回true
+       prop是对象本身的属性且可删除，删除该属性并返回true
+       prop是对象本身的属性且不可删除，返回false，严格模式下抛出TypeError
 
 var声明的变量、内置对象的内置属性不可删除
 数组元素被删除时并不影响数组长度

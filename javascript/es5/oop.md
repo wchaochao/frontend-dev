@@ -11,7 +11,7 @@
 
 用于包含实例对象共享的属性和方法
 
-* 函数创建时会创建对应的原型对象
+* 函数创建时会自动添加prototype属性，为实例对象的原型对象
 * `函数.prototype=原型对象`，`原型对象.constructor=函数`
 
 ## 实例对象
@@ -144,6 +144,9 @@ function object(o) {
   function F() {};
   F.prototype = o;
   return new F();
+
+  // 或直接使用Object.Create()方法
+  // return Object.create(o);
 }
 ```
 
@@ -154,6 +157,9 @@ function object(o) {
   function F() {};
   F.prototype = o;
   return new F();
+
+  // 或直接使用Object.Create()方法
+  // return Object.create(o);
 }
 
 function createAnother(o) {
@@ -170,11 +176,14 @@ function createAnother(o) {
 
 最理想的继承方式
 
-```
+```javascript
 function object(o) {
   function F() {};
   F.prototype = o;
   return new F();
+
+  // 或直接使用Object.Create()方法
+  // return Object.create(o);
 }
 
 function inheritPrototype(subType, superType) {
@@ -203,4 +212,33 @@ inheritPrototype(SubType, SuperType);
 SubType.prototype.sayAge = function () {
   console.log(this.age);
 }
+```
+
+### 多重继承
+
+```javascript
+function M1() {
+  this.hello = 'hello';
+}
+
+function M2() {
+  this.world = 'world';
+}
+
+function S() {
+  M1.call(this);
+  M2.call(this);
+}
+
+// 继承 M1
+S.prototype = Object.create(M1.prototype);
+// 继承链上加入 M2
+Object.assign(S.prototype, M2.prototype);
+
+// 指定构造函数
+S.prototype.constructor = S;
+
+var s = new S();
+s.hello // 'hello：'
+s.world // 'world'
 ```

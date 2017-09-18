@@ -275,7 +275,9 @@ JSON对象                    "[object JSON]"
 
 ```
 语法：obj instanceof constructor
-解释：检测constructor.prototype是否在对象obj的原型链上
+解释：指定对象是否是某个构造函数的实例
 参数：obj，对象，原始值类型返回false
-     constructor，构造函数，不为Object类型会抛出TypeError
+     constructor，构造函数，不为Function类型抛出TypeError
+返回值：constructor.prototype在对象obj的原型链上，返回true
+       constructor.prototype不在对象obj的原型链上，返回true
 ```
