@@ -5,7 +5,7 @@
 ### 函数声明
 
 ```
-语法: function fnName([arg1[,arg2[,...argN]]]){...}
+语法: function fnName([...args]){...}
 位置: 全局上下文或函数上下文中
 创建: 初始化上下文时
 ```
@@ -13,8 +13,8 @@
 ### 函数表达式
 
 ```
-语法: 匿名函数表达式 function([arg1[,arg2[,...argN]]]){...}
-      命名函数表达式 function fnName([arg1[,arg2[,...argN]]){...}
+语法: 匿名函数表达式 function([...args]){...}
+      命名函数表达式 function fnName([...args){...}
 位置: 表达式位置
 创建: 执行上下文代码时
 ```
@@ -22,8 +22,8 @@
 ### Function构造
 
 ```
-语法: new Function([arg1[,arg2[,...argN]],][functionBody])
-     Function([arg1[,arg2[,...argN]],][functionBody])
+语法: new Function([...args,][functionBody])
+     Function([...args,][functionBody])
 位置: 表达式位置
 创建: 执行上下文代码时
 ```
@@ -42,7 +42,7 @@ F.[[Class]] = "Function"
 F.[[Prototype]] = Function.prototype
 
 
-// 形参个数
+// 必须要传入的参数个数
 F.length = countParameters
 
 
@@ -113,7 +113,7 @@ __objectPrototype.constructor = F
 * 类数组对象，用于存储实参
 * `arguments.length`: 实参个数
 * `arguments[index]`: 对应的实参，非严格模式下`arguments[index]`改变时，相应的形参的值也会变
-* `arguments.callee`: 正在执行的函数，已废弃，严格模式下抛出TypeError
+* `arguments.callee`: 当前正在执行的函数，已废弃，严格模式下抛出TypeError
 
 ## 调用
 

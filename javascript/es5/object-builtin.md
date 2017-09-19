@@ -1,6 +1,6 @@
 # Object对象
 
-通过构造函数`Object`生成的对象
+类型为`Object`的对象
 
 ## 构造函数
 
@@ -19,7 +19,7 @@ Object([value])等同于new Object([value])
 
 ### 静态属性
 
-* `length`:`1`,形参个数
+* `length`:`1`, 必须要传入的参数个数
 * `prototype`: `Object`实例对象的原型对象，也是个`Object`对象
 
 ### 静态方法
@@ -337,7 +337,7 @@ Object.getPrototypeOf(obj)
 ```
 语法：Object.prototype.toLocaleString()
 解释：返回当前对象的本地字符串表示
-返回值：返回"[object "+type+"]", type为当前对象类型
+返回值：调用toString()方法
 ```
 
 ## 实例对象
@@ -355,7 +355,7 @@ var o = Object([value]);
 // create方法
 var o = Object.create(proto[, propertiesObject])
 
-// {}出现在行首解释为语句
+// {}出现在句首解释为语句
 ```
 
 ### 常用操作
