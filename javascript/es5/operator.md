@@ -289,7 +289,7 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
 参数：obj，对象，原始值类型返回false
      constructor，构造函数，不为Function类型抛出TypeError
 返回值：constructor.prototype在对象obj的原型链上，返回true
-       constructor.prototype不在对象obj的原型链上，返回true
+       constructor.prototype不在对象obj的原型链上，返回false
 ```
 
 ## 对象运算符

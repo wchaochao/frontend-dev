@@ -10,14 +10,15 @@
 语法：function Function([...args,][functionBody]){...}
 解释：创建一个Function对象
 参数：args，函数形参，自动转换为字符串类型，如"a"(参数a)或"a,b"(参数a,b)
-     functionBody，函数代码，传入的最后一个参数，自动转换为字符串类型，
+     functionBody，函数代码，传入的最后一个参数，自动转换为字符串类型
+返回值：返回创建的函数
 
 Function([...args,][functionBody])等同于new Function([...args,][functionBody])
 ```
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 必须要传入的参数个数为`1`
 * `prototype`: `Function`实例对象的原型对象，也是个`Function`对象
 * `caller`: 调用函数的函数，非标准属性
 * `name`: 函数的名称，非标准属性
@@ -37,7 +38,7 @@ Object.getPrototypeOf(fn)
 
 * `constructor`: `Function`, 构造函数
 * `__proto__`: `Object.prototype`, 原型，非标准属性
-* `length`: `0`
+* `length`: `0`，必须传入的参数个数为`0`
 
 ### 原型方法
 

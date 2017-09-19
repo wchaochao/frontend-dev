@@ -279,5 +279,5 @@ JSON对象                    "[object JSON]"
 参数：obj，对象，原始值类型返回false
      constructor，构造函数，不为Function类型抛出TypeError
 返回值：constructor.prototype在对象obj的原型链上，返回true
-       constructor.prototype不在对象obj的原型链上，返回true
+       constructor.prototype不在对象obj的原型链上，返回false
 ```

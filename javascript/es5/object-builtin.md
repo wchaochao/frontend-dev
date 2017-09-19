@@ -19,7 +19,7 @@ Object([value])等同于new Object([value])
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 必须要传入的参数个数为`1`
 * `prototype`: `Object`实例对象的原型对象，也是个`Object`对象
 
 ### 静态方法
