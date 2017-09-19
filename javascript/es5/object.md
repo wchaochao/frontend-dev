@@ -68,13 +68,13 @@ return O
 
 * `value`：属性值，可为任意值，默认为`undefined`
 * `writable`：是否可写，默认为`false`
-  * `true`: 可以改变`value`
-  * `false`: 不能改变`value`，严格模式下会抛出`TypeError`
+  * `true`: 属性可写
+  * `false`: 属性不可写，设置属性在严格模式下会抛出`TypeError`
 * enumerable：是否可枚举，默认为false
   * `true`：可枚举，能显示在`for/in、Object.Keys、JSON.stringify`中
   * `false`: 不可枚举
 * `configurable`：是否可配置，默认为`false`
-  * `true`: 可配置
+  * `true`: 可配置，其他描述属性都可变，属性可删除
   * `false`: 不可配置
     * `writable`为`true`时，`writable`可改为`false`，`value`也可变
     * 其他情况描述属性都不可变，该属性也不可删除，否则会抛出`TypeError`
