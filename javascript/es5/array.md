@@ -75,6 +75,21 @@ Object.getPrototypeOf(arr)
        null, undefined转换为空字符串
 ```
 
+应用
+
+```javascript
+// 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
+// length自动转换为自然数，无法转换时转换为0
+// 能用于字符串，因为没有更改字符串
+
+// 用于字符串
+Array.prototype.join.call("hello","-") // "h-e-l-l-o"
+
+// 用于类数组对象
+var obj = { 0: 'a', 1: 'b', length: 2 };
+Array.prototype.join.call(obj, '-') // "a-b"
+```
+
 ##### Array.prototype.toString()
 
 ```
@@ -117,6 +132,7 @@ Object.getPrototypeOf(arr)
 ```javascript
 // 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
 // length自动转换为自然数，无法转换时转换为0
+// 不能用于字符串，因为字符串不能被更改
 
 // 合并数组
 var vegetables = ['parsnip', 'potato'];
@@ -135,7 +151,7 @@ var obj = {
 }
 console.log(obj.pop()); // undefined
 obj.addElem({}, null, []);
-console.log(obj); // Object {0: Object, 1: null, 2: Array(0), length: 3, addElem: function}
+console.log(obj); // Object {0: Object, 1: null, 2: Array(0), length: 3, addElem: function, pop: function}
 console.log(obj.pop()); // []
 console.log(obj); // Object {0: Object, 1: null, length: 2, addElem: function, pop: function}
 ```
@@ -164,6 +180,7 @@ console.log(obj); // Object {0: Object, 1: null, length: 2, addElem: function, p
 ```javascript
 // 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
 // length自动转换为自然数，无法转换时转换为0
+// 不能用于字符串，因为字符串不能被更改
 ```
 
 #### 重排序方法
