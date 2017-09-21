@@ -190,7 +190,7 @@ console.log(obj); // Object {0: Object, 1: null, length: 2, addElem: function, p
 ```
 语法：Array.prototype.reverse()
 解释：颠倒当前数组元素的顺序
-返回值：返回经过排序后的当前数组
+返回值：返回颠倒后的当前数组
 ```
 
 ##### Array.prototype.sort()
@@ -198,7 +198,9 @@ console.log(obj); // Object {0: Object, 1: null, length: 2, addElem: function, p
 ```
 语法：Array.prototype.sort([compareFunction])
 解释：按指定比较函数给当前数组排序
-参数：compareFunction, 比较函数
+参数：compareFunction, 比较函数，接收两个参数
+        value1, 前一个值
+        value2, 后一个值
 返回值：返回经过排序后的当前数组
 ```
 
@@ -241,14 +243,38 @@ arr.sort(function (a, b) {
 返回值：返回创建的副本数组
 ```
 
+应用
+
+```javascript
+// 合并对象
+Array.prototype.concat.call({a: 1}, 2, ["c"]); // [Object, 2, "c"]
+Array.prototype.concat.call({length: 1}, 2, ["c"]); // [Object, 2, "c"]
+Array.prototype.concat.call(1, 2, ["c"]); // [Number, 2, "c"]
+Array.prototype.concat.call(true, 2, ["c"]); // [Boolean, 2, "c"]
+```
+
 ##### Array.prototype.slice()
 
 ```
 语法：Array.prototype.slice([begin[,end]])
-解释：抽取当前数组的一段元素组成新数组
+解释：提取当前数组的一段元素组成新数组
 参数: begin, 开始位置，自动转换为整数，负数为倒数，NaN当作0，默认为0
      end, 结束位置，自动转换为整数，负数为倒数，NaN当作0，默认为length
-返回值：返回[start,end)之间的数组元素组成的新数组
+返回值：返回[start,end)之间的数组元素组成的新数组，没数组元素时返回空数组
+```
+
+应用
+
+```javascript
+// 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
+// length自动转换为自然数，无法转换时转换为0
+// 能用于字符串，因为没有更改字符串
+
+// 将类数组对象转换为数组
+Array.prototype.slice.call("hello") // ["h", "e", "l", "l", "o"]
+Array.prototype.slice.call({0: 1, 1: 2, length: 3}) // [1, 2, ]
+Array.prototype.slice.call(arguments)
+Array.prototype.slice.call(document.querySelectorAll("div"))
 ```
 
 ##### Array.prototype.splice()
@@ -257,7 +283,7 @@ arr.sort(function (a, b) {
 语法：Array.prototype.splice(start[,deleteCount[,...args]])
 解释：在当前数组的某个位置删除或插入某些项
 参数：start, 开始位置，自动转换为整数，负数为倒数，NaN当作0
-     deleteCount, 要删除的数组元素个数，自动转换为整数，负数、NaN当作0，默认为`length-start`
+     deleteCount, 要删除的数组元素个数，自动转换为整数，负数、NaN当作0，默认为length-start
      args，要插入的元素
 返回值：返回删除元素组成的数组
 ```
@@ -275,6 +301,30 @@ arr.sort(function (a, b) {
        searchElement不能找到，返回-1
 ```
 
+polyfill
+
+```javascript
+if (typeof Array.prototype.indexOf !== "function") {
+  Array.prototype.indexOf = function (val, start) {
+    if (argument.length < 2) {
+      start = 0;
+    }
+
+    var i = +start || 0,
+      i = i >= 0 ? Math.floor(i) : Math.ceil(i),
+      i = i >= 0 ? i : i + this.length;
+
+    for (; i < this.length; i++) {
+      if (i in this && this[i] === val) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+}
+```
+
 ##### Array.prototype.lastIndexOf()
 
 ```
@@ -286,6 +336,30 @@ arr.sort(function (a, b) {
        searchElement不能找到，返回-1
 ```
 
+polyfill
+
+```javascript
+if (typeof Array.prototype.lastIndexOf !== "function") {
+  Array.prototype.lastIndexOf = function (val, start) {
+    if (argument.length < 2) {
+      start = this.length - 1;
+    }
+
+    var i = +start || 0,
+      i = i >= 0 ? Math.floor(i) : Math.ceil(i),
+      i = i >= 0 ? i : i + this.length;
+
+    for (; i >= 0; i--) {
+      if (i in this && this[i] === val) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+}
+```
+
 #### 迭代方法
 
 在使用迭代方法时最好不要修改数组
@@ -295,12 +369,22 @@ arr.sort(function (a, b) {
 * 未被迭代的元素被delete删除，迭代时会跳过该元素
 * 元素被数组方法移除时，index对应的元素将受到影响
 
+参数
+
 ```
 参数：callback, 数组中每个元素都要执行的函数，会跳过空元素，必须是Function类型，接收三个参数
         currentValue, 当前元素
         index, 当前元素对应的索引
         array, 当前数组
       thisArg, callback的this指针
+```
+
+应用
+
+```javascript
+// 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
+// length自动转换为自然数，无法转换时转换为0
+// 不能用于字符串，因为字符串不能被更改
 ```
 
 ##### Array.prototype.forEach()
@@ -311,13 +395,44 @@ arr.sort(function (a, b) {
 返回值：无返回值，返回undefined
 ```
 
+polyfill
+
+```javascript
+if (typeof Array.prototype.forEach !== "function") {
+  Array.prototype.forEach = function (callback, context) {
+    for (var i = 0; i < this.length; i++) {
+      if (i in this) {
+        callback.call(context, this[i], i, this);
+      }
+    }
+  }
+}
+```
+
 ##### Array.prototype.every()
 
 ```
 语法：Array.prototype.every(callback[,thisArg])
 解释：判断当前数组的元素是否都满足条件
 返回值：对每个元素执行callback()，都返回true，返回ture
-       对每个元素执行callback()，有一个返回false，直接返回false,
+       对每个元素执行callback()，有一个返回false，直接返回false
+       空数组直接返回true
+```
+
+polyfill
+
+```javascript
+if (typeof Array.prototype.every !== "function") {
+  Array.prototype.every = function (callback, context) {
+    for (var i = 0; i < this.length; i++) {
+      if (i in this && !callback.call(context, this[i], i, this)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+}
 ```
 
 ##### Array.prototype.some()
@@ -327,6 +442,23 @@ arr.sort(function (a, b) {
 解释：判断当前数组中是否有满足条件的元素
 返回值：对每个元素执行callback()，有一个返回true，直接返回true
        对每个元素执行callback()，都返回false，返回false
+       空数组返回false
+```
+
+polyfill
+
+```javascript
+if (typeof Array.prototype.some !== "function") {
+  Array.prototype.some = function (callback, context) {
+    for (var i = 0; i < this.length; i++) {
+      if (i in this && callback.call(context, this[i], i, this)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+}
 ```
 
 ##### Array.prototype.filter()
@@ -337,15 +469,53 @@ arr.sort(function (a, b) {
 返回值：返回执行callback()后返回true的数组元素组成的新数组
 ```
 
+polyfill
+
+```javascript
+if (typeof Array.prototype.filter !== "function") {
+  Array.prototype.filter = function (callback, context) {
+    var result = [];
+
+    for (var i = 0; i < this.length; i++) {
+      if (i in this && callback.call(context, this[i], i, this)) {
+        result.push(this[i]);
+      }
+    }
+
+    return result;
+  }
+}
+```
+
 ##### Array.prototype.map()
 
 ```
 语法：Array.prototype.filter(callback[,thisArg])
 解释：映射当前数组
-返回值：返回执行callback()后返回值组成的新数组
+返回值：返回每个元素执行callback()后返回值组成的新数组，空元素返回空元素
+```
+
+polyfill
+
+```
+if (typeof Array.prototype.map !== "function") {
+  Array.prototype.map = function (callback, context) {
+    var result = [];
+
+    for (var i = 0; i < this.length; i++) {
+      if (i in this) {
+        result[i] = callback.call(context, this[i], i, this);
+      }
+    }
+
+    return result;
+  }
+}
 ```
 
 #### 缩小方法
+
+依次处理数组中的每个元素，最终累计为一个值
 
 ##### Array.prototype.reduce()
 
@@ -359,8 +529,35 @@ arr.sort(function (a, b) {
         array, 当前数组
      initivalValue, accumulator的初始值
         不存在时，accumulator=arr[0], 从第二项元素开始迭代
-        空数组initivalValue不存在时会报错
+        空数组initivalValue不存在时会报错，最好加上初始值
 返回值：返回accumulator
+```
+
+polyfill
+
+```javascript
+if (typeof Array.prototype.reduce !== "function") {
+  Array.prototype.reduce = function (callback, result) {
+    if (this.length === 0 && arguments.length < 2) {
+      throw new TypeError("Reduce of empty array with no initial value");
+    }
+
+    var init = false;
+
+    for (var i = 0; i < this.length; i++) {
+      if (i in this) {
+        if (arguments.length > 1 || init === true) {
+          result = callback(result, this[i], i, this);
+        } else {
+          result = this[i];
+          init = true;
+        }
+      }
+    }
+
+    return result;
+  }
+}
 ```
 
 ##### Array.prototype.reduceRight()
@@ -375,8 +572,46 @@ arr.sort(function (a, b) {
         array, 当前数组
      initivalValue, accumulator的初始值
         不存在时，accumulator=arr[arr.length-1], 从倒数第二项元素开始迭代
-        空数组initivalValue不存在时会报错
+        空数组initivalValue不存在时会报错，最好加上初始值
 返回值：返回accumulator
+```
+
+polyfill
+
+```javascript
+if (typeof Array.prototype.reduceRight !== "function") {
+  Array.prototype.reduceRight = function (callback, result) {
+    if (this.length === 0 && arguments.length < 2) {
+      throw new TypeError("Reduce of empty array with no initial value");
+    }
+
+    var init = false;
+
+    for (var i = this.length - 1; i >= 0; i--) {
+      if (i in this) {
+        if (arguments.length > 1 || init === true) {
+          result = callback(result, this[i], i, this);
+        } else {
+          result = this[i];
+          init = true;
+        }
+      }
+    }
+
+    return result;
+  }
+}
+```
+
+##### 缩小方法应用
+
+```javascript
+// 累积
+function accumulateSum(arr) {
+  return Array.prototype.reduce.call(arr, function (prev, next) {
+    return prev + next;
+  }, 0);
+}
 ```
 
 ## 实例对象

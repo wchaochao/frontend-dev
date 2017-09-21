@@ -146,7 +146,7 @@ var message = "hi",
 
 ## 类数组对象
 
-具有`length`属性的对象，可通过`call()`调用数组的一些方法
+具有`length`属性的对象，可通过`call(), apply()`调用数组的一些方法
 
 * 字符串
 * `arguments`对象
