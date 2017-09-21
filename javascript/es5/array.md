@@ -11,7 +11,7 @@
      new Array([...element])
 解释：创建一个数组对象
 参数：arrayLength, 数组长度，必须是Number类型，不是0~2^31-1之间的整数时抛出RangeError
-     element, 数组元素，可为任意值
+     element, 数组元素，可为任意值，无元素时为空数组
 返回值：返回创建的数组
 
 Array([...args])等同于new Array([...args])
@@ -70,7 +70,7 @@ Object.getPrototypeOf(arr)
 ```
 语法：Array.prototype.join(separator)
 解释：将当前数组转换为字符串并用指定分隔符分隔
-参数：separator, 分隔符，自动转换为String类型，undefined转换为","
+参数：separator, 分隔符，自动转换为String类型，默认为","
 返回值：数组的每个元素调用toString()转换为字符串拼接起来，并用分隔符分隔
        null, undefined转换为空字符串
 ```
@@ -283,7 +283,7 @@ Array.prototype.slice.call(document.querySelectorAll("div"))
 语法：Array.prototype.splice(start[,deleteCount[,...args]])
 解释：在当前数组的某个位置删除或插入某些项
 参数：start, 开始位置，自动转换为整数，负数为倒数，NaN当作0
-     deleteCount, 要删除的数组元素个数，自动转换为整数，负数、NaN当作0，默认为length-start
+     deleteCount, 要删除的数组元素个数，自动转换为整数，负数、NaN当作0，未传入时删除开始位置后的所有元素
      args，要插入的元素
 返回值：返回删除元素组成的数组
 ```
@@ -296,7 +296,7 @@ Array.prototype.slice.call(document.querySelectorAll("div"))
 语法：Array.prototype.indexOf(searchElement[,fromIndex])
 解释：从左往右查找指定元素在当前数组中第一次出现的位置
 参数：searchElement, 要查找的元素，使用===判断
-     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，默认为0
+     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，未传入时为0
 返回值：searchElement能找到，返回第一次出现的索引
        searchElement不能找到，返回-1
 ```
@@ -331,7 +331,7 @@ if (typeof Array.prototype.indexOf !== "function") {
 语法：Array.prototype.lastIndexOf(searchElement[,fromIndex])
 解释：从右往左查找指定元素在当前数组中第一次出现的位置
 参数：searchElement, 要查找的元素，使用===判断
-     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，默认为length-1
+     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，未传入时为length-1
 返回值：searchElement能找到，返回第一次出现的索引
        searchElement不能找到，返回-1
 ```
@@ -367,7 +367,7 @@ if (typeof Array.prototype.lastIndexOf !== "function") {
 * 新添加的元素不会被迭代
 * 未被迭代的元素被修改，迭代时值为修改后的元素
 * 未被迭代的元素被delete删除，迭代时会跳过该元素
-* 元素被数组方法移除时，index对应的元素将受到影响
+* 元素被数组方法移除时，length和index将受到影响
 
 参数
 
@@ -384,7 +384,7 @@ if (typeof Array.prototype.lastIndexOf !== "function") {
 ```javascript
 // 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
 // length自动转换为自然数，无法转换时转换为0
-// 不能用于字符串，因为字符串不能被更改
+// 能用于字符串，因为没有更改字符串
 ```
 
 ##### Array.prototype.forEach()
@@ -606,7 +606,7 @@ if (typeof Array.prototype.reduceRight !== "function") {
 ##### 缩小方法应用
 
 ```javascript
-// 累积
+// 求和
 function accumulateSum(arr) {
   return Array.prototype.reduce.call(arr, function (prev, next) {
     return prev + next;
@@ -633,4 +633,4 @@ var arr=Array([...args]);
 * `length`: 数组长度，动态值，值为最大的`index`加`1`
   * 最大的`index`变化时，`length`跟着变化
   * `length`变化时，数组跟着延长或截短
-  * 数组元素被删除时，`length`不变
+  * 数组元素被delete删除时，`length`不变

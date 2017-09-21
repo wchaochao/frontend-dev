@@ -18,7 +18,7 @@ Function([...args,][functionBody])等同于new Function([...args,][functionBody]
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数为`1`
+* `length`:`1`, 必须要传入的参数个数
 * `prototype`: `Function`实例对象的原型对象，也是个`Function`对象
 * `caller`: 调用函数的函数，非标准属性
 * `name`: 函数的名称，非标准属性
@@ -83,7 +83,7 @@ function foo() {
 语法：Function.prototype.bind(thisArg[,...args]]])
 解释：指定当前函数的this指针和形参，以此生成一个新的函数
 参数：thisArg，this对象，非严格模式下，Undefined、Null类型自动转换为全局对象，Number、String、Boolean类型自动转换为相应的内置对象
-     args，实参
+     args，形参
 返回值：返回生成的函数
 ```
 
@@ -135,7 +135,7 @@ bind(f, o)() // 123
 函数声明
 function fnName([...args]){...}
 
-字面量法
+表达式法
 var foo=function([...args]){...}
 var foo=function fnName([...args){...}
 

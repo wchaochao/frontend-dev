@@ -134,7 +134,8 @@ var message = "hi",
 
 所有数据都可以视为对象
 
-* `Number、String、Boolean`类型当作对象使用时，会被包装器包装成相应包装对象，使用完后抛弃该对象
+* `Number、String、Boolean`类型当作对象使用时，会被包装成相应包装对象，使用完后抛弃该对象
+  * `Number、String、Boolean`类型当作对象使用时，设置属性无效
   * `Number`直接量当作对象使用时，其后的点会被解释成小数点，需要使用圆括号括起来
 * `Undefined、Null`类型没有相应的包装对象，不能当作对象使用
 

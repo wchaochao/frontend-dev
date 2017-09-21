@@ -12,14 +12,14 @@
 参数：value，值
 返回值：value为Undefined、Null型，返回空Object对象
        value为Number、String、Boolean类型，返回对应的Number、String、Boolean对象
-       value为Object类型，返回Object类型本身
+       value为Object类型，返回value本身
 
 Object([value])等同于new Object([value])
 ```
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数为`1`
+* `length`:`1`, 必须要传入的参数个数
 * `prototype`: `Object`实例对象的原型对象，也是个`Object`对象
 
 ### 静态方法
@@ -137,7 +137,7 @@ if (typeof Object.create !== "function") {
 ```
 语法：Object.setPrototypeOf(obj, prototype)
 解释：设置对象的原型
-参数：obj, 对象，必须是Object类型，Null、Undefined类型抛出TypeError，Number、String、Boolean类型忽略
+参数：obj, 对象，必须是Object类型，Null、Undefined类型抛出TypeError，Number、String、Boolean类型直接返回obj
      prototype, 原型对象，不为Object、Null类型抛出TypeError
 返回值：返回obj
 ```
@@ -147,6 +147,18 @@ polyfill
 ```javascript
 if (typeof Object.setPrototypeOf !== "function") {
   Object.setPrototypeOf = function (obj, prototype) {
+    if (obj == null) {
+      throw new TypeError("Object.setPrototypeOf called on null or undefined");
+    }
+
+    if (!(typeof obj === "object" || typeof obj === "function")) {
+      return obj;
+    }
+
+    if (!(typeof prototype === "object" || typeof prototype === "function")) {
+      throw new TypeError("Object prototype may only be an Object or null")
+    }
+
     obj.__proto__ = prototype;
     return obj;
   }

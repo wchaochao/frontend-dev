@@ -322,9 +322,11 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
 
 ```
 语法：key in obj
-解释：检测key是否是obj对象本身及其原型链上的属性
+解释：判断key是否是obj对象本身及其原型链上的属性
 参数：key，属性名，自动转换为String类型
      obj，对象，必须是Object类型，否则会抛出TypeError
+返回值：key是对象本身及其原型链上的属性，返回true
+       key不是对象本身及其原型链上的属性，返回false
 ```
 
 ### delete
