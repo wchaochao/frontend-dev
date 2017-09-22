@@ -370,6 +370,10 @@ var o = Object.create(proto[, propertiesObject])
 // {}出现在句首解释为语句
 ```
 
+### 实例属性
+
+* `__proto__`: `Object.prototype`, 原型，非标准属性
+
 ### 常用操作
 
 遍历对象本身的可枚举属性

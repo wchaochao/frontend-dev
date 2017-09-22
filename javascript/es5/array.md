@@ -629,6 +629,7 @@ var arr=Array([...args]);
 
 ### 实例属性
 
+* `__proto__`: `Array.prototype`, 原型，非标准属性
 * `<index>`: 数组元素，元素不存在时为空元素
 * `length`: 数组长度，动态值，值为最大的`index`加`1`
   * 最大的`index`变化时，`length`跟着变化

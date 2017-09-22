@@ -19,8 +19,6 @@ Number([value])将value强制转换为Number类型，与new Number([value])不�
 
 * `length`:`1`, 必须要传入的参数个数
 * `prototype`: `Number`实例对象的原型对象，也是个`Number`对象
-* `[[PrimitiveValue]]`: 对应的原始值，内部属性
-
 * `EPSILON`: 可表示数字间的最小间隔
 * `MAX_SAFE_INTEGER`: 2^53-1, 最大的安全整数
 * `MAX_VALUE`: 能表示的最大的正数
@@ -227,3 +225,8 @@ Object.getPrototypeOf(num)
 var num = new Number([value]);
 var num = new Object(num);
 ```
+
+### 实例属性
+
+* `__proto__`: `Number.prototype`, 原型，非标准属性
+* `[[PrimitiveValue]]`: 对应的原始值，内部属性
