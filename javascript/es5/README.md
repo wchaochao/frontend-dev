@@ -27,9 +27,11 @@ ECMAScript第5版
 * [JSON对象](json.md)
 * [console对象](console.md)
 * [严格模式](strict.md)
+* [Unicode字符集](unicode.md)
 
 ## 推荐资料
 
 * 《JavaScript高级程序设计》
 * [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
 * [JavaScript 标准库](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)
+* [Unicode与javaScript详解](http://www.ruanyifeng.com/blog/2014/12/unicode.html)

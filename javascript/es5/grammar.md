@@ -1,5 +1,9 @@
 # 语法
 
+## 字符集
+
+[Unicode字符集](unicode.md), 采用`UCS-2`的编码方式
+
 ## 注释
 
 ```javascript
