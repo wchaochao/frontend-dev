@@ -19,7 +19,7 @@ Object([value])等同于new Object([value])
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 可接受的参数个数
 * `prototype`: `Object`实例对象的原型对象，也是个`Object`对象
 
 ### 静态方法
@@ -344,7 +344,7 @@ Object.getPrototypeOf(obj)
 返回值：返回"[object "+type+"]", type为当前对象类型
 ```
 
-#### Object.prototype.toLocalString()
+#### Object.prototype.toLocaleString()
 
 ```
 语法：Object.prototype.toLocaleString()

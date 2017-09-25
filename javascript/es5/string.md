@@ -17,7 +17,7 @@ String([value])将value强制转换为String类型，与new String([value])不�
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 可接受的参数个数
 * `prototype`: `String`实例对象的原型对象，也是个`String`对象
 
 ### 静态方法

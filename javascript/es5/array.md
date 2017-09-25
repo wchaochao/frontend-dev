@@ -19,7 +19,7 @@ Array([...args])等同于new Array([...args])
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 可接受的参数个数
 * `prototype`: `Array`实例对象的原型对象，也是个`Array`对象
 
 ### 静态方法
@@ -99,12 +99,12 @@ Array.prototype.join.call(obj, '-') // "a-b"
        null, undefined转换为空字符串
 ```
 
-##### Array.prototype.toLocalString()
+##### Array.prototype.toLocaleString()
 
 ```
-语法：Array.prototype.toLocalString()
+语法：Array.prototype.toLocaleString()
 解释：返回当前数组的本地字符串表示
-返回值：数组的每个元素调用toLocalString()转换为字符串拼接起来，并用逗号分隔
+返回值：数组的每个元素调用toLocaleString()转换为字符串拼接起来，并用逗号分隔
        null, undefined转换为空字符串
 ```
 

@@ -42,7 +42,7 @@ F.[[Class]] = "Function"
 F.[[Prototype]] = Function.prototype
 
 
-// 必须要传入的参数个数
+// 可接受的参数个数
 F.length = countParameters
 
 

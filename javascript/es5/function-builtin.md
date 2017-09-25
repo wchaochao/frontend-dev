@@ -18,7 +18,7 @@ Function([...args,][functionBody])等同于new Function([...args,][functionBody]
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 可接受的参数个数
 * `prototype`: `Function`实例对象的原型对象，也是个`Function`对象
 * `caller`: 调用函数的函数，非标准属性
 * `name`: 函数的名称，非标准属性
@@ -150,6 +150,6 @@ function出现在句首解释为语句
 
 * `__proto__`: `Function.prototype`, 原型，非标准属性
 * `prototype`: 函数的`prototype`属性，是个`Object`对象
-* `length`: 必须要传入的参数个数
+* `length`: 可接受的参数个数
 * `caller`: 调用函数的函数，非标准属性
 * `name`: 函数的名称，非标准属性

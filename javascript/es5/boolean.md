@@ -17,7 +17,7 @@ Boolean([value])将value强制转换为Boolean类型，与new Boolean([value])�
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 可接受的参数个数
 * `prototype`: `Boolean`实例对象的原型对象，也是个`Boolean`对象
 
 ## 原型对象

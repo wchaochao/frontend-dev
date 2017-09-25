@@ -17,7 +17,7 @@ Number([value])将value强制转换为Number类型，与new Number([value])不�
 
 ### 静态属性
 
-* `length`:`1`, 必须要传入的参数个数
+* `length`:`1`, 可接受的参数个数
 * `prototype`: `Number`实例对象的原型对象，也是个`Number`对象
 * `EPSILON`: 可表示数字间的最小间隔
 * `MAX_SAFE_INTEGER`: 2^53-1, 最大的安全整数
@@ -206,10 +206,10 @@ Object.getPrototypeOf(num)
 返回值：返回[[PrimitiveValue]]值的radix进制字符串
 ```
 
-#### Number.prototype.toLocalString()
+#### Number.prototype.toLocaleString()
 
 ```
-语法：Number.prototype.toLocalString([locales[,options]])
+语法：Number.prototype.toLocaleString([locales[,options]])
 解释：根据指定格式返回当前Number对象的字符串表示
 参数：locales, 区域
      options, 可选配置
