@@ -73,9 +73,51 @@
        不能解析，返回NaN
 ```
 
-### encodeURI
+### encodeURI()
 
 ```
 语法：encodeURI(URI)
-解释：对URI进行编码，
+解释：对URI进行编码
+     非转义字符(字母 数字 - _ . ! ~ * ' ( ))、保留字符(; , / ? : @ & = + $)、数字符号(#)不进行编码
+     其他都使用%utf-8字节(16进制)的方式编码
+参数：URI，要编码的URI，自动转换为字符串
+返回值：返回编码后的URI
+```
+
+### encodeComponentURI()
+
+```
+语法：encodeComponentURI(URI)
+解释：对URI的组成部分进行编码
+     非转义字符(字母 数字 - _ . ! ~ * ' ( ))不进行编码
+     其他都使用%utf-8字节(16进制)的方式编码
+参数：URI，要编码的URI，自动转换为字符串
+返回值：返回编码后的URI
+```
+
+### decodeURI()
+
+```
+语法：decodeURI(encodedURI)
+解释：解码encodeURI()后的URI
+参数：encodedURI，要解码的URI，自动转换为字符串
+返回值：返回解码后的URI
+```
+
+### decodeComponentURI()
+
+```
+语法：decodeComponentURI(encodedURI)
+解释：解码encodeComponentURI()后的URI
+参数：encodedURI，要解码的URI，自动转换为字符串
+返回值：返回解码后的URI
+```
+
+### eval()
+
+```
+语法：eval(string)
+解释：解析执行JavaScript语句字符串
+参数：string, JavaScript语句字符串，不是字符串类型直接返回string参数
+返回值：返回解析执行JavaScript语句字符串后的返回值
 ```

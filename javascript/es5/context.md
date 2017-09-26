@@ -6,7 +6,7 @@
 
 * `global`: `JavaScript`一开始进入的全局上下文
 * `function`: `JavaScript`调用函数时进入函数上下文
-* `eval`: `JavaScript`调用`eval`进入`eval`上下文，严格模式下与`function`相似
+* `eval`: `JavaScript`调用`eval`进入`eval`上下文
 
 ## 执行过程
 
@@ -26,7 +26,7 @@
 * `global`: 全局对象，内置全局属性和全局方法，原型为`Object.prototype`
 * `function`: 活动对象，内置`arguments`数组和形参，原型为`null`，
 * `eval`: `eval`作用域
-  * 直接调用(`eval(...)`)，为`eval`作用域
+  * 直接调用(`eval(...)`)，严格模式为`eval`作用域，非严格模式为本地作用域
   * 间接使用(其他)，为全局作用域
 
 ### 作用域链
