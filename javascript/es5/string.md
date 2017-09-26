@@ -260,8 +260,8 @@ Unicode字符集中大写字母是在小写字母的前面的，但localeCompare
 ```
 语法：String.prototype.match([regexp])
 解释：对字符串进行正则匹配
-参数：regexp, 匹配正则，自动转换为正则对象(隐式调用new RegExp(obj))
-返回值：有匹配，非全局匹配，返回[匹配子串，...捕获组的匹配项]且arr.input=原字符串，arr.index=匹配的索引
+参数：regexp, 匹配正则，自动转换为正则对象(隐式调用new RegExp(value))，匹配后lastIndex置为0
+返回值：有匹配，非全局匹配，返回[匹配子串，...捕获组的匹配项]且arr.index=匹配子串的索引，arr.input=原始字符串
               全局匹配，返回[...匹配子串]
        无匹配，返回null
 ```
@@ -308,7 +308,7 @@ str.match(undefined);   // ["", index: 0, input: "Nothing will come of nothing."
 ```
 语法：String.prototype.search([regexp])
 解释：对字符串进行正则查找
-参数：regexp, 匹配正则，自动转换为正则对象(隐式调用new RegExp(obj))
+参数：regexp, 匹配正则，自动转换为正则对象(隐式调用new RegExp(value))
 返回值：有匹配，返回从左往右第一次匹配的索引
        无匹配，返回-1
 ```
@@ -320,7 +320,7 @@ str.match(undefined);   // ["", index: 0, input: "Nothing will come of nothing."
 解释：对字符串进行字符串替换或正则替换
 参数：pattern, 字符串或正则，未传入时不替换
         substr, 字符串，非正则对象自动转换为字符串，只替换首个匹配
-        pattern, 正则对象，根据全局模式决定匹配单个还是匹配全部
+        pattern, 正则对象，根据全局模式决定替换单个还是替换全部
      replacement, 字符串或函数
         newSubStr, 替换字符串，非函数自动转换为字符串，可以插入一些特殊变量
           $$  插入一个 "$"
@@ -330,7 +330,7 @@ str.match(undefined);   // ["", index: 0, input: "Nothing will come of nothing."
           $n  插入第n个捕获组的匹配项，n属于1~99，捕获组不存在时插入$n，匹配项不存在时插入空字符串
         function, 回调函数，每匹配一次调一次，参数为
           match, 当前匹配子串
-          ...p, 捕获组的匹配项
+          ...$n, 捕获组的匹配项
           index, 当前匹配的索引
           string, 被匹配的原字符串
 返回值：返回替换后的字符串
@@ -363,10 +363,10 @@ function f2c(x) {
 参数：separator, 分隔符，字符串或正则，为undefined时返回只包含原字符串的数组
         subStr, 字符串，非正则对象自动转换为字符串，空字符串返回由原字符串字符组成的数组
         regexp, 正则，有捕获组时，捕获组的匹配项也要添加到数组中，捕获组未捕获到内容时添加undefined(对捕获组的处理存在兼容性问题)
-     limit, 限制数组，自动转换为整数，NaN当作0，负数不限制，默认不限制
+     limit, 限制数组长度，自动转换为整数，NaN当作0，负数不限制，默认不限制
 返回值：有匹配的分隔符，返回分隔后的数组
        无匹配的分隔符，返回由原字符串组成的数组
-```
+``` 
 
 ## 实例对象
 
