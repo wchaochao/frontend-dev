@@ -1,0 +1,81 @@
+# Global对象
+
+全局对象，内置全局属性和全局方法
+
+## 全局属性
+
+* `undefined`: 特殊值`undefined`
+* `null`: 特殊值`null`
+* `NaN`: 特殊值`NaN`
+* `Infinity`: 特殊值`Infinity`
+* `Object`: 构造函数`Object`
+* `Function`: 构造函数`Function`
+* `Array`: 构造函数`Array`
+* `Number`: 构造函数`Number`
+* `String`: 构造函数`String`
+* `Boolean`: 构造函数`Boolean`
+* `Date`: 构造函数`Date`
+* `RegExp`: 构造函数`RegExp`
+* `Error`: 构造函数`Error`
+* `SyntaxError`: 构造函数`SyntaxError`
+* `ReferenceError`: 构造函数`ReferenceError`
+* `RangeError`: 构造函数`RangeError`
+* `TypeError`: 构造函数`TypeError`
+* `URIError`: 构造函数`URIError`
+* `EvalError`: 构造函数`EvalError`
+
+## 全局方法
+
+### isNaN()
+
+```
+语法：isNaN(value)
+解释：判断值是否是NaN或能自动转换为NaN
+参数：value, 值，自动转换为Number类型
+返回值：是NaN，返回true
+       不是NaN，返回false
+```
+
+### isFinite()
+
+```
+语法：isFinite(value)
+解释：判断值是否是有限数值
+参数：value, 值，自动转换为Number类型
+返回值：是NaN、Infinity、-Infinity，返回false
+       其他值，返回true
+```
+
+### parseInt()
+
+```
+语法：parseInt(string,radix)
+解释：按照指定基数将字符串解析成整数并返回该整数
+参数：string，字符串，自动转换为String类型，并忽略前置空格
+     radix，进制数，自动转换为整数
+        radix为0、NaN
+          string为"0x"或"0X"开头按十六进制解析
+          string为"0"开头，ES3按八进制解析，ES5按十进制解析
+          其他按十进制解析，无法正确解析科学计数法
+        radix为2~36之间的整数，按照radix进制解析
+        radix为其他，返回NaN
+返回值：能解析，返回对应的整数
+       不能解析，返回NaN
+```
+
+### parseFloat()
+
+```
+语法：parseFloat(string)
+解释：按照十进制将字符串解析成浮点数并返回该浮点数，可以解析科学计数法
+参数：string，字符串，自动转换为String类型，并忽略前导空格
+返回值：能解析，返回对应的浮点数
+       不能解析，返回NaN
+```
+
+### encodeURI
+
+```
+语法：encodeURI(URI)
+解释：对URI进行编码，
+```
