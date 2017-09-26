@@ -68,8 +68,8 @@ Object.getPrototypeOf(fn)
 // 找出数组的最大元素，最小元素
 var arr = [10, 2, 4, 15, 9];
 
-var min = Math.min.apply(null, arr);
-var max = Math.max.apply(null, arr);
+var min = Math.min.apply(Math, arr);
+var max = Math.max.apply(Math, arr);
 
 // 将类数组对象转换为叔祖对象
 function foo() {
