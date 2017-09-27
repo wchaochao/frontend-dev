@@ -177,6 +177,13 @@ function getRandom(min, max) {
      x<0，返回NaN
 ```
 
+应用
+
+```javascript
+// logx(y)
+var num = Math.log(y) / Math.log(x);
+```
+
 #### Math.sin()
 
 ```
