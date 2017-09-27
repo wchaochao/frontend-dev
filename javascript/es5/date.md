@@ -95,7 +95,7 @@ Object.getPrototypeOf(date)
 
 ### 原型方法
 
-#### 格式化
+#### 格式化方法
 
 ##### Date.prototype.valueOf()
 
