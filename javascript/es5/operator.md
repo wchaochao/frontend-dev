@@ -285,7 +285,7 @@ undefined==null，`undefined、null`与其他值进行相等比较时返回`fals
 
 ```
 语法：obj instanceof constructor
-解释：指定对象是否是某个构造函数的实例
+解释：判断对象是否是某个构造函数的实例
 参数：obj，对象，原始值类型返回false
      constructor，构造函数，不为Function类型抛出TypeError
 返回值：constructor.prototype在对象obj的原型链上，返回true

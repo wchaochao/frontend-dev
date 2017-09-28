@@ -31,28 +31,28 @@
 
 ### 表示
 
-* 字面量法：如10,0xFF,1.2
+* 字面量法：如10, 0xFF, 1.2
 * 科学计数法：数值[eE]数值，如123e-3
 
 ### 字面量
 
 #### 整数
 
-* 十进制：`-?[1-9]\d*|0`
-* 二进制：`-?0[bB][01]+`
-* 八进制：`-?0[0-7]+`, 严格模式下使用八进制会抛出`SyntaxError`
-* 十六进制：`-?0[xX][0-9A-Fa-f]+`
+* 十进制：`([+-])?([1-9]\d*|0)`
+* 二进制：`([+-])?0[bB][01]+`
+* 八进制：`([+-])?0[0-7]+`, 严格模式下使用八进制会抛出`SyntaxError`
+* 十六进制：`([+-])?0[xX][0-9A-Fa-f]+`
 
 #### 浮点数
 
-* 小数：`-?[1-9]\d*\.\d*|0\.\d*`
+* 小数：`([+-])?([1-9]\d*\.\d*|0\.\d*|\.\d+)`
 
 #### 特殊数
 
-* `+0`：正零, 运算时相当于`0+`
-* `-0`：负零, 运算时相当于`0-`
-* `Infinity`：正无穷大, 运算时相当于`+∞`
-* `-Infinity`：负无穷大, 运算时相当于`-∞`
+* `+0`：正零，运算时相当于`0+`
+* `-0`：负零，运算时相当于`0-`
+* `Infinity`：正无穷大，运算时相当于`+∞`
+* `-Infinity`：负无穷大，运算时相当于`-∞`
 * `NaN`：非数字，运算时返回`NaN`，且`NaN!==NaN`
 
 ### 转换为数字
@@ -75,8 +75,8 @@
 
 转换方式
 
-* 强制转换: `Number(value)`
-* 自动转换: 数字环境自动转换为`Number`类型
+* 强制转换：`Number(value)`
+* 自动转换：数字环境自动转换为`Number`类型
 
 ### 相关全局方法
 
@@ -84,36 +84,36 @@
 
 ```
 语法：isNaN(value)
-解释：判断值是否是NaN或能自动转换为NaN
+解释：判断值能否转换为NaN
 参数：value, 值，自动转换为Number类型
-返回值：是NaN，返回true
-       不是NaN，返回false
+返回值：转换为NaN，返回true
+       不能转换为NaN，返回false
 ```
 
 #### isFinite()
 
 ```
 语法：isFinite(value)
-解释：判断值是否是有限数值
+解释：判断值能否转换为有限数值
 参数：value, 值，自动转换为Number类型
-返回值：是NaN、Infinity、-Infinity，返回false
-       其他值，返回true
+返回值：转换为NaN、Infinity、-Infinity，返回false
+       转换为其他值，返回true
 ```
 
 #### parseInt()
 
 ```
 语法：parseInt(string,radix)
-解释：按照指定基数将字符串解析成整数并返回该整数
-参数：string，字符串，自动转换为String类型，并忽略前置空格
-     radix，进制数，自动转换为整数
-        radix为0、NaN
+解释：按照指定基数将字符串解析成整数
+参数：string, 字符串，自动转换为String类型，并忽略前置空格
+     radix, 进制数，自动转换为整数
+        radix为0、NaN、Infinity、-Infinity
           string为"0x"或"0X"开头按十六进制解析
           string为"0"开头，ES3按八进制解析，ES5按十进制解析
           其他按十进制解析，无法正确解析科学计数法
         radix为2~36之间的整数，按照radix进制解析
         radix为其他，返回NaN
-返回值：能解析，返回对应的整数
+返回值：能解析，返回解析的整数
        不能解析，返回NaN
 ```
 
@@ -121,9 +121,9 @@
 
 ```
 语法：parseFloat(string)
-解释：按照十进制将字符串解析成浮点数并返回该浮点数，可以解析科学计数法
+解释：按照十进制将字符串解析成数字，可以解析科学计数法
 参数：string，字符串，自动转换为String类型，并忽略前导空格
-返回值：能解析，返回对应的浮点数
+返回值：能解析，返回解析的十进制数字
        不能解析，返回NaN
 ```
 
@@ -168,7 +168,7 @@
 
 ### 多字节问题
 
-* `JavaScript`是用`UCS-2`编码的，按`2`字节来识别字符
+* JavaScript是用`UCS-2`编码的，按`2`字节来识别字符
 * 字符串是用`UTF-16`编码的，存在`2`字节或`4`字节字符
   * 字符串的长度是按两字节为1个长度算的，不一定等于真正的字符数
   * 字符为`2`字节字符时，可以用`str[index]`来表示
@@ -192,8 +192,8 @@
 
 转换方式
 
-* 强制转换: `String(value)`
-* 自动转换: 字符串环境自动转换为`String`类型
+* 强制转换：`String(value)`
+* 自动转换：字符串环境自动转换为`String`类型
 
 ## Boolean类型
 
@@ -211,8 +211,8 @@
 
 转换方式
 
-* 强制转换: `Boolean(value)`
-* 自动转换: 布尔环境自动转换为`Boolean`类型
+* 强制转换：`Boolean(value)`
+* 自动转换：布尔环境自动转换为`Boolean`类型
 
 ## Object类型
 
@@ -220,9 +220,9 @@
 
 ### 分类
 
-* 内置对象：`ECMAScript`里内置的对象，如`Object, Function, Array, Number, String, Boolean, Date, RegExp, Error, Global, Math, Json, Console`等对象
+* 内置对象：ECMAScript里内置的对象，如`Object, Function, Array, Number, String, Boolean, Date, RegExp, Error`等构造函数，`Global, Math, Json`等对象
 * 宿主对象：由宿主环境提供的对象，如浏览器提供的`window, document`等对象
-* 原生对象：通过`ECMAScript`创建的对象
+* 原生对象：通过ECMAScript创建的对象
 
 ### 转换为引用类型
 
@@ -242,12 +242,12 @@
 
 使用`typeof`运算符检测原始值类型
 
-* 返回`"undefined"`: 值未声明或未初始化
-* 返回`"number"`: 值为数字
-* 返回`"string"`: 值为字符串
-* 返回`"boolean"`: 值为布尔值
-* 返回`"function"`: 值为函数
-* 返回`"object"`: 值为对象或`null`
+* 返回`"undefined"`：值未定义
+* 返回`"number"`：值为数字
+* 返回`"string"`：值为字符串
+* 返回`"boolean"`：值为布尔值
+* 返回`"function"`：值为函数
+* 返回`"object"`：值为对象或`null`
 
 使用`Object.prototype.toString.call()`方法检测引用类型
 
@@ -273,7 +273,7 @@ JSON对象                    "[object JSON]"
 
 ```
 语法：obj instanceof constructor
-解释：指定对象是否是某个构造函数的实例
+解释：判断对象是否是某个构造函数的实例
 参数：obj，对象，原始值类型返回false
      constructor，构造函数，不为Function类型抛出TypeError
 返回值：constructor.prototype在对象obj的原型链上，返回true

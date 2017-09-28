@@ -30,36 +30,36 @@
 
 ```
 语法：isNaN(value)
-解释：判断值是否是NaN或能自动转换为NaN
+解释：判断值能否转换为NaN
 参数：value, 值，自动转换为Number类型
-返回值：是NaN，返回true
-       不是NaN，返回false
+返回值：转换为NaN，返回true
+       不能转换为NaN，返回false
 ```
 
 ### isFinite()
 
 ```
 语法：isFinite(value)
-解释：判断值是否是有限数值
+解释：判断值能否转换为有限数值
 参数：value, 值，自动转换为Number类型
-返回值：是NaN、Infinity、-Infinity，返回false
-       其他值，返回true
+返回值：转换为NaN、Infinity、-Infinity，返回false
+       转换为其他值，返回true
 ```
 
 ### parseInt()
 
 ```
 语法：parseInt(string,radix)
-解释：按照指定基数将字符串解析成整数并返回该整数
-参数：string，字符串，自动转换为String类型，并忽略前置空格
-     radix，进制数，自动转换为整数
-        radix为0、NaN
+解释：按照指定基数将字符串解析成整数
+参数：string, 字符串，自动转换为String类型，并忽略前置空格
+     radix, 进制数，自动转换为整数
+        radix为0、NaN、Infinity、-Infinity
           string为"0x"或"0X"开头按十六进制解析
           string为"0"开头，ES3按八进制解析，ES5按十进制解析
           其他按十进制解析，无法正确解析科学计数法
         radix为2~36之间的整数，按照radix进制解析
         radix为其他，返回NaN
-返回值：能解析，返回对应的整数
+返回值：能解析，返回解析的整数
        不能解析，返回NaN
 ```
 
@@ -67,9 +67,9 @@
 
 ```
 语法：parseFloat(string)
-解释：按照十进制将字符串解析成浮点数并返回该浮点数，可以解析科学计数法
+解释：按照十进制将字符串解析成数字，可以解析科学计数法
 参数：string，字符串，自动转换为String类型，并忽略前导空格
-返回值：能解析，返回对应的浮点数
+返回值：能解析，返回解析的十进制数字
        不能解析，返回NaN
 ```
 

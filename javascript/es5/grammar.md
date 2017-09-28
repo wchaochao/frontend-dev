@@ -2,7 +2,11 @@
 
 ## 字符集
 
-[Unicode字符集](unicode.md)，采用`UCS-2`的编码方式
+[Unicode](unicode.md)字符集
+
+## 编码方式
+
+UCS-2
 
 ## 注释
 
@@ -16,9 +20,9 @@
 
 ## 严格模式
 
-为`JavaScript`容易出错的地方施加了限制
+为JavaScript容易出错的地方施加了限制
 
-整个`js`中
+### 整个JavaScript中
 
 ```javascript
 "use strict";
@@ -26,7 +30,7 @@
 //statement
 ```
 
-函数中
+### 函数中
 
 ```javascript
 function foo(){
@@ -40,7 +44,7 @@ function foo(){
 
 变量、函数、属性的名字，或者函数的参数
 
-* `Unicode`字母、数字、下划线、`$`组成
+* 字母、数字、下划线、$组成
 * 数字不开头
 * 大小写不同
 * 不为关键字、保留字
@@ -50,6 +54,7 @@ function foo(){
 
 具有特定用途的单词
 
+ 列1 | 列2 | 列3 | 列4
 ---------|----------|---------|----------
  break | do | instanceof | typeof
  case | else | new | var
@@ -63,6 +68,7 @@ function foo(){
 
 还没有特定用途，但可能在将来被用作关键字
 
+ 列1 | 列2 | 列3 | 列4
 ---------|----------|---------|----------
  abstract | enum | int | short
  boolean | export | interface | static
@@ -138,10 +144,13 @@ var message = "hi",
 
 所有数据都可以视为对象
 
-* `Number、String、Boolean`类型当作对象使用时，会被包装成相应包装对象，使用完后销毁该对象
-  * `Number、String、Boolean`类型当作对象使用时，相应的包装对象是只读的，无法设置属性
-  * `Number`直接量当作对象使用时，其后的点会被解释成小数点，需要使用圆括号括起来
-* `Undefined、Null`类型没有相应的包装对象，不能当作对象使用
+### Object对象
+
+普通对象
+
+### Function对象
+
+函数也是对象
 
 ### 数组
 
@@ -153,17 +162,26 @@ var message = "hi",
 
 具有`length`属性的对象，可通过`call(), apply()`调用数组的一些方法
 
-* 字符串
-* `arguments`对象
-* `DOM`元素集
+* String对象
+* arguments对象
+* DOM元素集
+
+### 基本包装对象
+
+`Number, String, Boolean`类型对应的包装对象
+
+* `Number, String, Boolean`类型当作对象使用时，会被包装成相应包装对象，使用完后销毁该对象
+  * `Number, String, Boolean`类型当作对象使用时，相应的包装对象是只读的，无法设置属性
+  * `Number`直接量当作对象使用时，其后的点会被解释成小数点，需要使用圆括号括起来
+* `Undefined, Null`类型没有相应的包装对象，不能当作对象使用，会抛出`TypeError`
 
 ### Date对象
 
 用于处理日期和时间
 
-* 使用自`1970年1月1日00:00:00(UTC时间)`开始经过的毫秒数来保存日期，范围为该时间的前后1亿天
-* `UTC时间`：世界协调时间，`UTC时间 = GMT时间`
-* `本地时间`：本地时区时间，`UTC时间 + 时区 = 本地时间`
+* 使用自1970年1月1日00:00:00(UTC时间)开始经过的毫秒数来保存日期，范围为该时间的前后1亿天
+* UTC时间：世界协调时间，UTC时间 = GMT时间
+* 本地时`：本地时区时间，UTC时间 + 时区 = 本地时间
 
 ### RegExp对象
 
@@ -172,3 +190,12 @@ var message = "hi",
 ### Error对象
 
 用于错误处理
+
+### 单体内置对象
+
+无须实例化，直接提供的对象
+
+* Global对象：提供全局属性和全局方法
+* Math对象：用于数学运算
+* JSON对象：用于解析和转换JSON字符串
+
