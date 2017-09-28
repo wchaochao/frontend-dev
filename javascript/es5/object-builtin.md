@@ -198,10 +198,12 @@ if (typeof Object.setPrototypeOf !== "function") {
 
 ```
 语法：Object.defineProperty(obj,key,descriptor)
-解释：设置对象的某个属性
+解释：设置对象本身属性的元属性
+     属性不存在时，添加属性
+     属性存在时，修改属性，根据configurable和writable的值确定哪些元属性能修改
 参数：obj，对象，必须是Object类型，否则会抛出TypeError
      key，属性名，自动转换为String类型
-     descriptor, 属性描述对象，必须是Object类型，否则会抛出TypeError
+     descriptor, 属性描述符，必须是Object类型，否则会抛出TypeError，元属性不存在时为默认值
 返回值：返回obj
 ```
 
@@ -209,11 +211,13 @@ if (typeof Object.setPrototypeOf !== "function") {
 
 ```
 语法：Object.defineProperties(obj,propertiesObject)
-解释：设置对象的多个属性
+解释：设置对象本身多个属性的元属性
+     属性不存在时，添加属性
+     属性存在时，修改属性，根据configurable和writable的值确定哪些元属性能修改
 参数：obj，对象，必须是Object类型，否则会抛出TypeError
-     propertiesObject, 属性对象{...key:descriptor}，自动转换为对象
+     propertiesObject, 属性对象{...key: descriptor}，自动转换为对象
         key，属性名，自动转换为String类型
-        descriptor, 属性描述对象，必须是Object类型，否则会抛出TypeError
+        descriptor, 属性描述符，必须是Object类型，否则会抛出TypeError，元属性不存在时为默认值
 返回值：返回obj
 ```
 
@@ -222,7 +226,7 @@ if (typeof Object.setPrototypeOf !== "function") {
 ```
 语法：Object.preventExtensions(obj)
 解释：阻止对象扩展，即对象不可添加属性，不可更换原型
-     使用用defineProperty()、defineProperties()添加属性，抛出TypeError
+     使用defineProperty()、defineProperties()添加属性，抛出TypeError
      直接添加属性，严格模式下抛出TypeError
 参数：obj，对象，原始值类型直接返回原始值
 返回值：返回obj
@@ -232,7 +236,7 @@ if (typeof Object.setPrototypeOf !== "function") {
 
 ```
 语法：Object.isExtensibel(obj)
-解释：判断对象是否是不可扩展的
+解释：判断对象是否是可扩展的
 参数：obj，对象，原始值类型返回false
 返回值：obj是可扩展的，返回true
        obj是不可扩展的，返回false
@@ -242,7 +246,8 @@ if (typeof Object.setPrototypeOf !== "function") {
 
 ```
 语法：Object.seal(obj)
-解释：密封对象，即对象不可扩展、不可配置
+解释：密封对象，即对象不可扩展、不可删除属性(configurable为false)
+     删除属性，严格模式下抛出TypeError
 参数：obj，对象，原始值类型直接返回原始值
 返回值：返回obj
 ```
@@ -261,13 +266,11 @@ if (typeof Object.setPrototypeOf !== "function") {
 
 ```
 语法：Object.freeze(obj)
-解释：冻结对象，即对象不可扩展、不可配置、不可修改
-     使用用defineProperty()、defineProperties()修改属性，抛出TypeError
+解释：冻结对象，即对象不可扩展、不可删除属性(configurable为false)、不可修改属性(writable为false)
+     使用defineProperty()、defineProperties()修改属性，抛出TypeError
      直接修改属性，严格模式下抛出TypeError
 参数：obj，对象，原始值类型直接返回原始值
 返回值：返回obj
-
-属性值为Object类型时，该属性值非冻结
 ```
 
 #### Object.isFrozen()
@@ -405,4 +408,22 @@ arr.forEach(function (value) {
     return type(obj) === value.toLowerCase();
   }
 })
+```
+
+拷贝对象
+
+```javascript
+function extend(to, from) {
+  for (var property in from) {
+    var descriptor = Object.getOwnPropertyDescriptor(from, property);
+
+    if (descriptor && (!descriptor.writable ||
+        !descriptor.enumerable || !descriptor.configurable ||
+        descriptor.get || descriptor.set)) {
+      Object.defineProperty(to, property, descriptor);
+    } else {
+      to[property] = from[property];
+    }
+  }
+}
 ```

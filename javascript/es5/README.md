@@ -25,7 +25,6 @@ ECMAScript第5版
 * [Global对象](global.md)
 * [Math对象](math.md)
 * [JSON对象](json.md)
-* [console对象](console.md)
 * [严格模式](strict.md)
 * [Unicode字符集](unicode.md)
 

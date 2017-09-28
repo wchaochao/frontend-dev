@@ -64,20 +64,22 @@ return O
 
 保存属性元信息的对象
 
-### 描述属性
+### 元属性
 
-* `value`：属性值，可为任意值，默认为`undefined`
+* `value`：属性值，默认为`undefined`
 * `writable`：是否可写，默认为`false`
-  * `true`: 属性可写
-  * `false`: 属性不可写，设置属性在严格模式下会抛出`TypeError`
+  * `true`: 可修改`value`
+  * `false`: 不可修改`value`，设置属性在严格模式下会抛出`TypeError`
 * enumerable：是否可枚举，默认为false
-  * `true`：可枚举，能显示在`for/in、Object.Keys、JSON.stringify`中
+  * `true`：可枚举，在`for/in, Object.Keys, JSON.stringify`中使用枚举属性
   * `false`: 不可枚举
 * `configurable`：是否可配置，默认为`false`
-  * `true`: 可配置，其他描述属性都可变，属性可删除
+  * `true`: 可配置
+    * 其他描述属性都可修改，`writable`为`false`时, 也可修改`value`
+    * 属性可删除
   * `false`: 不可配置
-    * `writable`为`true`时，`writable`可改为`false`，`value`也可变
-    * 其他情况描述属性都不可变，该属性也不可删除，否则会抛出`TypeError`
+    * `writable`为`true`时，`writable, value`可修改
+    * 其他情况描述属性都不可修改，该属性也不可删除，否则严格模式会抛出`TypeError`
 * get：属性的访问器函数，只能为函数或undefined，否则会抛出`TypeError`，默认为`undefined`
   * `get`为`undefined`时，属性不可读，读取属性在严格模式下会抛出`TypeError`
 * set：属性的设置器函数，只能为函数或undefined，否则会抛出`TypeError`，默认为`undefined`
@@ -85,10 +87,10 @@ return O
 
 ### 描述符
 
-只能是下列描述符的一种，默认为数据描述符
+属性描述对象只能是下列描述符中的一种，混合会抛出`TypeError`，默认为数据描述符
 
-* 数据描述符：使用`value、writable、enumerable、configurable`的属性描述对象
-* 存取描述符：使用`get、set、enumerable、configurable`的属性描述对象
+* 数据描述符：使用`value、writable、enumerable、configurable`等元属性的属性描述对象
+* 存取描述符：使用`get、set、enumerable、configurable`等元属性的属性描述对象
 
 ### 默认描述
 

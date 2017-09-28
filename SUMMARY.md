@@ -59,7 +59,6 @@
     * [Global对象](javascript/es5/global.md)
     * [Math对象](javascript/es5/math.md)
     * [JSON对象](javascript/es5/json.md)
-    * [console对象](javascript/es5/console.md)
     * [严格模式](javascript/es5/strict.md)
     * [Unicode字符集](javascript/es5/unicode.md)
 * [浏览器平台](browser-platform/README.md)
