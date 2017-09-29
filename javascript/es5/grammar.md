@@ -25,7 +25,7 @@ UCS-2
 ### 整个JavaScript中
 
 ```javascript
-"use strict";
+"use strict"; // 在代码中间时不起作用
 
 //statement
 ```
@@ -34,7 +34,7 @@ UCS-2
 
 ```javascript
 function foo(){
-  "use strict";
+  "use strict"; // 在函数代码中间时不起作用
 
   //statement
 }
@@ -42,7 +42,7 @@ function foo(){
 
 ## 标识符
 
-变量、函数、属性的名字，或者函数的参数
+变量、函数名、函数参数、属性名
 
 * 字母、数字、下划线、$组成
 * 数字不开头

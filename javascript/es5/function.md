@@ -112,7 +112,7 @@ __objectPrototype.constructor = F
 
 * 类数组对象，用于存储实参
 * `arguments.length`: 实参个数
-* `arguments[index]`: 对应的实参，非严格模式下`arguments[index]`改变时，相应的形参的值也会变
+* `arguments[index]`: 对应的实参，非严格模式下`arguments[index]`与实参共享值
 * `arguments.callee`: 当前正在执行的函数，已废弃，严格模式下抛出TypeError
 
 ## 调用
