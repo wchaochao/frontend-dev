@@ -178,12 +178,12 @@
 
 * `Undefined`：`undefined`转换为`"undefined"`
 * `Null`：`null`转换为`"null"`
-* `Number`：调用`toString()`方法
+* `Number`
   * 其他进制自动转换为十进制
   * 小数点前的数字超过21位或小数点后紧跟的0超过5位，自动转换为科学计数法表示
   * 转换为`"自动处理后的数字"`
-* `String`: 调用`toString()`方法，Unicode码转换为对应的字符
-* `Boolean`: 调用`toString()`方法，`true`转换为`"true"`，`false`转换为`"false"`
+* `String`: Unicode码转换为对应的字符
+* `Boolean`: `true`转换为`"true"`，`false`转换为`"false"`
 * `Object`：调用`toString()`方法
   * 若返回值为原始值类型，则自动转换为字符串
   * 若返回值不为原始值类型，则继续调用`valueOf()`方法
