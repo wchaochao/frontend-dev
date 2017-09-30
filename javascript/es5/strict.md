@@ -181,7 +181,7 @@
 
 ```
 函数单纯作为函数调用时，this为undefined，不转换为全局对象
-函数被call, apply, bind调用时，this为设置的值，不转换为Object类型
+函数被call(), apply(), bind()调用时，this为设置的值，不转换为Object类型
 ```
 
 ### arguments对象与形参不再共享值

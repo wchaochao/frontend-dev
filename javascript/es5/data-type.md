@@ -220,7 +220,7 @@
 
 ### 分类
 
-* 内置对象：ECMAScript里内置的对象，如`Object, Function, Array, Number, String, Boolean, Date, RegExp, Error`等构造函数，`Global, Math, Json`等对象
+* 内置对象：ECMAScript里内置的对象，如`Object, Function, Array, Number, String, Boolean, Date, RegExp, Error`等构造函数，`Global, Math, Json`等单体对象
 * 宿主对象：由宿主环境提供的对象，如浏览器提供的`window, document`等对象
 * 原生对象：通过ECMAScript创建的对象
 
@@ -235,7 +235,7 @@
 
 自动转换
 
-* `Undefined, Null`类型自动转换为`Object`时会抛出`TypeError`
+* `Undefined, Null`类型自动转换为`Object`类型时会抛出`TypeError`
 * `Number, String, Boolean`自动转换为对应的包装对象
 
 ## 区分数据类型
