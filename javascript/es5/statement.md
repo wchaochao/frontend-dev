@@ -118,14 +118,62 @@
 解释：遍历对象及对象的原型链上的所有可枚举的属性
 ```
 
-## 标签语句
+## 错误处理语句
+
+### throw
+
+```
+语法：throw value;
+参数：value，可为任意值
+解释：抛出异常并停止执行
+
+代码运行过程中发生错误时会自动抛出异常并停止执行
+```
+
+### try/catch
+
+```
+语法：try{
+          try_statement
+     }catch(e){
+          catch_statement
+     }
+解释：catch捕获try中抛出的异常并进行处理
+     try中未抛出异常时，跳过catch语句
+```
+
+### try/finally
+
+```
+语法：try{
+          try_statement
+     }finally{
+          finally_statement
+     }
+解释：当try中要跳过finally时，如抛出异常或有return语句，先执行finally语句再返回抛出异常或执行return语句
+```
+
+### try/catch/finally
+
+```
+语法：try{
+          try_statement
+     }catch(e){
+          catch_statement
+     }finally{
+          finally_statement
+     }
+解释：先执行try/catch, 再执行try/finally或catch/finally
+```
+
+## 其他语句
+
+### label
 
 ```
 语法：label:statement
 解释：给statement语句添加label标签
 ```
-
-## 跳转语句
 
 ### break
 
@@ -147,7 +195,7 @@
 for循环中要先执行next再开始下一次循环
 ```
 
-## 返回语句
+### return
 
 ```
 语法：return;
@@ -156,7 +204,7 @@ for循环中要先执行next再开始下一次循环
      退出函数并返回值
 ```
 
-## with语句
+### with语句
 
 ```
 语法：with(obj){
@@ -165,54 +213,4 @@ for循环中要先执行next再开始下一次循环
 解释：将obj临时压入作用域的前端，statement中查找变量时先查找局部变量再首先查找obj
 
 严格模式下使用with语句会抛出SyntaxError
-```
-
-## 错误处理语句
-
-### throw
-
-```
-语法：throw value;
-参数：value，可为任意值
-解释：手动停止执行程序并抛出异常
-
-代码运行过程中发生错误时会自动停止执行并抛出异常
-```
-
-### try/catch
-
-```
-语法：try{
-          try_statement
-     }catch(e){
-          catch_statement
-     }
-解释：try_statement未抛出异常，跳过catch语句
-     try_statemnet抛出异常，catch捕捉异常e并执行catch_statement
-```
-
-### try/finally
-
-```
-语法：try{
-          try_statement
-     }finally{
-          finally_statement
-     }
-解释：try_statement未抛出异常，执行finally_statement
-     try_statement抛出异常或有return语句时，先执行finally语句再返回抛出异常或执行return语句
-```
-
-### try/catch/finally
-
-```
-语法：try{
-          try_statement
-     }catch(e){
-          catch_statement
-     }finally{
-          finally_statement
-     }
-解释：try_statement未抛出异常，相当于try/finally
-     try_statemnet抛出异常，catch捕获异常，catch/finally也相当于try/finally
 ```

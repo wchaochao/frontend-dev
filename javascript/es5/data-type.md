@@ -8,7 +8,7 @@
 
 ## Null类型
 
-值为空对象指针
+值为空指针
 
 * 字面量：`null`
 
@@ -63,7 +63,7 @@
   * 其他进制自动转换为十进制
   * 小数点前的数字超过21位或小数点后紧跟的0超过5位，自动转换为科学计数法表示
 * `String`: 忽略前置后置空格
-  * 空字符串转换为`0`, `"Infinity"`转换为`Infinity`
+  * 空字符串转换为`0`
   * 十进制数字字符串转换为相应的十进制数字，忽略前导零
   * 十六进制字符串转换为十进制整数
 * `Boolean`: `true`转换为`1`，`false`转换为`0`
@@ -86,7 +86,7 @@
 语法：isNaN(value)
 解释：判断值能否转换为NaN
 参数：value, 值，自动转换为Number类型
-返回值：转换为NaN，返回true
+返回值：能转换为NaN，返回true
        不能转换为NaN，返回false
 ```
 
@@ -103,7 +103,7 @@
 #### parseInt()
 
 ```
-语法：parseInt(string,radix)
+语法：parseInt(string, radix)
 解释：按照指定基数将字符串解析成整数
 参数：string, 字符串，自动转换为String类型，并忽略前置空格
      radix, 进制数，自动转换为整数
@@ -134,6 +134,14 @@
 ### 存储
 
 以`UTF-16`的编码方式存储字符
+
+### 多字节问题
+
+* JavaScript是用`UCS-2`编码的，按`2`字节来识别字符
+* 字符串是用`UTF-16`编码的，存在`2`字节或`4`字节字符
+  * 字符串的长度是按两字节为1个长度算的，不一定等于真正的字符数
+  * 字符为`2`字节字符时，可以用`str[index]`来表示
+  * 字符为`4`字节字符时，需要要用`str[index]+str[index+1]`来表示
 
 ### 表示
 
@@ -166,14 +174,6 @@
   * `\u四位十六进制`: 对应的Unicode字符
   * `\其他`: 忽略\
 
-### 多字节问题
-
-* JavaScript是用`UCS-2`编码的，按`2`字节来识别字符
-* 字符串是用`UTF-16`编码的，存在`2`字节或`4`字节字符
-  * 字符串的长度是按两字节为1个长度算的，不一定等于真正的字符数
-  * 字符为`2`字节字符时，可以用`str[index]`来表示
-  * 字符为`4`字节字符时，需要要用`str[index]+str[index+1]`来表示
-
 ### 转换为字符串
 
 * `Undefined`：`undefined`转换为`"undefined"`
@@ -182,7 +182,7 @@
   * 其他进制自动转换为十进制
   * 小数点前的数字超过21位或小数点后紧跟的0超过5位，自动转换为科学计数法表示
   * 转换为`"自动处理后的数字"`
-* `String`: Unicode码转换为对应的字符
+* `String`: 普通字符和转义字符
 * `Boolean`: `true`转换为`"true"`，`false`转换为`"false"`
 * `Object`：调用`toString()`方法
   * 若返回值为原始值类型，则自动转换为字符串
@@ -220,7 +220,7 @@
 
 ### 分类
 
-* 内置对象：ECMAScript里内置的对象，如`Object, Function, Array, Number, String, Boolean, Date, RegExp, Error`等构造函数，`Global, Math, Json`等对象
+* 内置对象：ECMAScript里内置的对象，如`Object, Function, Array, Number, String, Boolean, Date, RegExp, Error`等构造函数，`Global, Math, Json`等单体对象
 * 宿主对象：由宿主环境提供的对象，如浏览器提供的`window, document`等对象
 * 原生对象：通过ECMAScript创建的对象
 
@@ -235,7 +235,7 @@
 
 自动转换
 
-* `Undefined, Null`类型自动转换为`Object`时会抛出`TypeError`
+* `Undefined, Null`类型自动转换为`Object`类型时会抛出`TypeError`
 * `Number, String, Boolean`自动转换为对应的包装对象
 
 ## 区分数据类型
@@ -263,13 +263,13 @@ Function对象                "[object Function]"
 RegExp对象                  "[object RegExp]"
 Date对象                    "[object Date]"
 Error对象                   "[object Error]"
-Arguments对象               "[object Arguments]"
 Math对象                    "[object Math]"
 JSON对象                    "[object JSON]"
+Arguments对象               "[object Arguments]"
 其他对象                     "[object Object]"
 ```
 
-使用`instanceof`运算符检测引用类型
+使用`instanceof`运算符检测实例
 
 ```
 语法：obj instanceof constructor

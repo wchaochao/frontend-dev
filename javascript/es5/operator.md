@@ -95,7 +95,7 @@ Infinity % 值 = NaN, 值 % 0 = NaN
 语法：值1 === 值2、值1 !== 值2
 解释：只有类型和值同时相等时才是全等
 
-NaN!==NaN
+NaN !== NaN
 ```
 
 ### 相等
@@ -108,7 +108,8 @@ NaN!==NaN
      Date对象直接调用toString()方法
 
 NaN != NaN
-undefined == null，`undefined, null`与其他值进行相等比较时返回`false`
+undefined == null
+undefined, null与其他值进行相等比较时返回false
 ```
 
 ## 逻辑运算符
@@ -179,7 +180,7 @@ undefined == null，`undefined, null`与其他值进行相等比较时返回`fal
 语法：值1 & 值2
 解释：值1、值2按位作与运算，都为1时才为1
 
-值 & 0=0，值 & (-1) =值
+值 & 0 = 0，值 & (-1) = 值
 ```
 
 ### 按位或
@@ -204,7 +205,7 @@ undefined == null，`undefined, null`与其他值进行相等比较时返回`fal
 
 ```
 语法：值 << n
-解释：值左移n位，丢弃左侧溢出，符号位不变，右补0
+解释：符号位不变，值左移n位，丢弃左侧溢出，右补0
 参数：值自动转换为32位整数
       n自动转换为整数并 n % = 32
 ```
@@ -212,8 +213,8 @@ undefined == null，`undefined, null`与其他值进行相等比较时返回`fal
 ### 有符号右移
 
 ```
-语法：值>>n
-解释：值右移n位，丢弃右侧溢出，左补符号位
+语法：值 >> n
+解释：符号位不变，值右移n位，丢弃右侧溢出，左补符号位
 参数：值自动转换为32位整数
       n自动转换为整数并 n % = 32
 ```
@@ -221,11 +222,13 @@ undefined == null，`undefined, null`与其他值进行相等比较时返回`fal
 ### 无符号右移
 
 ```
-语法：值>>>n
+语法：值 >>> n
 解释：值右移n位，丢弃右侧溢出，左补0
 参数：值自动转换为32位整数
       n自动转换为整数并 n % = 32
 返回值：返回正整数
+
+-1 >>> 0 === Math.pow(2, 32)
 ```
 
 ## 赋值运算符
@@ -284,7 +287,7 @@ undefined == null，`undefined, null`与其他值进行相等比较时返回`fal
 
 ### instanceof
 
-检测引用类型
+检测实例
 
 ```
 语法：obj instanceof constructor
