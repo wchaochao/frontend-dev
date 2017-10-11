@@ -20,7 +20,7 @@ UCS-2
 
 ## [严格模式](strict.md)
 
-为JavaScript容易出错的地方施加了限制
+为容易出错的地方施加限制
 
 ### 整个JavaScript中
 

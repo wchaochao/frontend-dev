@@ -68,7 +68,7 @@
 
   delete o.a; //TypeError: Cannot delete property 'a' of #<Object>
 
-  o.b = 2; //TypeError: Cannot add property b, object is not extensible
+  o.a = 2; //TypeError: Cannot assign to read only property 'a' of object '#<Object>'
 })();
 ```
 
