@@ -210,7 +210,7 @@ for循环中要先执行next再开始下一次循环
 语法：with(obj){
          statement
      }
-解释：将obj临时压入作用域的前端，statement中查找变量时先查找局部变量再首先查找obj
+解释：将obj临时压入作用域的前端，statement中查找变量时首先查找obj
 
 严格模式下使用with语句会抛出SyntaxError
 ```

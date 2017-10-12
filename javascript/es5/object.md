@@ -4,15 +4,14 @@
 
 ## 创建
 
-通过构造函数创建对象`new Constructor(args)`
-
-* 使用new关键字时，会激活函数的`[[constructor]]`方法，此时函数作为构造函数使用，创建一个实例对象，并将该对象赋给`this`
-* 使用圆括号时，会激活函数的[[Call]]方法，创建上下文对象，执行上下文代码
-* 返回对象，若构造函数的返回值不为对象，则返回`this`指向的实例对象
+通过构造函数创建实例对象
 
 ```
-//调用构造函数F的[[Construct]]方法创建实例对象
+/*
+ * 创建实例对象
+ */
 
+// 调用构造函数F的[[Construct]]方法创建空实例对象
 F.[[Construct]](initialParameters):
 
 O = new NativeObject();
@@ -20,21 +19,25 @@ O = new NativeObject();
 // 对象类别设置为构造函数名
 O.[[Class]] = "[[构造函数名]]"
 
-
 // 原型对象
 var __objectPrototype = F.prototype;
-
 // 如果__objectPrototype是对象，就:
 O.[[Prototype]] = __objectPrototype
 // 否则:
 O.[[Prototype]] = Object.prototype;
 
+/*
+ * 初始化实例对象
+ */
 
-//调用构造函数的[[Call]]方法初始化该实例对象
-R = F.[[Call]](initialParameters); this === O;
+// 调用构造函数的[[Call]]方法初始化该实例对象
 // 这里R是[[Call]]的返回值
 // 相当于R = F.apply(O, initialParameters);
+R = F.[[Call]](initialParameters); this === O;
 
+/*
+ * 返回实例对象
+ */
 
 // 如果R是对象
 return R
@@ -70,7 +73,7 @@ return O
 * `writable`：是否可写，默认为`false`
   * `true`: 可修改`value`
   * `false`: 不可修改`value`，设置属性在严格模式下会抛出`TypeError`
-* enumerable：是否可枚举，默认为false
+* `enumerable`：是否可枚举，默认为`false`
   * `true`：可枚举，在`for/in, Object.Keys, JSON.stringify`中使用枚举属性
   * `false`: 不可枚举
 * `configurable`：是否可配置，默认为`false`
@@ -80,9 +83,9 @@ return O
   * `false`: 不可配置
     * `writable`为`true`时，`writable, value`可修改
     * 其他情况描述属性都不可修改，该属性也不可删除，否则严格模式会抛出`TypeError`
-* get：属性的访问器函数，只能为函数或undefined，否则会抛出`TypeError`，默认为`undefined`
+* `get`：属性的访问器函数，只能为函数或`undefined`，否则会抛出`TypeError`，默认为`undefined`
   * `get`为`undefined`时，属性不可读，读取属性在严格模式下会抛出`TypeError`
-* set：属性的设置器函数，只能为函数或undefined，否则会抛出`TypeError`，默认为`undefined`
+* `set`：属性的设置器函数，只能为函数或`undefined`，否则会抛出`TypeError`，默认为`undefined`
   * `set`为`undefined`时，属性不可写，设置属性在严格模式下会抛出`TypeError`
 
 ### 描述符
@@ -95,7 +98,7 @@ return O
 ### 默认描述
 
 * 内置对象的内置属性的`writable、enumerable、configurable`都为`false`
-* var声明的变量的`writable、enumerable`为true，`configurable`为`false`
+* var声明的变量的`writable、enumerable`为`true`，`configurable`为`false`
 * 直接添加的属性的`writable、enumerable、configurable`都为`true`
 
 ## 访问属性
@@ -110,26 +113,27 @@ return O
 ```
 O.[[Get]](P):
 
+/*
+ * 属性在对象本身上，直接返回
+ */
 
-// 如果是自己的属性，就返回
 if (O.hasOwnProperty(P)) {
   return O.P;
 }
 
 
-// 否则，继续分析原型
+/*
+ * 属性不在对象本身上，查找原型链
+ */
+
 var __proto = O.[[Prototype]];
 
-
 // 如果原型是null，返回undefined
-// 这是可能的：最顶层Object.prototype.[[Prototype]]是null
 if (__proto === null) {
   return undefined;
 }
 
-
-// 否则，对原型链递归调用[[Get]]，在各层的原型中查找属性
-// 直到原型为null
+// 否则，对原型链递归调用[[Get]]，在各层的原型中查找属性，直到原型为null
 return __proto.[[Get]](P)
 ```
 
@@ -138,12 +142,20 @@ return __proto.[[Get]](P)
 ```
 O.[[Put]](P, V):
 
+/*
+ * 属性不可设置，直接退出
+ */
 
-// 如果不能给属性写值，就退出
 if (!O.[[CanPut]](P)) {
   return;
 }
 
+
+/*
+ * 属性可设置
+ * 属性不存在，添加属性
+ * 属性存在，修改属性
+ */
 
 // 如果对象没有该属性，就创建它
 if (!O.hasOwnProperty(P)) {
@@ -155,10 +167,8 @@ if (!O.hasOwnProperty(P)) {
   });
 }
 
-
 // 如果属性存在就设置值，但不改变attributes特性
 O.P = V
-
 
 return;
 ```

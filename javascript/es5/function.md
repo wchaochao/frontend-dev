@@ -126,7 +126,7 @@ F.[[Construct]] = internalConstructor
 
 ## 闭包
 
-有权访问另一个函数作用域内变量的函数，一般为内部函数
+内部函数被外部引用时形成闭包
 
 ![closure](images/closure.png)
 
