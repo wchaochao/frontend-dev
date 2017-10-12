@@ -121,6 +121,7 @@ RegExp(pattern[,flag])等同于new RegExp(pattern[,flag])
 
 * `length`:`2`, 可接受的参数个数
 * `prototype`: `RegExp`实例对象的原型对象，是个`Object`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 
 ## 原型对象
 

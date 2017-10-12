@@ -14,7 +14,7 @@
 
 ```
 语法: 匿名函数表达式 function([...args]){...}
-      命名函数表达式 function fnName([...args){...}
+      命名函数表达式 function fnName([...args]){...}
 位置: 表达式位置
 创建: 执行上下文代码时
 ```
@@ -22,8 +22,8 @@
 ### Function构造
 
 ```
-语法: new Function([...args,][functionBody])
-     Function([...args,][functionBody])
+语法: new Function([...args,] functionBody)
+     Function([...args,] functionBody)
 位置: 表达式位置
 创建: 执行上下文代码时
 ```

@@ -9,7 +9,7 @@
 ```
 语法：function Object([value]){...}
 解释：给value创建一个对象包装器
-参数：value，值
+参数：value, 值
 返回值：value为Undefined、Null型，返回空Object对象
        value为Number、String、Boolean类型，返回对应的Number、String、Boolean对象
        value为Object类型，返回value本身
@@ -21,13 +21,17 @@ Object([value])等同于new Object([value])
 
 * `length`:`1`, 可接受的参数个数
 * `prototype`: `Object`实例对象的原型对象，也是个`Object`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
+
 
 ### 静态方法
 
-#### Object.assign()
+#### 工具方法
+
+##### Object.assign()
 
 ```
-语法：Object.assign(target[,...sources])
+语法：Object.assign(target, ...sources)
 解释：将源对象本身的可枚举属性复制到目标对象
 参数：target, 目标对象，自动转换为对象
      sources, 源对象，可多个，自动转换为对象，null、undefined忽略
@@ -64,7 +68,7 @@ if (typeof Object.assign !== "function") {
 }
 ```
 
-#### Object.is()
+##### Object.is()
 
 ```
 语法：Object.is(value1, value2)
@@ -74,9 +78,6 @@ if (typeof Object.assign !== "function") {
 返回值：进行严格相等比较
        0和+0是相同的值，和-0是不同的值
        NaN和NaN是相同的值
-
-Object.is(0,+0)=true, Object.is(0,-0)=false, Object.is(+0,-0)=false
-Object.is(NaN,NaN)=true
 ```
 
 polyfill
@@ -93,14 +94,14 @@ if (typeof Object.is !== "function") {
 }
 ```
 
-#### Object.create()
+##### Object.create()
 
 ```
-语法：Object.create(proto[,propertiesObject])
+语法：Object.create(proto[, propertiesObject])
 解释：使用指定原型和属性创建一个新对象
-参数：proto，原型对象，不为Object、Null类型抛出TypeError
-     propertiesObject, 属性对象{...key:descriptor}，自动转换为对象
-        key，属性名，自动转换为String类型
+参数：proto, 原型对象，不为Object、Null类型抛出TypeError
+     propertiesObject, 属性对象{...key:descriptor}，自动转换为对象，默认为空对象
+        key, 属性名，自动转换为String类型
         descriptor, 属性描述对象，必须是Object类型，否则会抛出TypeError
 返回值：返回创建的对象
 ```
@@ -123,7 +124,9 @@ if (typeof Object.create !== "function") {
 }
 ```
 
-#### Object.getPrototypeOf()
+#### 原型方法
+
+##### Object.getPrototypeOf()
 
 ```
 语法：Object.getPrototypeOf(obj)
@@ -132,7 +135,7 @@ if (typeof Object.create !== "function") {
 返回值：返回obj的原型
 ```
 
-#### Object.setPrototypeOf()
+##### Object.setPrototypeOf()
 
 ```
 语法：Object.setPrototypeOf(obj, prototype)
@@ -165,120 +168,124 @@ if (typeof Object.setPrototypeOf !== "function") {
 }
 ```
 
-#### Object.getOwnPropertyNames()
+#### 属性方法
+
+##### Object.getOwnPropertyNames()
 
 ```
 语法：Object.getOwnPropertyNames(obj)
 解释：获取对象本身的所有属性名
-参数：obj，对象，自动转换为Object类型
+参数：obj, 对象，自动转换为Object类型
 返回值：返回对象本身所有属性名组成的数组
 ```
 
-#### Object.keys()
+##### Object.keys()
 
 ```
 语法：Object.keys(obj)
 解释：获取对象本身的所有可枚举属性名
-参数：obj，对象，自动转换为Object类型
+参数：obj, 对象，自动转换为Object类型
 返回值：返回对象本身的所有可枚举属性名组成的数组
 ```
 
-#### Object.getOwnPropertyDescriptor()
+##### Object.getOwnPropertyDescriptor()
 
 ```
-语法：Object.getOwnPropertyDescriptor(obj,key)
+语法：Object.getOwnPropertyDescriptor(obj, key)
 解释：获取对象本身属性的属性描述对象
-参数：obj，对象，自动转换为Object类型
-     key，属性名，自动转换为String类型
+参数：obj, 对象，自动转换为Object类型
+     key, 属性名，自动转换为String类型
 返回值：key为obj本身的属性，返回属性的属性描述对象
        key不为obj本身的属性，返回undefined
 ```
 
-#### Object.defineProperty()
+##### Object.defineProperty()
 
 ```
-语法：Object.defineProperty(obj,key,descriptor)
+语法：Object.defineProperty(obj, key, descriptor)
 解释：设置对象本身属性的元属性
      属性不存在时，添加属性
      属性存在时，修改属性，根据configurable和writable的值确定哪些元属性能修改
-参数：obj，对象，必须是Object类型，否则会抛出TypeError
-     key，属性名，自动转换为String类型
+参数：obj, 对象，必须是Object类型，否则会抛出TypeError
+     key, 属性名，自动转换为String类型
      descriptor, 属性描述符，必须是Object类型，否则会抛出TypeError，元属性不存在时为默认值
 返回值：返回obj
 ```
 
-#### Object.defineProperties()
+##### Object.defineProperties()
 
 ```
 语法：Object.defineProperties(obj,propertiesObject)
 解释：设置对象本身多个属性的元属性
      属性不存在时，添加属性
      属性存在时，修改属性，根据configurable和writable的值确定哪些元属性能修改
-参数：obj，对象，必须是Object类型，否则会抛出TypeError
+参数：obj, 对象，必须是Object类型，否则会抛出TypeError
      propertiesObject, 属性对象{...key: descriptor}，自动转换为对象
-        key，属性名，自动转换为String类型
+        key, 属性名，自动转换为String类型
         descriptor, 属性描述符，必须是Object类型，否则会抛出TypeError，元属性不存在时为默认值
 返回值：返回obj
 ```
 
-#### Object.preventExtensions()
+#### 状态方法
+
+##### Object.preventExtensions()
 
 ```
 语法：Object.preventExtensions(obj)
 解释：阻止对象扩展，即对象不可添加属性，不可更换原型
      使用defineProperty()、defineProperties()添加属性，抛出TypeError
      直接添加属性，严格模式下抛出TypeError
-参数：obj，对象，原始值类型直接返回原始值
+参数：obj, 对象，原始值类型直接返回原始值
 返回值：返回obj
 ```
 
-#### Object.isExtensibel()
+##### Object.isExtensibel()
 
 ```
 语法：Object.isExtensibel(obj)
 解释：判断对象是否是可扩展的
-参数：obj，对象，原始值类型返回false
+参数：obj, 对象，原始值类型返回false
 返回值：obj是可扩展的，返回true
        obj是不可扩展的，返回false
 ```
 
-#### Object.seal()
+##### Object.seal()
 
 ```
 语法：Object.seal(obj)
 解释：密封对象，即对象不可扩展、不可删除属性(configurable为false)
      删除属性，严格模式下抛出TypeError
-参数：obj，对象，原始值类型直接返回原始值
+参数：obj, 对象，原始值类型直接返回原始值
 返回值：返回obj
 ```
 
-#### Object.isSealed()
+##### Object.isSealed()
 
 ```
 语法：Object.isSealed(obj)
 解释：判断对象是否是密封的
-参数：obj，对象，原始值类型直接返回true
+参数：obj, 对象，原始值类型直接返回true
 返回值：obj是密封的，返回true
        obj不是密封的，返回false
 ```
 
-#### Object.freeze()
+##### Object.freeze()
 
 ```
 语法：Object.freeze(obj)
-解释：冻结对象，即对象不可扩展、不可删除属性(configurable为false)、不可修改属性(writable为false)
+解释：冻结对象，即对象不可扩展、不可删除属性(configurable为false)、不可修改属性(writable为false或set为undefined)
      使用defineProperty()、defineProperties()修改属性，抛出TypeError
      直接修改属性，严格模式下抛出TypeError
-参数：obj，对象，原始值类型直接返回原始值
+参数：obj, 对象，原始值类型直接返回原始值
 返回值：返回obj
 ```
 
-#### Object.isFrozen()
+##### Object.isFrozen()
 
 ```
 语法：Object.isFrozen(obj)
 解释：判断对象是否是冻结的
-参数：obj，对象，原始值类型直接返回true
+参数：obj, 对象，原始值类型直接返回true
 返回值：obj是冻结的，返回true
        obj不是冻结的，返回false
 ```
@@ -301,37 +308,41 @@ Object.getPrototypeOf(obj)
 
 ### 原型方法
 
-#### Object.prototype.hasOwnProperty()
+#### 常用方法
+
+##### Object.prototype.hasOwnProperty()
 
 ```
 语法：Object.prototype.hasOwnProperty(key)
 解释：判断是否是当前对象本身的属性
-参数：key，属性名，自动转换为String类型
+参数：key, 属性名，自动转换为String类型
 返回值：key是当前对象本身的属性，返回true
        key不是当前对象本身的属性，返回false
 ```
 
-#### Object.prototype.prototypeIsEnumerable()
+##### Object.prototype.prototypeIsEnumerable()
 
 ```
 语法：Object.prototype.propertyIsEnumerable(key)
 解释：判断是否是当前对象本身的可枚举属性
-参数：key，属性名，自动转换为String类型
+参数：key, 属性名，自动转换为String类型
 返回值：key是当前对象本身的可枚举属性，返回true
        key不是当前对象本身的可枚举属性，返回false
 ```
 
-#### Object.prototype.isPrototypeOf()
+##### Object.prototype.isPrototypeOf()
 
 ```
 语法：Object.prototype.isPrototypeOf(obj)
 解释：判断当前对象否在指定对象的原型链上
-参数：obj，对象，原始值类型自动返回false
+参数：obj, 对象，原始值类型自动返回false
 返回值：当前对象在obj的原型链上，返回true
        当前对象不在obj的原型链上，返回false
 ```
 
-#### Object.prototype.valueOf()
+#### 转换方法
+
+##### Object.prototype.valueOf()
 
 ```
 语法：Object.prototype.valueOf()
@@ -339,7 +350,7 @@ Object.getPrototypeOf(obj)
 返回值：无原始值时返回当前对象
 ```
 
-#### Object.prototype.toString()
+##### Object.prototype.toString()
 
 ```
 语法：Object.prototype.toString()
@@ -347,7 +358,7 @@ Object.getPrototypeOf(obj)
 返回值：返回"[object "+type+"]", type为当前对象类型
 ```
 
-#### Object.prototype.toLocaleString()
+##### Object.prototype.toLocaleString()
 
 ```
 语法：Object.prototype.toLocaleString()
@@ -364,11 +375,11 @@ Object.getPrototypeOf(obj)
 var o = { ...nameValuePair};
 
 // 构造函数法
-var o = new Object([value]);
-var o = Object([value]);
+var o = new Object(value);
+var o = Object(value);
 
 // create方法
-var o = Object.create(proto[, propertiesObject])
+var o = Object.create(proto, propertiesObject)
 
 // {}出现在句首解释为语句
 ```

@@ -19,6 +19,7 @@ Number([value])将value强制转换为Number类型，与new Number([value])不�
 
 * `length`:`1`, 可接受的参数个数
 * `prototype`: `Number`实例对象的原型对象，也是个`Number`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 * `EPSILON`: 可表示数字间的最小间隔
 * `MAX_SAFE_INTEGER`: 2^53-1, 最大的安全整数
 * `MAX_VALUE`: 能表示的最大的正数

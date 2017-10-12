@@ -7,19 +7,20 @@
 ### Function
 
 ```
-语法：function Function([...args,][functionBody]){...}
+语法：function Function([...args, ]functionBody){...}
 解释：创建一个Function对象
-参数：args，函数形参，自动转换为字符串类型，如"a"(参数a)或"a,b"(参数a,b)
-     functionBody，函数代码，传入的最后一个参数，自动转换为字符串类型
+参数：args, 函数形参，自动转换为字符串类型，如"a"(参数a)或"a,b"(参数a,b)
+     functionBody, 函数代码，传入的最后一个参数，自动转换为字符串类型
 返回值：返回创建的函数
 
-Function([...args,][functionBody])等同于new Function([...args,][functionBody])
+Function([...args, ]functionBody)等同于new Function([...args, ]functionBody)
 ```
 
 ### 静态属性
 
 * `length`:`1`, 可接受的参数个数
 * `prototype`: `Function`实例对象的原型对象，也是个`Function`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 * `caller`: 调用函数的函数，非标准属性
 * `name`: 函数的名称，非标准属性
 
@@ -38,24 +39,26 @@ Object.getPrototypeOf(fn)
 
 * `constructor`: `Function`, 构造函数
 * `__proto__`: `Object.prototype`, 原型，非标准属性
-* `length`: `0`，必须传入的参数个数为`0`
+* `length`: `0`, 可接受的参数个数
 
 ### 原型方法
 
-#### function.prototype.call()
+#### 绑定方法
+
+##### function.prototype.call()
 
 ```
-语法：Function.prototype.call(thisArg[,...args]])
+语法：Function.prototype.call(thisArg[, ...args]])
 解释：执行当前函数，并指定this指针和实参
 参数：thisArg，this对象，非严格模式下，Undefined、Null类型自动转换为全局对象，Number、String、Boolean类型自动转换为相应的内置对象
      args，实参
 返回值：返回当前函数执行后的返回值
 ```
 
-#### function.prototype.apply()
+##### function.prototype.apply()
 
 ```
-语法：Function.prototype.apply(thisArg[,argsArray]])
+语法：Function.prototype.apply(thisArg[, argsArray]])
 解释：执行当前函数，并指定this指针和实参数组
 参数：thisArg，this对象，非严格模式下，Undefined、Null类型自动转换为全局对象，Number、String、Boolean类型自动转换为相应的内置对象
      argsArray，实参数组或类数组
@@ -77,10 +80,10 @@ function foo() {
 }
 ```
 
-#### function.prototype.bind()
+##### function.prototype.bind()
 
 ```
-语法：Function.prototype.bind(thisArg[,...args]]])
+语法：Function.prototype.bind(thisArg[, ...args]]])
 解释：指定当前函数的this指针和形参，以此生成一个新的函数
 参数：thisArg，this对象，非严格模式下，Undefined、Null类型自动转换为全局对象，Number、String、Boolean类型自动转换为相应的内置对象
      args，形参
@@ -119,7 +122,9 @@ var bind=Function.prototype.call.bind(Function.prototype.bind);
 bind(f, o)() // 123
 ```
 
-### Function.prototype.toString()
+#### 转换方法
+
+##### Function.prototype.toString()
 
 ```
 语法：Function.prototype.toString()
@@ -132,16 +137,16 @@ bind(f, o)() // 123
 ### 创建
 
 ```
-函数声明
+// 函数声明
 function fnName([...args]){...}
 
-表达式法
+// 函数表达式
 var foo=function([...args]){...}
 var foo=function fnName([...args){...}
 
-构造函数法
-var foo=new Function([...args,][functionBody])
-var foo=Function([...args,][functionBody])
+// Function构造
+var foo=new Function([...args, ]functionBody)
+var foo=Function([...args, ]functionBody)
 
 function出现在句首解释为语句
 ```
@@ -151,5 +156,5 @@ function出现在句首解释为语句
 * `__proto__`: `Function.prototype`, 原型，非标准属性
 * `prototype`: 函数的`prototype`属性，是个`Object`对象
 * `length`: 可接受的参数个数
-* `caller`: 调用函数的函数，非标准属性
+* `caller`: 调用函数的函数，非标准属性，严格模式抛出`TypeError`
 * `name`: 函数的名称，非标准属性

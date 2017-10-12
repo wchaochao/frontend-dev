@@ -30,6 +30,7 @@ Error([message])等同于new Error([message])
 
 * `length`:`1`, 可接受的参数个数
 * `prototype`: `Error`实例对象的原型对象，是个`Object`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 
 ## 原型对象
 

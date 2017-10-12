@@ -21,6 +21,7 @@ Array([...args])等同于new Array([...args])
 
 * `length`:`1`, 可接受的参数个数
 * `prototype`: `Array`实例对象的原型对象，也是个`Array`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 
 ### 静态方法
 

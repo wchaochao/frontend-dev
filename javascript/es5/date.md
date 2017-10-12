@@ -25,6 +25,7 @@ Date(args)返回当前时间的字符串表示，与new Date(args)不同
 
 * `length`:`7`, 可接受的参数个数
 * `prototype`: `Date`实例对象的原型对象，是个`Object`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 
 ### 静态方法
 

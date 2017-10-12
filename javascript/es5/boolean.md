@@ -19,6 +19,7 @@ Boolean([value])将value强制转换为Boolean类型，与new Boolean([value])�
 
 * `length`:`1`, 可接受的参数个数
 * `prototype`: `Boolean`实例对象的原型对象，也是个`Boolean`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 
 ## 原型对象
 

@@ -19,6 +19,7 @@ String([value])将value强制转换为String类型，与new String([value])不�
 
 * `length`:`1`, 可接受的参数个数
 * `prototype`: `String`实例对象的原型对象，也是个`String`对象
+* `__proto__`: `Function.prototype`, 原型，非标准属性
 
 ### 静态方法
 
