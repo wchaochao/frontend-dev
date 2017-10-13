@@ -84,8 +84,8 @@ F.[[Call]] = <reference to function>
  */
 
 // 使用new关键字时，会激活[[constructor]]方法，此时函数作为构造函数使用，依次执行
-// 1. 创建一个空的实例对象，并将该对象赋给this
-// 2. 执行构造函数
+// 1. 以F为构造函数，F.prototype为原型创建一个空实例对象
+// 2. 调用[[Call]]方法，且将该实例对象赋给this指针
 // 3. 返回实例对象
 F.[[Construct]] = internalConstructor
 ```

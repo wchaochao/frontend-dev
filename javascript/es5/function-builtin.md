@@ -48,7 +48,7 @@ Object.getPrototypeOf(fn)
 ##### function.prototype.call()
 
 ```
-语法：Function.prototype.call(thisArg[, ...args]])
+语法：Function.prototype.call(thisArg[, ...args])
 解释：执行当前函数，并指定this指针和实参
 参数：thisArg，this对象，非严格模式下，Undefined、Null类型自动转换为全局对象，Number、String、Boolean类型自动转换为相应的内置对象
      args，实参
@@ -58,7 +58,7 @@ Object.getPrototypeOf(fn)
 ##### function.prototype.apply()
 
 ```
-语法：Function.prototype.apply(thisArg[, argsArray]])
+语法：Function.prototype.apply(thisArg[, argsArray])
 解释：执行当前函数，并指定this指针和实参数组
 参数：thisArg，this对象，非严格模式下，Undefined、Null类型自动转换为全局对象，Number、String、Boolean类型自动转换为相应的内置对象
      argsArray，实参数组或类数组
@@ -83,7 +83,7 @@ function foo() {
 ##### function.prototype.bind()
 
 ```
-语法：Function.prototype.bind(thisArg[, ...args]]])
+语法：Function.prototype.bind(thisArg[, ...args])
 解释：指定当前函数的this指针和形参，以此生成一个新的函数
 参数：thisArg，this对象，非严格模式下，Undefined、Null类型自动转换为全局对象，Number、String、Boolean类型自动转换为相应的内置对象
      args，形参
@@ -142,7 +142,7 @@ function fnName([...args]){...}
 
 // 函数表达式
 var foo=function([...args]){...}
-var foo=function fnName([...args){...}
+var foo=function fnName([...args]){...}
 
 // Function构造
 var foo=new Function([...args, ]functionBody)
@@ -154,7 +154,7 @@ function出现在句首解释为语句
 ### 实例属性
 
 * `__proto__`: `Function.prototype`, 原型，非标准属性
-* `prototype`: 函数的`prototype`属性，是个`Object`对象
 * `length`: 可接受的参数个数
-* `caller`: 调用函数的函数，非标准属性，严格模式抛出`TypeError`
+* `prototype`: 函数的`prototype`属性，是个`Object`对象
+* `caller`: 调用函数的函数，已废弃，严格模式抛出`TypeError`
 * `name`: 函数的名称，非标准属性

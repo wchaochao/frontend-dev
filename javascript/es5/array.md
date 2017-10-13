@@ -66,31 +66,6 @@ Object.getPrototypeOf(arr)
 
 #### 转换方法
 
-##### Array.prototype.join()
-
-```
-语法：Array.prototype.join(separator)
-解释：将当前数组转换为字符串并用指定分隔符分隔
-参数：separator, 分隔符，自动转换为String类型，默认为","
-返回值：数组的每个元素调用toString()转换为字符串拼接起来，并用分隔符分隔
-       null, undefined转换为空字符串
-```
-
-应用
-
-```javascript
-// 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
-// length自动转换为自然数，无法转换时转换为0
-// 能用于字符串，因为没有更改字符串
-
-// 用于字符串
-Array.prototype.join.call("hello","-") // "h-e-l-l-o"
-
-// 用于类数组对象
-var obj = { 0: 'a', 1: 'b', length: 2 };
-Array.prototype.join.call(obj, '-') // "a-b"
-```
-
 ##### Array.prototype.toString()
 
 ```
@@ -109,6 +84,31 @@ Array.prototype.join.call(obj, '-') // "a-b"
        null, undefined转换为空字符串
 ```
 
+##### Array.prototype.join()
+
+```
+语法：Array.prototype.join(separator)
+解释：将当前数组转换为字符串并用指定分隔符分隔
+参数：separator, 分隔符，自动转换为String类型，默认为","
+返回值：数组的每个元素调用toString()转换为字符串拼接起来，并用分隔符分隔
+       null, undefined转换为空字符串
+```
+
+应用
+
+```javascript
+// 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
+// length自动转换为自然数，无法转换时转换为0
+// 能用于字符串，因为没有更改原字符串
+
+// 用于字符串
+Array.prototype.join.call("hello","-") // "h-e-l-l-o"
+
+// 用于类数组对象
+var obj = { 0: 'a', 1: 'b', length: 2 };
+Array.prototype.join.call(obj, '-') // "a-b"
+```
+
 #### 栈方法
 
 ##### Array.prototype.push()
@@ -116,7 +116,7 @@ Array.prototype.join.call(obj, '-') // "a-b"
 ```
 语法：Array.prototype.push([...args])
 解释：将值添加到当前数组末尾
-参数：args，值
+参数：args, 值，为空时不添加
 返回值：返回push后当前数组的长度
 ```
 
@@ -133,7 +133,7 @@ Array.prototype.join.call(obj, '-') // "a-b"
 ```javascript
 // 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
 // length自动转换为自然数，无法转换时转换为0
-// 不能用于字符串，因为字符串不能被更改
+// 不能用于字符串，因为原字符串不能被更改
 
 // 合并数组
 var vegetables = ['parsnip', 'potato'];
@@ -144,7 +144,7 @@ Array.prototype.push.apply(vegetables, moreVegs);
 // 像数组一样使用对象
 var obj = {
   addElem: function () {
-    Array.prototype.push.apply(this, arguments);
+    return Array.prototype.push.apply(this, arguments);
   },
   pop: function () {
     return Array.prototype.pop.call(this);
@@ -164,7 +164,7 @@ console.log(obj); // Object {0: Object, 1: null, length: 2, addElem: function, p
 ```
 语法：Array.prototype.unshift([...args])
 解释：将值添加到当前数组开头
-参数：args，值
+参数：args, 值，为空时不添加
 返回值：返回unshift后当前数组的长度
 ```
 
@@ -181,7 +181,7 @@ console.log(obj); // Object {0: Object, 1: null, length: 2, addElem: function, p
 ```javascript
 // 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
 // length自动转换为自然数，无法转换时转换为0
-// 不能用于字符串，因为字符串不能被更改
+// 不能用于字符串，因为原字符串不能被更改
 ```
 
 #### 重排序方法
@@ -197,8 +197,8 @@ console.log(obj); // Object {0: Object, 1: null, length: 2, addElem: function, p
 ##### Array.prototype.sort()
 
 ```
-语法：Array.prototype.sort([compareFunction])
-解释：按指定比较函数给当前数组排序
+语法：Array.prototype.sort(compareFunction)
+解释：按照指定的比较函数给当前数组排序
 参数：compareFunction, 比较函数，接收两个参数
         value1, 前一个值
         value2, 后一个值
@@ -240,7 +240,7 @@ arr.sort(function (a, b) {
 ```
 语法：Array.prototype.concat([...args])
 解释：创建当前数组的一个副本，并将传入的参数添加到副本的末尾
-参数：args, 值或数组，将值或数组的元素添加到副本的末尾
+参数：args, 值或数组，将值或数组的元素添加到副本的末尾，为空时不添加
 返回值：返回创建的副本数组
 ```
 
@@ -257,7 +257,7 @@ Array.prototype.concat.call(true, 2, ["c"]); // [Boolean, 2, "c"]
 ##### Array.prototype.slice()
 
 ```
-语法：Array.prototype.slice([begin[,end]])
+语法：Array.prototype.slice(begin, end)
 解释：提取当前数组的一段元素组成新数组
 参数: begin, 开始位置，自动转换为整数，负数为倒数，NaN当作0，默认为0
      end, 结束位置，自动转换为整数，负数为倒数，NaN当作0，默认为length
@@ -269,7 +269,7 @@ Array.prototype.concat.call(true, 2, ["c"]); // [Boolean, 2, "c"]
 ```javascript
 // 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
 // length自动转换为自然数，无法转换时转换为0
-// 能用于字符串，因为没有更改字符串
+// 能用于字符串，因为没有更改原字符串
 
 // 将类数组对象转换为数组
 Array.prototype.slice.call("hello") // ["h", "e", "l", "l", "o"]
@@ -281,23 +281,23 @@ Array.prototype.slice.call(document.querySelectorAll("div"))
 ##### Array.prototype.splice()
 
 ```
-语法：Array.prototype.splice(start[,deleteCount[,...args]])
+语法：Array.prototype.splice(start[, deleteCount[, ...args]])
 解释：在当前数组的某个位置删除或插入某些项
 参数：start, 开始位置，自动转换为整数，负数为倒数，NaN当作0
      deleteCount, 要删除的数组元素个数，自动转换为整数，负数、NaN当作0，未传入时删除开始位置后的所有元素
-     args，要插入的元素
+     args, 要插入的元素，为空时不插入
 返回值：返回删除元素组成的数组
 ```
 
-#### 位置方法
+#### 查找方法
 
 ##### Array.prototype.indexOf()
 
 ```
-语法：Array.prototype.indexOf(searchElement[,fromIndex])
+语法：Array.prototype.indexOf(searchElement[, fromIndex])
 解释：从左往右查找指定元素在当前数组中第一次出现的位置
 参数：searchElement, 要查找的元素，使用===判断
-     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，未传入时为0
+     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，为空时当作0
 返回值：searchElement能找到，返回第一次出现的索引
        searchElement不能找到，返回-1
 ```
@@ -329,10 +329,10 @@ if (typeof Array.prototype.indexOf !== "function") {
 ##### Array.prototype.lastIndexOf()
 
 ```
-语法：Array.prototype.lastIndexOf(searchElement[,fromIndex])
+语法：Array.prototype.lastIndexOf(searchElement[, fromIndex])
 解释：从右往左查找指定元素在当前数组中第一次出现的位置
 参数：searchElement, 要查找的元素，使用===判断
-     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，未传入时为length-1
+     fromIndex, 开始查找的位置，自动转换为整数，负数为倒数，NaN当作0，为空时当作length-1
 返回值：searchElement能找到，返回第一次出现的索引
        searchElement不能找到，返回-1
 ```
@@ -361,13 +361,13 @@ if (typeof Array.prototype.lastIndexOf !== "function") {
 }
 ```
 
-#### 迭代方法
+#### 遍历方法
 
-在使用迭代方法时最好不要修改数组
+在使用遍历方法时最好不要修改数组
 
-* 新添加的元素不会被迭代
-* 未被迭代的元素被修改，迭代时值为修改后的元素
-* 未被迭代的元素被delete删除，迭代时会跳过该元素
+* 新添加的元素不会被遍历
+* 未被遍历的元素被修改，遍历时值为修改后的元素
+* 未被遍历的元素被delete删除，遍历时会跳过该元素
 * 元素被数组方法移除时，length和index将受到影响
 
 参数
@@ -385,15 +385,15 @@ if (typeof Array.prototype.lastIndexOf !== "function") {
 ```javascript
 // 使用call(), apply()方法时，根据指定this指针的length属性来进行操作
 // length自动转换为自然数，无法转换时转换为0
-// 能用于字符串，因为没有更改字符串
+// 能用于字符串，因为没有更改原字符串
 ```
 
 ##### Array.prototype.forEach()
 
 ```
-语法：Array.prototype.forEach(callback[,thisArg])
+语法：Array.prototype.forEach(callback[, thisArg])
 解释：遍历当前数组
-返回值：无返回值，返回undefined
+返回值：返回undefined
 ```
 
 polyfill
@@ -413,7 +413,7 @@ if (typeof Array.prototype.forEach !== "function") {
 ##### Array.prototype.every()
 
 ```
-语法：Array.prototype.every(callback[,thisArg])
+语法：Array.prototype.every(callback[, thisArg])
 解释：判断当前数组的元素是否都满足条件
 返回值：对每个元素执行callback()，都返回true，返回ture
        对每个元素执行callback()，有一个返回false，直接返回false
@@ -439,7 +439,7 @@ if (typeof Array.prototype.every !== "function") {
 ##### Array.prototype.some()
 
 ```
-语法：Array.prototype.some(callback[,thisArg])
+语法：Array.prototype.some(callback[, thisArg])
 解释：判断当前数组中是否有满足条件的元素
 返回值：对每个元素执行callback()，有一个返回true，直接返回true
        对每个元素执行callback()，都返回false，返回false
@@ -465,7 +465,7 @@ if (typeof Array.prototype.some !== "function") {
 ##### Array.prototype.filter()
 
 ```
-语法：Array.prototype.filter(callback[,thisArg])
+语法：Array.prototype.filter(callback[, thisArg])
 解释：过滤当前数组
 返回值：返回执行callback()后返回true的数组元素组成的新数组
 ```
@@ -491,7 +491,7 @@ if (typeof Array.prototype.filter !== "function") {
 ##### Array.prototype.map()
 
 ```
-语法：Array.prototype.filter(callback[,thisArg])
+语法：Array.prototype.filter(callback[, thisArg])
 解释：映射当前数组
 返回值：返回每个元素执行callback()后返回值组成的新数组，空元素返回空元素
 ```
@@ -514,7 +514,7 @@ if (typeof Array.prototype.map !== "function") {
 }
 ```
 
-#### 缩小方法
+#### 迭代方法
 
 依次处理数组中的每个元素，最终累计为一个值
 
@@ -604,13 +604,13 @@ if (typeof Array.prototype.reduceRight !== "function") {
 }
 ```
 
-##### 缩小方法应用
+##### 迭代方法应用
 
 ```javascript
 // 求和
 function accumulateSum(arr) {
-  return Array.prototype.reduce.call(arr, function (prev, next) {
-    return prev + next;
+  return Array.prototype.reduce.call(arr, function (sum, value) {
+    return sum + value;
   }, 0);
 }
 ```

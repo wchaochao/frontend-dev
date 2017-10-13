@@ -7,14 +7,14 @@
 ### Object
 
 ```
-语法：function Object([value]){...}
+语法：function Object(value){...}
 解释：给value创建一个对象包装器
 参数：value, 值
 返回值：value为Undefined、Null型，返回空Object对象
        value为Number、String、Boolean类型，返回对应的Number、String、Boolean对象
        value为Object类型，返回value本身
 
-Object([value])等同于new Object([value])
+Object(value)等同于new Object(value)
 ```
 
 ### 静态属性
