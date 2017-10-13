@@ -289,7 +289,7 @@ Array.prototype.slice.call(document.querySelectorAll("div"))
 返回值：返回删除元素组成的数组
 ```
 
-#### 查找方法
+#### 位置方法
 
 ##### Array.prototype.indexOf()
 
@@ -324,7 +324,7 @@ if (typeof Array.prototype.indexOf !== "function") {
     return -1;
   }
 }
-```
+``` 
 
 ##### Array.prototype.lastIndexOf()
 

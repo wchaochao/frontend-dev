@@ -9,7 +9,7 @@ Boolean类型的包装对象
 ```
 语法：Function Boolean([value]){...}
 解释：创建一个Boolean对象
-参数：value，值，自动转换为Boolean类型，未传入时为false
+参数：value，值，自动转换为Boolean类型，为空时当作false
 返回值：返回创建的Boolean对象
 
 Boolean([value])将value强制转换为Boolean类型，与new Boolean([value])不同
@@ -36,7 +36,7 @@ Object.getPrototypeOf(boo)
 
 * `constructor`: `Boolean`, 构造函数
 * `__proto__`: `Object.prototype`, 原型，非标准属性
-* `[[PrimitiveValue]]`: false，对应的原始值，内部属性
+* `[[PrimitiveValue]]`: `false`，对应的原始值，内部属性
 
 ### 原型方法
 

@@ -9,7 +9,7 @@ String类型的包装对象
 ```
 语法：Function String([value]){...}
 解释：创建一个String对象
-参数：value，值，自动转换为String类型，未传入时为空字符串
+参数：value，值，自动转换为String类型，为空时当作空字符串
 返回值：返回创建的String对象
 
 String([value])将value强制转换为String类型，与new String([value])不同
@@ -27,8 +27,8 @@ String([value])将value强制转换为String类型，与new String([value])不�
 
 ```
 语法：String.fromCharCode([...num])
-解释：通过Unicode值创建字符串
-参数：num, Unicode值，自动转换为整数，进行%65536处理，负数加65536, NaN、Infinity、-Infinity当做0
+解释：根据Unicode值创建字符串
+参数：num, Unicode值，自动转换为整数，进行%65536处理，负数加65536, NaN、Infinity、-Infinity当做0，为空时返回空字符串
 返回值：返回Unicode值对应的字符串
 ```
 
@@ -79,7 +79,7 @@ Object.getPrototypeOf(str)
 ##### String.prototype.charAt()
 
 ```
-语法：String.prototype.charAt([index])
+语法：String.prototype.charAt(index)
 解释：返回字符串指定位置的字符
 参数：index, 索引，自动转换为整数，NaN当作0，默认为0
 返回值：字符存在，返回字符
@@ -91,7 +91,7 @@ Object.getPrototypeOf(str)
 ##### String.prototype.charCodeAt()
 
 ```
-语法：String.prototype.charCodeAt([index])
+语法：String.prototype.charCodeAt(index)
 解释：返回字符串指定位置的字符对应的Unicode值
 参数：index, 索引，自动转换为整数，NaN当作0，默认为0
 返回值：字符存在，返回字符对应的Unicode值
@@ -107,7 +107,7 @@ Object.getPrototypeOf(str)
 ```
 语法：String.prototype.concat([...str])
 解释：拼接字符串
-参数：str, 自动转换为字符串，不传时为空字符串
+参数：str, 自动转换为字符串，为空时当作空字符串
 返回值：返回拼接后的新字符串
 
 一般使用+来拼接字符串
@@ -116,7 +116,7 @@ Object.getPrototypeOf(str)
 ##### String.prototype.slice()
 
 ```
-语法：String.prototype.slice([begin[,end]])
+语法：String.prototype.slice(begin, end)
 解释：提取字符串的一段子串组成新字符串
 参数: begin, 开始位置，自动转换为整数，负数为倒数，NaN当作0，默认为0
      end, 结束位置，自动转换为整数，负数为倒数，NaN当作0，默认为length
@@ -126,7 +126,7 @@ Object.getPrototypeOf(str)
 ##### String.prototype.substring()
 
 ```
-语法：String.prototype.substring([begin[,end]])
+语法：String.prototype.substring(begin, end)
 解释：提取字符串的一段子串组成新字符串
 参数: begin, 开始位置，自动转换为整数，负数、NaN当作0，默认为0
      end, 结束位置，自动转换为整数，负数、NaN当作0，默认为length
@@ -136,11 +136,11 @@ Object.getPrototypeOf(str)
 ##### String.prototype.substr()
 
 ```
-语法：String.prototype.substr([begin[,num]])
+语法：String.prototype.substr(begin, count)
 解释：提取字符串的一段子串组成新字符串
 参数: begin, 开始位置，自动转换为整数，负数为倒数，NaN当作0，默认为0
-     num, 字符数目，自动转换为整数，负数、NaN当作0，默认为length
-返回值：返回begin之后的num个字符组成的新字符串，没字符时返回空字符串
+     count, 字符数目，自动转换为整数，负数、NaN当作0，默认为length
+返回值：返回begin之后的count个字符组成的新字符串，没字符时返回空字符串
 ```
 
 #### 位置方法
@@ -148,14 +148,14 @@ Object.getPrototypeOf(str)
 ##### String.prototype.indexOf()
 
 ```
-语法：String.prototype.indexOf(search[,fromIndex])
+语法：String.prototype.indexOf(search[, fromIndex])
 解释：从左往右查找指定字符串在字符串中第一次出现的位置
 参数：search, 要查找的字符串，自动转化为字符串，使用===判断
-     fromIndex, 开始查找的位置，自动转换为整数，负数、NaN当作0，默认为0
+     fromIndex, 开始查找的位置，自动转换为整数，负数当作0，NaN当作0，为空时当作0
 返回值：search能找到，返回第一次出现的索引
        search不能找到，返回-1
 
-str.indexOf("",index), index<=length,返回index; index>length,返回length
+str.indexOf("",index), index<=length, 返回index; index>length, 返回length
 ```
 
 应用
@@ -178,7 +178,7 @@ while (pos !== -1) {
 语法：String.prototype.lastIndexOf(search[,fromIndex])
 解释：从右往左查找指定字符串在字符串中第一次出现的位置
 参数：search, 要查找的字符串，自动转化为字符串，使用===判断
-     fromIndex, 开始查找的位置，自动转换为整数，负数当作0，NaN当作length, 默认为length
+     fromIndex, 开始查找的位置，自动转换为整数，负数当作0，NaN当作length, 为空时当作length
 返回值：search能找到，返回第一次出现的索引
        search不能找到，返回-1
 ```
@@ -259,10 +259,10 @@ Unicode字符集中大写字母是在小写字母的前面的，但localeCompare
 ##### String.prototype.match()
 
 ```
-语法：String.prototype.match([regexp])
+语法：String.prototype.match(regexp)
 解释：对字符串进行正则匹配
 参数：regexp, 匹配正则，自动转换为正则对象(隐式调用new RegExp(value))，匹配后lastIndex置为0
-返回值：有匹配，非全局匹配，返回[匹配子串，...捕获组的匹配项]且arr.index=匹配子串的索引，arr.input=原始字符串
+返回值：有匹配，非全局匹配，返回[匹配子串, ...捕获组的匹配项]且arr.index=匹配子串的索引，arr.input=原始字符串
               全局匹配，返回[...匹配子串]
        无匹配，返回null
 ```
@@ -307,7 +307,7 @@ str.match(undefined);   // ["", index: 0, input: "Nothing will come of nothing."
 ##### String.prototype.search()
 
 ```
-语法：String.prototype.search([regexp])
+语法：String.prototype.search(regexp)
 解释：对字符串进行正则查找
 参数：regexp, 匹配正则，自动转换为正则对象(隐式调用new RegExp(value))
 返回值：有匹配，返回从左往右第一次匹配的索引
@@ -317,9 +317,9 @@ str.match(undefined);   // ["", index: 0, input: "Nothing will come of nothing."
 ##### String.prototype.replace()
 
 ```
-语法：String.prototype.replace([pattern[, replacement]])
+语法：String.prototype.replace([pattern, replacement])
 解释：对字符串进行字符串替换或正则替换
-参数：pattern, 字符串或正则，未传入时不替换
+参数：pattern, 字符串或正则，为空时不替换
         substr, 字符串，非正则对象自动转换为字符串，只替换首个匹配
         pattern, 正则对象，根据全局模式决定替换单个还是替换全部
      replacement, 字符串或函数
@@ -359,15 +359,15 @@ function f2c(x) {
 ##### String.prototype.split()
 
 ```
-语法：String.prototype.split([separator[,limit]])
+语法：String.prototype.split(separator, limit)
 解释：使用匹配的分隔符将字符串分隔成数组
-参数：separator, 分隔符，字符串或正则，为undefined时返回只包含原字符串的数组
+参数：separator, 分隔符，字符串或正则，默认返回由原字符串组成的数组
         subStr, 字符串，非正则对象自动转换为字符串，空字符串返回由原字符串字符组成的数组
         regexp, 正则，有捕获组时，捕获组的匹配项也要添加到数组中，捕获组未捕获到内容时添加undefined(对捕获组的处理存在兼容性问题)
      limit, 限制数组长度，自动转换为整数，NaN当作0，负数不限制，默认不限制
 返回值：有匹配的分隔符，返回分隔后的数组
        无匹配的分隔符，返回由原字符串组成的数组
-``` 
+```
 
 ## 实例对象
 

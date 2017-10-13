@@ -9,7 +9,7 @@ Number类型的包装对象
 ```
 语法：Function Number([value]){...}
 解释：创建一个Number对象
-参数：value，值，自动转换为Number类型，未传入时为0
+参数：value，值，自动转换为Number类型，为空时当作0
 返回值：返回创建的Number对象
 
 Number([value])将value强制转换为Number类型，与new Number([value])不同
@@ -111,7 +111,7 @@ if (typeof Number.isSafeInteger !== "function") {
 同`ParseInt()`
 
 ```
-语法：parseInt(string,radix)
+语法：parseInt(string, radix)
 解释：按照指定基数将字符串解析成整数
 参数：string, 字符串，自动转换为String类型，并忽略前置空格
      radix, 进制数，自动转换为整数
@@ -156,22 +156,24 @@ Object.getPrototypeOf(num)
 
 ### 原型方法
 
-#### Number.prototype.toFixed()
+#### 格式化方法
+
+##### Number.prototype.toFixed()
 
 ```
-语法: Number.prototype.toFixed([digists])
+语法: Number.prototype.toFixed(digists)
 解释：将数字格式化为数字形式的字符串，保留指定位数的小数
 参数：digists, 位数，自动转换为整数，NaN转换为0，不在0~20之间抛出RangeError，默认为0
-返回值：当前Number对象的原始值大于等于1e+21时，调用Number.prototype.toString()
+返回值：当前Number对象的原始值大于等于1e+21时，直接调用Number.prototype.toString()
        当前Number对象的原始值不大于1e+21时，返回保留指定位数小数的数字形式的字符串
 
 因为浮点数不是精确存储的，所以四舍五入有时有用，有时没用
 ```
 
-#### Number.prototype.toExponential()
+##### Number.prototype.toExponential()
 
 ```
-语法：Number.prototype.toExponential([digists])
+语法：Number.prototype.toExponential(digists)
 解释：将数字格式化为指数形式的字符串，保留指定位数的小数
 参数：digists, 位数，自动转换为整数，NaN转换为0，不在0~20之间抛出RangeError，默认为原指数式的小数位数
 返回值：返回保留指定位数小数的指数形式的字符串
@@ -179,18 +181,20 @@ Object.getPrototypeOf(num)
 因为浮点数不是精确存储的，所以四舍五入有时有用，有时没用
 ```
 
-#### Number.prototype.toPrecision()
+##### Number.prototype.toPrecision()
 
 ```
-语法：Number.prototype.toPrecison([precision])
+语法：Number.prototype.toPrecison(precision)
 解释：将数字格式化为合适形式的字符串以保留指定位数的有效数字
-参数：precision, 有效数字，自动转换为整数，不在1~21之间抛出RangeError，默认调用Number.prototype.toString()
+参数：precision, 有效数字，自动转换为整数，NaN转换为0，不在1~21之间抛出RangeError，默认调用Number.prototype.toString()
 返回值：返回保留指定位数有效数字的字符串
 
 因为浮点数不是精确存储的，所以四舍五入有时有用，有时没用
 ```
 
-#### Number.prototype.valueOf()
+#### 转换方法
+
+##### Number.prototype.valueOf()
 
 ```
 语法：Number.prototype.valueOf()
@@ -198,19 +202,19 @@ Object.getPrototypeOf(num)
 返回值：返回[[PrimitiveValue]]值
 ```
 
-#### Number.prototype.toString()
+##### Number.prototype.toString()
 
 ```
-语法：Number.prototype.toString([radix])
+语法：Number.prototype.toString(radix)
 解释：根据指定的进制数返回当前Number对象的字符串表示
 参数：radix, 进制数，自动转换为整数，不在2~36之间抛出RangeError，默认为10
 返回值：返回[[PrimitiveValue]]值的radix进制字符串
 ```
 
-#### Number.prototype.toLocaleString()
+##### Number.prototype.toLocaleString()
 
 ```
-语法：Number.prototype.toLocaleString([locales[,options]])
+语法：Number.prototype.toLocaleString([locales[, options]])
 解释：根据指定格式返回当前Number对象的字符串表示
 参数：locales, 区域
      options, 可选配置
