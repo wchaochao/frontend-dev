@@ -10,10 +10,10 @@
 语法：new Date()
      new Date(value)
      new Date(dateString)
-     new Date(year,month[,day[,hour[,minute[,second[,millisecond]]]]])
+     new Date(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
 解释：创建一个Date对象
-参数：不传参数，会依据系统设置的当前时间创建一个Date对象
-     value, 自1970年1月1日00:00:00(UTC时间)过去的毫秒数，自动转换为整数，可为负
+参数：为空时会依据系统设置的当前时间创建一个Date对象
+     value, 自1970年1月1日00:00:00(UTC时间)过去的毫秒数，自动转换为整数，可为负，NaN返回Invalid Date
      dateString, 日期字符串，同Date.Parse()中的参数
      时间参数，同Date.UTC()中的参数，不过为本地时间参数
 返回值：返回创建的Date对象，不能创建返回Invalid Date
@@ -47,16 +47,16 @@ Date(args)返回当前时间的字符串表示，与new Date(args)不同
 #### Date.UTC()
 
 ```
-语法：Date.UTC(year,month[,day[,hour[,minute[,second[,millisecond]]]]])
+语法：Date.UTC(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
 解释：解析UTC时间参数
-参数：时间参数，为UTC时间
-        year, 年份，自动转换为整数，最好指定4位年份，0~99之间的整数加1900
-        month, 月份，自动转换为整数，0~11之间，超出范围自动进位或借位
-        day, 天数，自动转换为整数，0~31之间，超出范围自动进位或借位，默认为1
-        hour, 小时数，自动转换为整数，0~23之间，超出范围自动进位或借位，默认为0
-        minute, 分钟数，自动转换为整数，0~59之间，超出范围自动进位或借位，默认为0
-        second, 秒数，自动转换为整数，0~59之间，超出范围自动进位或借位，默认为0
-        millisecond, 毫秒数，自动转换为整数，0~999之间，超出范围自动进位或借位，默认为0
+参数：时间参数，为UTC时间，自动转换为整数，为NaN时无法解析
+        year, 年份，最好指定4位年份，0~99之间的整数加1900
+        month, 月份，0~11之间，超出范围自动进位或借位
+        day, 天数，0~31之间，超出范围自动进位或借位，为空时当作1
+        hour, 小时数，0~23之间，超出范围自动进位或借位，为空时当作0
+        minute, 分钟数，0~59之间，超出范围自动进位或借位，为空时当作0
+        second, 秒数，0~59之间，超出范围自动进位或借位，为空时当作0
+        millisecond, 毫秒数，0~999之间，超出范围自动进位或借位，为空时当作0
 返回值：可以解析，返回时间参数对应的毫秒数
        无法解析，返回NaN
 ```
@@ -110,42 +110,21 @@ Object.getPrototypeOf(date)
 
 ```
 语法：Date.prototype.toString()
-解释：返回当前Date对象的字符串表示，通常为ddd MMMM D YYYY HH:mm:ss Z格式，Invalid Date返回"Invalid Date"
-```
-
-##### Date.prototype.toUTCString()
-
-```
-语法：Date.prototype.toUTCString()
-解释：返回当前Date对象的UTC时间字符串，通常为ddd MMMM D YYYY HH:mm:ss Z格式，Invalid Date返回"Invalid Date"
-```
-
-##### Date.prototype.toISOString()
-
-```
-语法：Date.prototype.toISOString()
-解释：返回当前Date对象的UTC时间ISO格式的字符串，通常为YYYY-MM-DDTHH:mm:ss.sssZ格式，Invalid Date抛出RangeError
-```
-
-##### Date.prototype.toJSON()
-
-```
-语法：Date.prototype.toJSON()
-解释：返回当前Date对象的JSON格式字符串，通常为YYYY-MM-DDTHH:mm:ss.sssZ格式，Invalid Date返回null
+解释：返回当前Date对象的字符串表示，通常为ddd MMM D YYYY HH:mm:ss GMT+时区格式，Invalid Date返回"Invalid Date"
 ```
 
 ##### Date.prototype.toDateString()
 
 ```
 语法：Date.prototype.toDateString()
-解释：返回当前Date对象的日期字符串，通常为ddd MMMM D格式，Invalid Date返回"Invalid Date"
+解释：返回当前Date对象的日期字符串，通常为ddd MMM D YYYY格式，Invalid Date返回"Invalid Date"
 ```
 
 ##### Date.prototype.toTimeString()
 
 ```
 语法：Date.prototype.toTimeString()
-解释：返回当前Date对象的时间字符串，通常为HH:mm:ss Z格式，Invalid Date返回"Invalid Date"
+解释：返回当前Date对象的时间字符串，通常为HH:mm:ss GMT+时区格式，Invalid Date返回"Invalid Date"
 ```
 
 ##### Date.prototype.toLocaleString()
@@ -173,6 +152,27 @@ Object.getPrototypeOf(date)
 解释：返回当前Date对象的本地的时间字符串表示，Invalid Date返回"Invalid Date"
 参数：locales, 区域
      options, 可选配置
+```
+
+##### Date.prototype.toUTCString()
+
+```
+语法：Date.prototype.toUTCString()
+解释：返回当前Date对象的UTC时间字符串，通常为ddd, D MMM YYYY HH:mm:ss GMT格式，Invalid Date返回"Invalid Date"
+```
+
+##### Date.prototype.toISOString()
+
+```
+语法：Date.prototype.toISOString()
+解释：返回当前Date对象的UTC时间ISO格式字符串，通常为YYYY-MM-DDTHH:mm:ss.sssZ格式，Invalid Date抛出RangeError
+```
+
+##### Date.prototype.toJSON()
+
+```
+语法：Date.prototype.toJSON()
+解释：返回当前Date对象的JSON格式字符串，通常为YYYY-MM-DDTHH:mm:ss.sssZ格式，Invalid Date返回null
 ```
 
 #### 获取方法
