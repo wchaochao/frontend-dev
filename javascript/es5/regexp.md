@@ -29,7 +29,7 @@
 
 ```
 [xyz]: 匹配任意一个字符集中的字符，连字符表范围
-[xyz]: 匹配任意一个不在字符集中的字符，连字符表范围
+[^xyz]: 匹配任意一个不在字符集中的字符，连字符表范围
 
 [.*+?\b]: 匹配.、*、+、?、退格符中的一个
 [^]: 匹配任意字符
@@ -54,10 +54,10 @@ Unicode辅助平面字符在JavaScript中算两个字符，与.不匹配
 ```
 x{n}: 匹配 x n次
 x{n,}: 匹配 x n次或以上，尽可能多的匹配(贪婪模式)，加上?变为尽可能少的匹配(非贪婪模式)
-x{n,m}: 匹配 x n次到m次，尽可能多的匹配(贪婪模式)，加上?变为尽可能少的匹配(非贪婪模式)
+x{n, m}: 匹配 x n次到m次，尽可能多的匹配(贪婪模式)，加上?变为尽可能少的匹配(非贪婪模式)
 x*: 匹配 x 0次或以上，等同于{0,}，尽可能多的匹配(贪婪模式)，加上?变为尽可能少的匹配(非贪婪模式)
 x+: 匹配 x 1次或以上，等同于{1,}，尽可能多的匹配(贪婪模式)，加上?变为尽可能少的匹配(非贪婪模式)
-x?: 匹配 x 0次到1次，等同于{0,1}，尽可能多的匹配(贪婪模式)，加上?变为尽可能少的匹配(非贪婪模式)
+x?: 匹配 x 0次到1次，等同于{0, 1}，尽可能多的匹配(贪婪模式)，加上?变为尽可能少的匹配(非贪婪模式)
 ```
 
 #### 位置
@@ -106,15 +106,15 @@ x|y: 匹配x或y
 ### RegExp
 
 ```
-语法：new RegExp(pattern[,flag])
+语法：function RegExp(pattern[, flag]){...}
 解释：创建一个正则对象
-参数：pattern, 模式字符串，自动转换为字符串, undefined当作空字符串
+参数：pattern, 模式字符串，自动转换为字符串, 默认为空字符串
         空字符串对应/(?:)/
         字符串对应/pattern/, 字符串中要用\\对应pattern中的\
      flag, 标志字符串，只能为提供的标志，可包含多个标志，默认无标志
 返回值：返回创建的正则对象
 
-RegExp(pattern[,flag])等同于new RegExp(pattern[,flag])
+RegExp(pattern[, flag])等同于new RegExp(pattern[, flag])
 ```
 
 ### 静态属性
@@ -141,7 +141,19 @@ Object.getPrototypeOf(regexp)
 
 ### 原型方法
 
-#### RegExp.prototype.test()
+#### 转换方法
+
+##### Regexp.prototype.toString()
+
+```
+语法：Regexp.prototype.toString()
+解释：返回当前正则的字符串表示
+返回值：返回"/pattern/flags"
+```
+
+#### 匹配方法
+
+##### RegExp.prototype.test()
 
 ```
 语法：RegExp.prototype.test(str)
@@ -155,7 +167,7 @@ Object.getPrototypeOf(regexp)
        无匹配，返回false
 ```
 
-#### RegExp.prototype.exec()
+##### RegExp.prototype.exec()
 
 ```
 语法：RegExp.prototype.exec(str)
@@ -183,14 +195,6 @@ while (match !== null) {
 }
 ```
 
-##### Regexp.prototype.toString()
-
-```
-语法：Regexp.prototype.toString()
-解释：返回当前正则的字符串表示
-返回值：返回"/pattern/flags"
-```
-
 ## 实例对象
 
 ### 创建
@@ -214,4 +218,4 @@ ES5中已修改为使用正则表达式字面量都会创建一个新的RegExp�
 * `ignoreCase`: 是否设置了`i`标志
 * `multiline`: 是否设置了`m`标志
 * `lastIndex`: 下次匹配的起始索引, 从0开始
-* `source`: 正则表达式的字符串表示，即"pattern/flags"
+* `source`: 正则表达式的字符串表示，即`"pattern/flags"`

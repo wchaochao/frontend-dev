@@ -7,10 +7,10 @@
 ### Date
 
 ```
-语法：new Date()
-     new Date(value)
-     new Date(dateString)
-     new Date(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
+语法：function Date(){...}
+     function Date(value){...}
+     function Date(dateString){...}
+     function Date(year, month[, day[, hour[, minute[, second[, millisecond]]]]]){...}
 解释：创建一个Date对象
 参数：为空时会依据系统设置的当前时间创建一个Date对象
      value, 自1970年1月1日00:00:00(UTC时间)过去的毫秒数，自动转换为整数，可为负，NaN返回Invalid Date
@@ -307,13 +307,13 @@ Object.getPrototypeOf(date)
 
 #### 设置方法
 
-设置后日期为`Invalid Date`则返回NaN
+设置后日期为`Invalid Date`则返回`NaN`
 
 ##### Date.prototype.setTime()
 
 ```
 语法：Date.prototype.setTime(value)
-解释：根据本地时间设置当前Date对象的总毫秒数
+解释：设置当前Date对象的总毫秒数
 参数：value, 自1970年1月1日00:00:00(UTC时间)过去的毫秒数，自动转换为整数，可为负
 返回：返回设置后从1970年1月1日00:00:00(UTC时间)到该日期的毫秒数
 ```
@@ -321,7 +321,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setFullYear()
 
 ```
-语法：Date.prototype.setFullYear(year[,month[,day]])
+语法：Date.prototype.setFullYear(year[, month[, day]])
 解释：根据本地时间设置当前Date对象的年份
 参数：year, 年份，自动转换为整数
      month, 月份，自动转换为整数，0~11之间，超出范围自动进位或借位
@@ -332,8 +332,8 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setMonth()
 
 ```
-语法：Date.prototype.setMonth(month[,day])
-解释：根据本地时间设置当前Date对象的年份
+语法：Date.prototype.setMonth(month[, day])
+解释：根据本地时间设置当前Date对象的月份
 参数：month, 月份，自动转换为整数，0~11之间，超出范围自动进位或借位
      day, 天数，自动转换为整数，0~31之间，超出范围自动进位或借位
 返回：返回设置后从1970年1月1日00:00:00(UTC时间)到该日期的毫秒数
@@ -351,7 +351,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setHours()
 
 ```
-语法：Date.prototype.setHours(hour[,minute[,second[,millisecond]]])
+语法：Date.prototype.setHours(hour[, minute[, second[, millisecond]]])
 解释：根据本地时间设置当前Date对象的小时数
 参数：hour, 小时数，自动转换为整数，0~23之间，超出范围自动进位或借位
      minute, 分钟数，自动转换为整数，0~59之间，超出范围自动进位或借位
@@ -363,7 +363,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setMinutes()
 
 ```
-语法：Date.prototype.setMinutes(minute[,second[,millisecond]])
+语法：Date.prototype.setMinutes(minute[, second[, millisecond]])
 解释：根据本地时间设置当前Date对象的分钟数
 参数：minute, 分钟数，自动转换为整数，0~59之间，超出范围自动进位或借位
      second, 秒数，自动转换为整数，0~59之间，超出范围自动进位或借位
@@ -374,7 +374,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setSeconds()
 
 ```
-语法：Date.prototype.setSeconds(second[,millisecond])
+语法：Date.prototype.setSeconds(second[, millisecond])
 解释：根据本地时间设置当前Date对象的秒数
 参数：second, 秒数，自动转换为整数，0~59之间，超出范围自动进位或借位
      millisecond, 毫秒数，自动转换为整数，0~999之间，超出范围自动进位或借位
@@ -393,7 +393,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setUTCFullYear()
 
 ```
-语法：Date.prototype.setUTCFullYear(year[,month[,day]])
+语法：Date.prototype.setUTCFullYear(year[, month[, day]])
 解释：根据UTC时间设置当前Date对象的年份
 参数：year, 年份，自动转换为整数
      month, 月份，自动转换为整数，0~11之间，超出范围自动进位或借位
@@ -404,8 +404,8 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setUTCMonth()
 
 ```
-语法：Date.prototype.setUTCMonth(month[,day])
-解释：根据UTC时间设置当前Date对象的年份
+语法：Date.prototype.setUTCMonth(month[, day])
+解释：根据UTC时间设置当前Date对象的月份
 参数：month, 月份，自动转换为整数，0~11之间，超出范围自动进位或借位
      day, 天数，自动转换为整数，0~31之间，超出范围自动进位或借位
 返回：返回设置后从1970年1月1日00:00:00(UTC时间)到该日期的毫秒数
@@ -423,7 +423,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setUTCHours()
 
 ```
-语法：Date.prototype.setUTCHours(hour[,minute[,second[,millisecond]]])
+语法：Date.prototype.setUTCHours(hour[, minute[, second[, millisecond]]])
 解释：根据UTC时间设置当前Date对象的小时数
 参数：hour, 小时数，自动转换为整数，0~23之间，超出范围自动进位或借位
      minute, 分钟数，自动转换为整数，0~59之间，超出范围自动进位或借位
@@ -435,7 +435,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setUTCMinutes()
 
 ```
-语法：Date.prototype.setUTCMinutes(minute[,second[,millisecond]])
+语法：Date.prototype.setUTCMinutes(minute[, second[, millisecond]])
 解释：根据UTC时间设置当前Date对象的分钟数
 参数：minute, 分钟数，自动转换为整数，0~59之间，超出范围自动进位或借位
      second, 秒数，自动转换为整数，0~59之间，超出范围自动进位或借位
@@ -446,7 +446,7 @@ Object.getPrototypeOf(date)
 ##### Date.prototype.setUTCSeconds()
 
 ```
-语法：Date.prototype.setUTCSeconds(second[,millisecond])
+语法：Date.prototype.setUTCSeconds(second[, millisecond])
 解释：根据UTC时间设置当前Date对象的秒数
 参数：second, 秒数，自动转换为整数，0~59之间，超出范围自动进位或借位
      millisecond, 毫秒数，自动转换为整数，0~999之间，超出范围自动进位或借位
@@ -468,7 +468,7 @@ Object.getPrototypeOf(date)
 
 ```
 // 构造函数法
-var num = new Date(args);
+var date = new Date(args);
 ```
 
 ### 实例属性

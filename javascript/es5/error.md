@@ -7,14 +7,14 @@
 ### Error
 
 ```
-语法：new Error([message[,fileName[,lineNumber]]])
+语法：new Error(message[, fileName[, lineNumber]])
 解释：创建一个错误对象
 参数：message, 错误信息，自动转换为字符串，默认为空字符串
      fileName, 错误所在的文件名称，非标准
      lineNumber, 错误所在的文件行号，非标准
 返回值：返回创建的错误对象
 
-Error([message])等同于new Error([message])
+Error(message)等同于new Error(message)
 ```
 
 ### 子类
@@ -80,8 +80,8 @@ Error.prototype.toString = function () {
 
 ```
 构造函数法
-var arr=new Error([message[,fileName[,lineNumber]]]);
-var arr=Error([message[,fileName[,lineNumber]]]);
+var arr=new Error(message[, fileName[, lineNumber]]);
+var arr=Error(message[, fileName[, lineNumber]]);
 ```
 
 ### 实例属性

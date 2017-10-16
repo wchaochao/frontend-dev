@@ -7,8 +7,8 @@
 ### Array
 
 ```
-语法：new Array(arrayLength)
-     new Array([...element])
+语法：function Array(arrayLength){...}
+     function Array([...element]){...}
 解释：创建一个数组对象
 参数：arrayLength, 数组长度，必须是Number类型，不是0~2^31-1之间的整数时抛出RangeError
      element, 数组元素，可为任意值，无元素时为空数组

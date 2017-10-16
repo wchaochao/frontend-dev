@@ -175,7 +175,7 @@ while (pos !== -1) {
 ##### String.prototype.lastIndexOf()
 
 ```
-语法：String.prototype.lastIndexOf(search[,fromIndex])
+语法：String.prototype.lastIndexOf(search[, fromIndex])
 解释：从右往左查找指定字符串在字符串中第一次出现的位置
 参数：search, 要查找的字符串，自动转化为字符串，使用===判断
      fromIndex, 开始查找的位置，自动转换为整数，负数当作0，NaN当作length, 为空时当作length
