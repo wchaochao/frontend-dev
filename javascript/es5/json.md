@@ -4,7 +4,7 @@
 
 ## JSON
 
-JavaScript对象表示法(`JavaScript Object Notation`), 一种基于文本，独立于语言的轻量级数据交换格式
+JavaScript对象表示法(`JavaScript Object Notation`), 一种基于文本、独立于语言的轻量级数据交换格式
 
 ### 语法
 
@@ -81,7 +81,7 @@ ArrayElements = JSON
 ### JSON.parse()
 
 ```
-语法：JSON.parse(JSONstr[,reviver])
+语法：JSON.parse(JSONstr[, reviver])
 解释：将JSON字符串解析为JavaScript值
 参数：JSONstr, JSON字符串，自动转换为字符串，不符合JSON格式时抛出SyntaxError
      reviver, 变换函数，对解析后的JavaScript值进行变换，不是Function类型时不变换
@@ -122,7 +122,7 @@ console.log(JSON.parse(JSONStr, reviver));
 ### JSON.stringify()
 
 ```
-语法：JSON.stringify(value[,replacer[,space]])
+语法：JSON.stringify(value[, replacer[, space]])
 解释：将JavaScript值转换为JSON字符串
 参数：value, 要转换为JSON字符串的值
         Number、String、Boolean等包装对象会转换为相应的原始值

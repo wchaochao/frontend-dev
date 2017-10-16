@@ -26,7 +26,9 @@
 
 ## 全局方法
 
-### isNaN()
+### 数值方法
+
+#### isNaN()
 
 ```
 语法：isNaN(value)
@@ -36,7 +38,7 @@
        不能转换为NaN，返回false
 ```
 
-### isFinite()
+#### isFinite()
 
 ```
 语法：isFinite(value)
@@ -46,10 +48,10 @@
        转换为其他值，返回true
 ```
 
-### parseInt()
+#### parseInt()
 
 ```
-语法：parseInt(string,radix)
+语法：parseInt(string, radix)
 解释：按照指定基数将字符串解析成整数
 参数：string, 字符串，自动转换为String类型，并忽略前置空格
      radix, 进制数，自动转换为整数
@@ -63,17 +65,19 @@
        不能解析，返回NaN
 ```
 
-### parseFloat()
+#### parseFloat()
 
 ```
 语法：parseFloat(string)
 解释：按照十进制将字符串解析成数字，可以解析科学计数法
-参数：string，字符串，自动转换为String类型，并忽略前导空格
+参数：string，字符串，自动转换为String类型，并忽略前置空格
 返回值：能解析，返回解析的十进制数字
        不能解析，返回NaN
 ```
 
-### encodeURI()
+### URI方法
+
+#### encodeURI()
 
 ```
 语法：encodeURI(URI)
@@ -84,7 +88,7 @@
 返回值：返回编码后的URI
 ```
 
-### encodeComponentURI()
+#### encodeComponentURI()
 
 ```
 语法：encodeComponentURI(URI)
@@ -95,7 +99,7 @@
 返回值：返回编码后的URI
 ```
 
-### decodeURI()
+#### decodeURI()
 
 ```
 语法：decodeURI(encodedURI)
@@ -104,7 +108,7 @@
 返回值：返回解码后的URI
 ```
 
-### decodeComponentURI()
+#### decodeComponentURI()
 
 ```
 语法：decodeComponentURI(encodedURI)
@@ -113,7 +117,9 @@
 返回值：返回解码后的URI
 ```
 
-### eval()
+### Eval方法
+
+#### eval()
 
 ```
 语法：eval(string)

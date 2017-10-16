@@ -138,7 +138,7 @@ function getRandom(min, max) {
 }
 ```
 
-### 运算方法
+### 幂方法
 
 #### Math.abs()
 
@@ -150,7 +150,7 @@ function getRandom(min, max) {
 #### Math.pow()
 
 ```
-语法：Math.pow(x,y)
+语法：Math.pow(x, y)
 解释：返回x的y次幂
 ```
 
@@ -183,6 +183,8 @@ function getRandom(min, max) {
 // logx(y)
 var num = Math.log(y) / Math.log(x);
 ```
+
+### 三角方法
 
 #### Math.sin()
 
@@ -231,6 +233,6 @@ var num = Math.log(y) / Math.log(x);
 #### Math.atan2()
 
 ```
-语法：Math.atan(y,x)
+语法：Math.atan(y, x)
 解释：返回arctan(y/x)
 ```
